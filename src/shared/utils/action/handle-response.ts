@@ -1,6 +1,6 @@
 import type { ActionResponse } from '@/core/types/global'
-import { handleError } from '@/shared/utils/http/handle-error'
-import type { tryCatch } from '@/shared/utils/http/try-catch'
+import { handleError } from '@/shared/utils/action/handle-error'
+import type { tryCatch } from '@/shared/utils/try-catch'
 
 export const handleResponse = <TData>(
   response: Awaited<ReturnType<typeof tryCatch<TData>>>

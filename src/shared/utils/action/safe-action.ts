@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import type { ActionResponse } from '@/core/types/global'
-import { handleResponse } from '@/shared/utils/http/handle-response'
-import { tryCatch } from '@/shared/utils/http/try-catch'
+import { handleResponse } from '@/shared/utils/action/handle-response'
+import { tryCatch } from '@/shared/utils/try-catch'
 
 export const safeActionWithPayload = <TResult>(
   fn: (
