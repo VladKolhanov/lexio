@@ -13,7 +13,7 @@ import vitest from '@vitest/eslint-plugin'
 
 const gitignorePath = fileURLToPath(new URL('.gitignore', import.meta.url))
 
-const restrictUnnecessaryImports = defineConfig(
+const restrictUnnecessaryImports = defineConfig([
   {
     ignores: [
       '**/env.ts',
@@ -66,10 +66,10 @@ const restrictUnnecessaryImports = defineConfig(
         },
       ],
     },
-  }
-)
+  },
+])
 
-export default defineConfig(
+export default defineConfig([
   includeIgnoreFile(gitignorePath, 'Imported .gitignore patterns'),
   eslint.configs.recommended,
   tseslint.configs.recommendedTypeChecked,
@@ -180,5 +180,5 @@ export default defineConfig(
 
       'simple-import-sort/exports': 'warn',
     },
-  }
-)
+  },
+])

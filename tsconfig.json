@@ -12,7 +12,7 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "useUnknownInCatchVariables": true,
-    "jsx": "preserve",
+    "jsx": "react-jsx",
     "incremental": true,
     "plugins": [
       {
@@ -31,7 +31,8 @@
     "**/*.tsx",
     "**/*.config.*",
     ".next/types/**/*.ts",
-    ".lintstagedrc.mjs"
+    ".lintstagedrc.mjs",
+    ".next/dev/types/**/*.ts"
   ],
   "exclude": ["node_modules", "dist", "build", ".next", "coverage"]
 }
