@@ -33,5 +33,5 @@
     ".next/types/**/*.ts",
     ".lintstagedrc.mjs"
   ],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules", "dist", "build", ".next", "coverage"]
 }
