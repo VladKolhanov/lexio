@@ -31,21 +31,23 @@ export const ThemeToggle = () => {
 
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger asChild>
-        <Button
-          variant="ghost"
-          className="focus-visible:ring-0 focus-visible:ring-offset-0"
-        >
-          {theme === 'system' ? (
-            <SunMoonIcon />
-          ) : theme === 'dark' ? (
-            <MoonIcon />
-          ) : (
-            <SunIcon />
-          )}
-          <span className="sr-only">{t('srLabel')}</span>
-        </Button>
-      </DropdownMenuTrigger>
+      <DropdownMenuTrigger
+        render={
+          <Button
+            variant="ghost"
+            className="focus-visible:ring-0 focus-visible:ring-offset-0"
+          >
+            {theme === 'system' ? (
+              <SunMoonIcon />
+            ) : theme === 'dark' ? (
+              <MoonIcon />
+            ) : (
+              <SunIcon />
+            )}
+            <span className="sr-only">{t('srLabel')}</span>
+          </Button>
+        }
+      />
 
       <DropdownMenuContent>
         <DropdownMenuLabel className="text-center">

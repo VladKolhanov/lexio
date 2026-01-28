@@ -26,19 +26,21 @@ export const LanguageToggle = ({ className }: Props) => {
 
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger asChild>
-        <Button
-          className={cn(
-            'focus-visible:ring-0 focus-visible:ring-offset-0',
-            className
-          )}
-          variant="ghost"
-          size="icon"
-        >
-          {locale === 'en' ? <UnitedKingdomFlagIcon /> : <UkraineFlagIcon />}
-          <span className="sr-only">{t('srLabel')}</span>
-        </Button>
-      </DropdownMenuTrigger>
+      <DropdownMenuTrigger
+        render={
+          <Button
+            className={cn(
+              'focus-visible:ring-0 focus-visible:ring-offset-0',
+              className
+            )}
+            variant="ghost"
+            size="icon"
+          >
+            {locale === 'en' ? <UnitedKingdomFlagIcon /> : <UkraineFlagIcon />}
+            <span className="sr-only">{t('srLabel')}</span>
+          </Button>
+        }
+      />
 
       <DropdownMenuContent align="end">
         <DropdownMenuLabel className="text-center">
