@@ -3,6 +3,7 @@ import { useTranslations } from 'next-intl'
 import { Routes } from '@/core/constants'
 import { cn } from '@/shared/utils/cn'
 import { Button } from '@/ui/components/atoms/button'
+import { Link } from '@/ui/components/atoms/link'
 import { Separator } from '@/ui/components/atoms/separator'
 import {
   Sheet,
@@ -11,7 +12,6 @@ import {
   SheetTrigger,
 } from '@/ui/components/atoms/sheet'
 import { LanguageToggle } from '@/ui/components/molecules/language-toggle'
-import { Link } from '@/ui/components/molecules/link'
 import { Logo } from '@/ui/components/molecules/logo'
 import { ThemeToggle } from '@/ui/components/molecules/theme-toggle'
 import { LogInIcon, MenuIcon, UserPlusIcon } from '@/ui/icons'
@@ -26,12 +26,12 @@ export const Header = ({ className }: Props) => {
   return (
     <header
       className={cn(
-        'sticky top-0 z-50 border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60',
+        'sticky top-0 z-50 border-b bg-background/95 backdrop-blur supports-backdrop-filter:bg-background/60',
         className
       )}
     >
-      <div className="gap-sm px-sm container mx-auto grid h-[70px] grid-cols-[1fr_max-content_max-content_max-content] items-center justify-items-start">
-        <Link href={Routes.Home} asWrapper>
+      <div className="gap-sm px-sm container mx-auto grid h-17.5 grid-cols-[1fr_max-content_max-content_max-content] items-center justify-items-start">
+        <Link href={Routes.Home} variant="wrapper">
           <Logo />
         </Link>
 
@@ -48,16 +48,17 @@ export const Header = ({ className }: Props) => {
         </nav>
 
         <Sheet>
-          <SheetTrigger asChild>
-            <Button className="md:hidden" variant="ghost">
-              <MenuIcon />
-            </Button>
-          </SheetTrigger>
+          <SheetTrigger
+            render={
+              <Button className="md:hidden" variant="ghost">
+                <MenuIcon />
+              </Button>
+            }
+          />
 
           <SheetContent className="min-h-1/2" side="bottom">
             <SheetTitle className="sr-only">Menu</SheetTitle>
             <nav className="mt-8 flex flex-col items-center gap-4">
-              {/* TODO: place for list navigation on home page section (Features, Prices ...) */}
               <ul>
                 <li>Subtitle 1</li>
                 <li>Subtitle 2</li>

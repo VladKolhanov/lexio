@@ -1,7 +1,7 @@
 import { Routes } from '@/core/constants'
+import { Link } from '@/ui/components/atoms/link'
 import { TopBar } from '@/ui/components/atoms/top-bar'
 import { LanguageToggle } from '@/ui/components/molecules/language-toggle'
-import { Link } from '@/ui/components/molecules/link'
 import { ThemeToggle } from '@/ui/components/molecules/theme-toggle'
 import { HomeIcon } from '@/ui/icons'
 

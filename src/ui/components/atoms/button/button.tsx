@@ -1,12 +1,11 @@
 'use client'
 
 import { Button as ButtonPrimitive } from '@base-ui/react/button'
-import { Slot } from '@radix-ui/react-slot'
 import { cva, type VariantProps } from 'class-variance-authority'
 
 import { cn } from '@/shared/utils/cn'
 
-const buttonVariants = cva(
+export const buttonVariants = cva(
   "cursor-pointer focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive dark:aria-invalid:border-destructive/50 rounded-lg border border-transparent bg-clip-padding text-sm font-medium focus-visible:ring-[3px] aria-invalid:ring-[3px] [&_svg:not([class*='size-'])]:size-4 inline-flex items-center justify-center whitespace-nowrap transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none shrink-0 [&_svg]:shrink-0 outline-none group/button select-none",
   {
     variants: {
@@ -21,6 +20,7 @@ const buttonVariants = cva(
         destructive:
           'bg-destructive/10 hover:bg-destructive/20 focus-visible:ring-destructive/20 dark:focus-visible:ring-destructive/40 dark:bg-destructive/20 text-destructive focus-visible:border-destructive/40 dark:hover:bg-destructive/30',
         link: 'text-primary underline-offset-4 hover:underline',
+        wrapper: '',
       },
       size: {
         default:
@@ -43,29 +43,14 @@ const buttonVariants = cva(
   }
 )
 
-// TODO: remove slot
+type Props = ButtonPrimitive.Props & VariantProps<typeof buttonVariants>
 
-type Props = ButtonPrimitive.Props &
-  VariantProps<typeof buttonVariants> & {
-    asChild?: boolean
-  }
-
-function Button({
-  className,
-  variant,
-  size,
-  asChild = false,
-  ...props
-}: Props) {
-  const Comp = asChild ? Slot : ButtonPrimitive
-
+export function Button({ className, variant, size, ...props }: Props) {
   return (
-    <Comp
+    <ButtonPrimitive
       data-slot="button"
       className={cn(buttonVariants({ variant, size, className }))}
       {...props}
     />
   )
 }
-
-export { Button, buttonVariants }

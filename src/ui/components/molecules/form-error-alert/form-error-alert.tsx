@@ -12,8 +12,6 @@ type Props = {
   className?: string
 }
 
-// TODO: refactor this component
-
 export const FormErrorAlert = ({ error, className }: Props) => {
   if (!error) return null
 
@@ -21,36 +19,36 @@ export const FormErrorAlert = ({ error, className }: Props) => {
     <Alert
       variant="destructive"
       className={cn(
-        'animate-in duration-300 zoom-in-95 fade-in',
-        'border-l-4 border-l-destructive',
-        'shadow-lg shadow-destructive/10',
+        'animate-in duration-300 ease-out fade-in-0 slide-in-from-top-2',
+        'border-destructive/30 bg-destructive/5',
+        'px-4 py-3',
         className
       )}
     >
-      <ShieldXIcon className="h-5 w-5 text-destructive" />
+      <ShieldXIcon className="size-5 shrink-0 text-destructive" />
 
-      <AlertTitle className="">{error.message}</AlertTitle>
-
-      <div />
+      <AlertTitle className="leading-snug font-semibold">
+        {error.message}
+      </AlertTitle>
 
       {!!error.details && (
-        <AlertDescription className="">
-          <div className="">
+        <AlertDescription className="col-start-2 mt-1">
+          <div className="space-y-1">
             {Object.entries(error.details).map(([key, value], i) => (
-              <div key={i} className="">
+              <div key={i}>
                 {Array.isArray(value) ? (
-                  <div className="">
-                    <p className="">{key}:</p>
-                    <ul className="">
+                  <div>
+                    <p className="font-medium capitalize">{key}:</p>
+                    <ul className="list-inside list-disc pl-4">
                       {value.map((error, idx) => (
-                        <li key={idx} className="">
+                        <li key={idx} className="text-sm leading-relaxed">
                           {error}
                         </li>
                       ))}
                     </ul>
                   </div>
                 ) : (
-                  <p className="">{value}</p>
+                  <p className="text-sm leading-relaxed">{value}</p>
                 )}
               </div>
             ))}

@@ -19,4 +19,5 @@ export {
   SunMoonIcon,
   TriangleAlertIcon,
   UserPlusIcon,
+  XIcon,
 } from 'lucide-react'
