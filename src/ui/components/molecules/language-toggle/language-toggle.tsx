@@ -8,6 +8,7 @@ import { Button } from '@/ui/components/atoms/button'
 import {
   DropdownMenu,
   DropdownMenuContent,
+  DropdownMenuGroup,
   DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuSeparator,
@@ -43,16 +44,18 @@ export const LanguageToggle = ({ className }: Props) => {
       />
 
       <DropdownMenuContent align="end">
-        <DropdownMenuLabel className="text-center">
-          {t('language')}
-        </DropdownMenuLabel>
-        <DropdownMenuSeparator />
-        <DropdownMenuItem onClick={() => setLocale('en')}>
-          <UnitedKingdomFlagIcon /> English
-        </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => setLocale('uk')}>
-          <UkraineFlagIcon /> Українська
-        </DropdownMenuItem>
+        <DropdownMenuGroup>
+          <DropdownMenuLabel className="text-center">
+            {t('language')}
+          </DropdownMenuLabel>
+          <DropdownMenuSeparator />
+          <DropdownMenuItem onClick={() => setLocale('en')}>
+            <UnitedKingdomFlagIcon /> English
+          </DropdownMenuItem>
+          <DropdownMenuItem onClick={() => setLocale('uk')}>
+            <UkraineFlagIcon /> Українська
+          </DropdownMenuItem>
+        </DropdownMenuGroup>
       </DropdownMenuContent>
     </DropdownMenu>
   )

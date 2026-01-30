@@ -7,9 +7,11 @@ import { useTheme } from 'next-themes'
 import { Button } from '@/ui/components/atoms/button'
 import {
   DropdownMenu,
-  DropdownMenuCheckboxItem,
   DropdownMenuContent,
+  DropdownMenuGroup,
   DropdownMenuLabel,
+  DropdownMenuRadioGroup,
+  DropdownMenuRadioItem,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/ui/components/atoms/dropdown-menu'
@@ -49,29 +51,26 @@ export const ThemeToggle = () => {
         }
       />
 
-      <DropdownMenuContent>
-        <DropdownMenuLabel className="text-center">
-          {t('appearance')}
-        </DropdownMenuLabel>
-        <DropdownMenuSeparator />
-        <DropdownMenuCheckboxItem
-          checked={theme === 'system'}
-          onClick={() => setTheme('system')}
-        >
-          {t('system')}
-        </DropdownMenuCheckboxItem>
-        <DropdownMenuCheckboxItem
-          checked={theme === 'dark'}
-          onClick={() => setTheme('dark')}
-        >
-          {t('dark')}
-        </DropdownMenuCheckboxItem>
-        <DropdownMenuCheckboxItem
-          checked={theme === 'light'}
-          onClick={() => setTheme('light')}
-        >
-          {t('light')}
-        </DropdownMenuCheckboxItem>
+      <DropdownMenuContent align="end">
+        <DropdownMenuGroup>
+          <DropdownMenuLabel className="text-center">
+            {t('appearance')}
+          </DropdownMenuLabel>
+
+          <DropdownMenuSeparator />
+
+          <DropdownMenuRadioGroup value={theme} onValueChange={setTheme}>
+            <DropdownMenuRadioItem value="system">
+              {t('system')}
+            </DropdownMenuRadioItem>
+            <DropdownMenuRadioItem value="dark">
+              {t('dark')}
+            </DropdownMenuRadioItem>
+            <DropdownMenuRadioItem value="light">
+              {t('light')}
+            </DropdownMenuRadioItem>
+          </DropdownMenuRadioGroup>
+        </DropdownMenuGroup>
       </DropdownMenuContent>
     </DropdownMenu>
   )
