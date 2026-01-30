@@ -8,6 +8,7 @@ import {
 import { cn } from '@/shared/utils/cn'
 import {
   FormControl as FormInputControl,
+  FormDescription,
   FormField as FormFieldControl,
   FormItem,
   FormLabel,
@@ -20,14 +21,16 @@ type Props<TSchema extends FieldValues> = Omit<
   'render' | 'control'
 > & {
   label: string
+  description?: string
   className?: string
   inputProps?: React.ComponentProps<typeof Input>
 }
 
-export const FormField = <TSchema extends FieldValues>({
+export const FieldInputController = <TSchema extends FieldValues>({
   label,
   className,
   inputProps,
+  description,
   name,
   ...props
 }: Props<TSchema>) => {
@@ -44,7 +47,10 @@ export const FormField = <TSchema extends FieldValues>({
           <FormInputControl>
             <Input {...inputProps} {...field} />
           </FormInputControl>
-          <FormMessage className="absolute top-full mt-1" />
+          <FormMessage
+            className={cn(!description ? 'absolute top-full mt-1' : '')}
+          />
+          {description && <FormDescription>{description}</FormDescription>}
         </FormItem>
       )}
     />

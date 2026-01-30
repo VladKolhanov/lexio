@@ -12,9 +12,17 @@ import {
 import { useFormWithAction } from '@/shared/hooks/use-form-with-action/use-form-with-action'
 import { cn } from '@/shared/utils/cn'
 import { Button } from '@/ui/components/atoms/button'
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from '@/ui/components/atoms/card'
 import { Form } from '@/ui/components/atoms/form'
+import { FieldInputController } from '@/ui/components/molecules/field-input-controller'
 import { FormErrorAlert } from '@/ui/components/molecules/form-error-alert'
-import { FormField } from '@/ui/components/molecules/form-field'
 
 export type Props = {
   className?: string
@@ -40,32 +48,51 @@ export const FormAddWord = ({ className }: Props) => {
   }, [actionState.status, form, t])
 
   return (
-    <div className="flex w-1/3 flex-col gap-12">
+    <div className={cn('flex w-1/3 flex-col gap-12', className)}>
       <FormErrorAlert error={actionState.error} />
 
       <Form {...form}>
         <form
+          id="add-word"
           action={formAction}
-          className={cn('grid gap-y-7 md:gap-x-6 lg:gap-x-12', className)}
+          className={cn('grid gap-y-7 md:gap-x-6 lg:gap-x-12')}
         >
-          <FormField<WordInsertSchema>
-            label="Word"
-            name="word"
-            inputProps={{
-              type: 'text',
-              autoComplete: 'off',
-            }}
-          />
-          <FormField<WordInsertSchema>
-            label="Translation"
-            name="translation"
-            inputProps={{
-              type: 'text',
-              autoComplete: 'off',
-            }}
-          />
+          <Card className="w-full max-w-sm">
+            <CardHeader>
+              <CardTitle>Add new world to your dictionary</CardTitle>
+              <CardDescription>Enter word and translation</CardDescription>
+            </CardHeader>
 
-          <Button disabled={!form.formState.isValid || isPending}>Send</Button>
+            <CardContent className="space-y-2">
+              <FieldInputController<WordInsertSchema>
+                label="Word"
+                name="word"
+                description="lorem lorem lorem lorem lorem "
+                inputProps={{
+                  type: 'text',
+                  autoComplete: 'off',
+                }}
+              />
+              <FieldInputController<WordInsertSchema>
+                label="Translation"
+                name="translation"
+                inputProps={{
+                  type: 'text',
+                  autoComplete: 'off',
+                }}
+              />
+            </CardContent>
+
+            <CardFooter className="flex-col gap-2">
+              <Button
+                form="add-word"
+                type="submit"
+                disabled={!form.formState.isValid || isPending}
+              >
+                Send
+              </Button>
+            </CardFooter>
+          </Card>
         </form>
       </Form>
     </div>
