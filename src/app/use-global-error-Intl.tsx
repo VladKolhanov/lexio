@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 
 import { useEffect, useState } from 'react'
-import * as Sentry from '@sentry/nextjs'
 import { notFound, useParams } from 'next/navigation'
 import { hasLocale } from 'next-intl'
 
@@ -13,7 +12,6 @@ const getMessages = async (locale: (typeof routing.locales)[number]) => {
     return (await import(`@/lib/i18n/messages/${locale}/components.json`))
       .default as typeof commonMessages
   } catch (error) {
-    Sentry.captureException(error)
     console.error('Failed to load messages for locale:', locale, error)
 
     return null

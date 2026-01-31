@@ -1,7 +1,6 @@
 'use client'
 
 import { type ReactNode, useEffect } from 'react'
-import * as Sentry from '@sentry/nextjs'
 import { NextIntlClientProvider } from 'next-intl'
 
 import { ThemeProvider } from '@/core/providers/theme-provider'
@@ -42,7 +41,7 @@ export default function GlobalError({ error }: Props) {
   const { isLoading, locale, messages } = useGlobalErrorIntl()
 
   useEffect(() => {
-    Sentry.captureException(error)
+    // Sentry.captureException(error)
   }, [error])
 
   if (!messages && isLoading) {

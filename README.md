@@ -57,7 +57,6 @@ A modern, internationalized dictionary application built with Next.js 15 and Rea
 
     Open `.env.development.local` and fill in the required values:
     - `DATABASE_URL`: Your Neon database connection string.
-    - `SENTRY_AUTH_TOKEN`: (Optional) Your Sentry auth token for error tracking.
 
 4.  **Database Setup:**
 
