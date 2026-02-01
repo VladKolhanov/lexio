@@ -1,10 +1,13 @@
 import { z } from 'zod'
 
 const envSchema = z.object({
-  NODE_ENV: z.enum(['development', 'production', 'test']),
+  NODE_ENV: z
+    .enum(['development', 'production', 'test'])
+    .default('development'),
   NEXT_PUBLIC_APP_NAME: z.string().nonempty(),
   NEXT_PUBLIC_APP_DESCRIPTION: z.string().nonempty(),
   DATABASE_URL: z.url().nonempty(),
+  DB_DRIVER: z.enum(['pg', 'neon']).default('pg'),
 })
 
 const parsedSchema = envSchema.safeParse(process.env)
