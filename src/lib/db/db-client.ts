@@ -5,18 +5,16 @@ import { Pool } from 'pg'
 
 import { ENV } from '@/core/env'
 
+import * as authSchema from './schemas/auth'
+import * as wordsSchema from './schemas/words'
+
+const schema = { ...authSchema, ...wordsSchema }
+
 const connectionString = ENV.DATABASE_URL
 
-let dbClient:
-  | ReturnType<typeof drizzleNeonDriver>
-  | ReturnType<typeof drizzlePgDriver>
-
-if (ENV.DB_DRIVER === 'neon') {
-  const sql = neon(connectionString)
-  dbClient = drizzleNeonDriver(sql)
-} else {
-  const pool = new Pool({ connectionString })
-  dbClient = drizzlePgDriver(pool)
-}
+const dbClient =
+  ENV.DB_DRIVER === 'neon'
+    ? drizzleNeonDriver(neon(connectionString), { schema })
+    : drizzlePgDriver(new Pool({ connectionString }), { schema })
 
 export { dbClient }

@@ -8,7 +8,7 @@ import * as actions from '@/features/dictionary/actions'
 import {
   getWordInsertSchema,
   type WordInsertSchema,
-} from '@/lib/db/schemas/words'
+} from '@/lib/db/validation/words'
 import { useFormWithAction } from '@/shared/hooks/use-form-with-action/use-form-with-action'
 import { cn } from '@/shared/utils/cn'
 import { Button } from '@/ui/components/atoms/button'

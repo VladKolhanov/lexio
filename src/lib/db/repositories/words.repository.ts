@@ -1,7 +1,7 @@
 import { dbClient } from '../db-client'
-import { type WordInsertSchema } from '../schemas/words'
-import { wordsTable } from '../tables/words'
+import { words } from '../schemas/words'
+import { type WordInsertSchema } from '../validation/words'
 
 export async function addWord(data: WordInsertSchema) {
-  return await dbClient.insert(wordsTable).values(data).returning()
+  return await dbClient.insert(words).values(data).returning()
 }

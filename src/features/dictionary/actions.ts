@@ -1,7 +1,7 @@
 'use server'
 
 import * as dal from '@/lib/db/repositories/words.repository'
-import { getWordInsertSchema } from '@/lib/db/schemas/words'
+import { getWordInsertSchema } from '@/lib/db/validation/words'
 import { safeActionWithPayload } from '@/shared/utils/action/safe-action'
 import { parseFormData } from '@/shared/utils/parse-form-data'
 

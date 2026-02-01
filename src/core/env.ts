@@ -8,7 +8,8 @@ const envSchema = z
       .default('development'),
     NEXT_PUBLIC_APP_NAME: zStringRequired(),
     NEXT_PUBLIC_APP_DESCRIPTION: zStringRequired(),
-    DATABASE_URL: z.url().min(1),
+    NEXT_PUBLIC_BASE_URL: z.url().trim().min(1),
+    DATABASE_URL: z.url().trim().min(1),
     DB_DRIVER: z.enum(['pg', 'neon']).default('pg'),
   })
   .transform((env) => ({
