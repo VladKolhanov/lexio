@@ -32,5 +32,34 @@
   },
   "formAddWord": {
     "toastSuccess": "The word has been added to your dictionary"
+  },
+  "signUpPage": {
+    "title": "Create an account",
+    "subtitle": "Sign up to start using Ai Smart Dictionary",
+    "separator": "Or continue with",
+    "googleProvider": "Continue with Google",
+    "facebookProvider": "Continue with Facebook",
+    "haveAccount": "Already have an account?",
+    "signinLink": "Sign in"
+  },
+  "signUpForm": {
+    "firstName": "First Name",
+    "lastName": "Last Name",
+    "email": "Email",
+    "password": "Password",
+    "confirmPassword": "Confirm Password",
+    "sendForm": "Create account"
+  },
+  "signInPage": {
+    "title": "Welcome to Ai Smart Dictionary",
+    "subtitle": "Enter your email and password to sign in to your account",
+    "separator": "Or continue with",
+    "googleProvider": "Continue with Google",
+    "facebookProvider": "Continue with Facebook"
+  },
+  "signInForm": {
+    "email": "Email",
+    "password": "Password",
+    "sendForm": "Sign In"
   }
 }
