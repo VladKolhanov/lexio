@@ -1,14 +1,22 @@
+import { zStringRequired } from '@/shared/utils/zod'
 import { z } from 'zod'
 
-const envSchema = z.object({
-  NODE_ENV: z
-    .enum(['development', 'production', 'test'])
-    .default('development'),
-  NEXT_PUBLIC_APP_NAME: z.string().nonempty(),
-  NEXT_PUBLIC_APP_DESCRIPTION: z.string().nonempty(),
-  DATABASE_URL: z.url().nonempty(),
-  DB_DRIVER: z.enum(['pg', 'neon']).default('pg'),
-})
+const envSchema = z
+  .object({
+    NODE_ENV: z
+      .enum(['development', 'production', 'test'])
+      .default('development'),
+    NEXT_PUBLIC_APP_NAME: zStringRequired(),
+    NEXT_PUBLIC_APP_DESCRIPTION: zStringRequired(),
+    DATABASE_URL: z.url().min(1),
+    DB_DRIVER: z.enum(['pg', 'neon']).default('pg'),
+  })
+  .transform((env) => ({
+    ...env,
+    isDev: env.NODE_ENV === 'development',
+    isProd: env.NODE_ENV === 'production',
+    isTest: env.NODE_ENV === 'test',
+  }))
 
 const parsedSchema = envSchema.safeParse(process.env)
 
@@ -29,6 +37,3 @@ if (!parsedSchema.success) {
 }
 
 export const ENV = parsedSchema.data
-export const isDev = ENV.NODE_ENV === 'development'
-export const isProd = ENV.NODE_ENV === 'production'
-export const isTest = ENV.NODE_ENV === 'test'
