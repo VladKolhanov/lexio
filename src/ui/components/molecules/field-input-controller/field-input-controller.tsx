@@ -15,6 +15,7 @@ import {
   FormMessage,
 } from '@/ui/components/atoms/form'
 import { Input } from '@/ui/components/atoms/input'
+import { InputPassword } from '@/ui/components/molecules/input-password'
 
 type Props<TSchema extends FieldValues> = Omit<
   ControllerProps<TSchema, Path<TSchema>>,
@@ -45,7 +46,11 @@ export const FieldInputController = <TSchema extends FieldValues>({
         <FormItem className={cn('relative', className)}>
           <FormLabel>{label}</FormLabel>
           <FormInputControl>
-            <Input {...inputProps} {...field} />
+            {inputProps?.type === 'password' ? (
+              <InputPassword {...inputProps} {...field} />
+            ) : (
+              <Input {...inputProps} {...field} />
+            )}
           </FormInputControl>
           <FormMessage
             className={cn(!description ? 'absolute top-full mt-1' : '')}

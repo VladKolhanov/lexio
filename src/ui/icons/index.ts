@@ -6,6 +6,8 @@ export {
   ChevronRightIcon,
   CircleCheckIcon,
   CircleIcon,
+  EyeIcon,
+  EyeOffIcon,
   HomeIcon,
   InfoIcon,
   Loader2Icon,
