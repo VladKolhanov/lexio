@@ -2,6 +2,7 @@ import { createInsertSchema } from 'drizzle-zod'
 import z from 'zod'
 
 import { schemaWithIntl } from '@/shared/utils/schema-with-intl'
+import { ztPasswordRequired } from '@/shared/utils/zod'
 
 import { user } from '../schemas/auth'
 
@@ -15,15 +16,11 @@ export const getUserInsertSchema = schemaWithIntl((t) =>
   })
 )
 
-export const getSignUpInsertSchema = schemaWithIntl((t) =>
+export const getSignUpInputSchema = schemaWithIntl((t) =>
   getUserInsertSchema(t)
     .pick({ name: true, email: true })
     .extend({
-      password: z
-        .string()
-        .min(6, t?.('minChar', { min: 6 }))
-        .regex(/[A-Z]/, t?.('requiredUppercase'))
-        .regex(/\d/, t?.('requiredNumber')),
+      password: ztPasswordRequired(t),
       confirmPassword: z.string().min(1, t?.('required')),
     })
     .refine((field) => field.password === field.confirmPassword, {
@@ -32,6 +29,18 @@ export const getSignUpInsertSchema = schemaWithIntl((t) =>
     })
 )
 
-export type SignUpInsertSchema = z.infer<
-  Awaited<ReturnType<typeof getSignUpInsertSchema>>
+export type SignUpInputSchema = z.infer<
+  Awaited<ReturnType<typeof getSignUpInputSchema>>
+>
+
+export const getSignInInputSchema = schemaWithIntl((t) =>
+  getUserInsertSchema(t)
+    .pick({ email: true })
+    .extend({
+      password: ztPasswordRequired(t),
+    })
+)
+
+export type SignInInputSchema = z.infer<
+  Awaited<ReturnType<typeof getSignInInputSchema>>
 >

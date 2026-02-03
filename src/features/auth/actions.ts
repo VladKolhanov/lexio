@@ -4,7 +4,10 @@ import { headers } from 'next/headers'
 
 import { Routes } from '@/core/constants'
 import { auth } from '@/lib/auth'
-import { getSignUpInsertSchema } from '@/lib/db/validation/auth'
+import {
+  getSignInInputSchema,
+  getSignUpInputSchema,
+} from '@/lib/db/validation/auth'
 import {
   safeAction,
   safeActionWithPayload,
@@ -13,7 +16,7 @@ import { parseFormData } from '@/shared/utils/parse-form-data'
 import { redirectWithSafeLocale } from '@/shared/utils/redirect-with-safe-locale'
 
 export const signUp = safeActionWithPayload(async (_state, formData) => {
-  const data = parseFormData(getSignUpInsertSchema(), formData)
+  const data = parseFormData(getSignUpInputSchema(), formData)
 
   await auth.api.signUpEmail({
     headers: await headers(),
@@ -33,4 +36,18 @@ export const signOut = safeAction(async () => {
   })
 
   await redirectWithSafeLocale(Routes.Home)
+})
+
+export const signIn = safeActionWithPayload(async (_state, formData) => {
+  const data = parseFormData(getSignInInputSchema(), formData)
+
+  await auth.api.signInEmail({
+    headers: await headers(),
+    body: {
+      email: data.email,
+      password: data.password,
+    },
+  })
+
+  await redirectWithSafeLocale(Routes.Dashboard)
 })

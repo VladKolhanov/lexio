@@ -4,8 +4,8 @@ import { useTranslations } from 'next-intl'
 
 import * as actions from '@/features/auth/actions'
 import {
-  getSignUpInsertSchema,
-  type SignUpInsertSchema,
+  getSignUpInputSchema,
+  type SignUpInputSchema,
 } from '@/lib/db/validation/auth'
 import { useFormWithAction } from '@/shared/hooks'
 import { cn } from '@/shared/utils/cn'
@@ -20,7 +20,7 @@ type Props = {
 export const FormSignUp = ({ className }: Props) => {
   const { form, formAction, isPending } = useFormWithAction({
     action: actions.signUp,
-    getSchemaFn: getSignUpInsertSchema,
+    getSchemaFn: getSignUpInputSchema,
     defaultValues: { name: '', email: '', password: '', confirmPassword: '' },
     persistKey: 'form-sign-up',
     persistFields: ['email', 'name'],
@@ -36,7 +36,7 @@ export const FormSignUp = ({ className }: Props) => {
         action={formAction}
         className={cn('grid gap-y-7 md:gap-x-6 lg:gap-x-12', className)}
       >
-        <FieldInputController<SignUpInsertSchema>
+        <FieldInputController<SignUpInputSchema>
           name="name"
           label={t('name')}
           inputProps={{
@@ -46,7 +46,7 @@ export const FormSignUp = ({ className }: Props) => {
           }}
         />
 
-        <FieldInputController<SignUpInsertSchema>
+        <FieldInputController<SignUpInputSchema>
           name="email"
           label={t('email')}
           inputProps={{
@@ -56,7 +56,7 @@ export const FormSignUp = ({ className }: Props) => {
           }}
         />
 
-        <FieldInputController<SignUpInsertSchema>
+        <FieldInputController<SignUpInputSchema>
           name="password"
           label={t('password')}
           inputProps={{
@@ -65,7 +65,7 @@ export const FormSignUp = ({ className }: Props) => {
           }}
         />
 
-        <FieldInputController<SignUpInsertSchema>
+        <FieldInputController<SignUpInputSchema>
           name="confirmPassword"
           label={t('confirmPassword')}
           inputProps={{
