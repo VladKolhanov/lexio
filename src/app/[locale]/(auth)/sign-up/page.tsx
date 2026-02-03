@@ -1,13 +1,22 @@
 import { type Metadata } from 'next'
 import { useTranslations } from 'next-intl'
+import { getTranslations } from 'next-intl/server'
 
 import { Routes } from '@/core/constants'
+import type { GenerateMetadataProps } from '@/core/types/global'
 import { FormSignUp } from '@/features/auth/sign-up/form-sign-up'
 import { Link } from '@/ui/components/atoms/link'
 import { CardAuth } from '@/ui/components/organisms/card-auth/card-auth'
 
-export const metadata: Metadata = {
-  title: 'Sign Up',
+export async function generateMetadata({
+  params,
+}: GenerateMetadataProps): Promise<Metadata> {
+  const { locale } = await params
+  const t = await getTranslations({ locale })
+
+  return {
+    title: t('metadata.sign-up'),
+  }
 }
 
 export default function SignUpPage() {

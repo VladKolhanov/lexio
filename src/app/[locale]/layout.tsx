@@ -21,9 +21,7 @@ export const metadata: Metadata = {
   icons: '/favicon/favicon.ico',
 }
 
-type Props = LayoutProps<{ locale: string }>
-
-export default async function RootLayout({ children, params }: Props) {
+export default async function RootLayout({ children, params }: LayoutProps) {
   const { locale } = await params
 
   if (!hasLocale(routing.locales, locale)) {
