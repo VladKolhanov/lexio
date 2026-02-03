@@ -119,7 +119,13 @@ export const useFormWithAction = <
     if (actionState.status === 'success' && persistKey) {
       localStorage.removeItem(persistKey)
     }
-  }, [actionState, persistKey])
+
+    return () => {
+      if (isPending && persistKey) {
+        localStorage.removeItem(persistKey)
+      }
+    }
+  }, [actionState, persistKey, isPending])
 
   return {
     form,
