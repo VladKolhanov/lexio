@@ -43,8 +43,7 @@
     "signinLink": "Увійти"
   },
   "signUpForm": {
-    "firstName": "Ім'я",
-    "lastName": "Прізвище",
+    "name": "Ім'я",
     "email": "Електронна пошта",
     "password": "Пароль",
     "confirmPassword": "Підтвердьте пароль",
@@ -61,5 +60,8 @@
     "email": "Електронна пошта",
     "password": "Пароль",
     "sendForm": "Увійти"
+  },
+  "formSubmitButton": {
+    "sending": "Відправка"
   }
 }

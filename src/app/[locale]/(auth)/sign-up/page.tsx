@@ -3,17 +3,8 @@ import { useTranslations } from 'next-intl'
 
 import { Routes } from '@/core/constants'
 import { FormSignUp } from '@/features/auth/sign-up/form-sign-up'
-import { Button } from '@/ui/components/atoms/button'
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from '@/ui/components/atoms/card'
 import { Link } from '@/ui/components/atoms/link'
-import { SeparatorWithLabel } from '@/ui/components/atoms/separator'
+import { CardAuth } from '@/ui/components/organisms/card-auth/card-auth'
 
 export const metadata: Metadata = {
   title: 'Sign Up',
@@ -23,25 +14,15 @@ export default function SignUpPage() {
   const t = useTranslations('signUpPage')
 
   return (
-    <Card className="mt-15 w-1/2 md:mt-25">
-      <CardHeader className="mb-4 text-center">
-        <CardTitle>{t('title')}</CardTitle>
-        <CardDescription>{t('subtitle')}</CardDescription>
-      </CardHeader>
-
-      <CardContent className="space-y-4">
-        <FormSignUp />
-
-        <SeparatorWithLabel label={t('separator')} />
-
-        <div className="grid-col grid justify-items-center gap-2 *:w-1/2">
-          <Button>{t('googleProvider')}</Button>
-          <Button variant="outline">{t('facebookProvider')}</Button>
-        </div>
-      </CardContent>
-
-      <CardFooter className="justify-center">
-        <p className="md:text-md text-xl text-muted-foreground">
+    <CardAuth
+      className="mt-15 md:mt-25"
+      title={t('title')}
+      description={t('subtitle')}
+      separatorLabel={t('separator')}
+      googleButtonText={t('googleProvider')}
+      facebookButtonText={t('facebookProvider')}
+      footer={
+        <p className="md:text-md text-sm text-muted-foreground lg:text-lg">
           {t('haveAccount')}{' '}
           <Link
             href={Routes.SignIn}
@@ -51,7 +32,9 @@ export default function SignUpPage() {
             {t('signinLink')}
           </Link>
         </p>
-      </CardFooter>
-    </Card>
+      }
+    >
+      <FormSignUp />
+    </CardAuth>
   )
 }

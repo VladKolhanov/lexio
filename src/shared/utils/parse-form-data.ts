@@ -14,5 +14,5 @@ export const parseFormData = <TSchema extends ZodType>(
     })
   }
 
-  return parsedData
+  return parsedData.data
 }

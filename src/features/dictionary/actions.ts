@@ -8,7 +8,7 @@ import { parseFormData } from '@/shared/utils/parse-form-data'
 export const addWord = safeActionWithPayload(async (_state, formData) => {
   const parsedData = parseFormData(getWordInsertSchema(), formData)
 
-  const [result] = await dal.addWord(parsedData.data)
+  const [result] = await dal.addWord(parsedData)
 
   return result
 })

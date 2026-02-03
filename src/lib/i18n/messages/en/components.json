@@ -43,8 +43,7 @@
     "signinLink": "Sign in"
   },
   "signUpForm": {
-    "firstName": "First Name",
-    "lastName": "Last Name",
+    "name": "Name",
     "email": "Email",
     "password": "Password",
     "confirmPassword": "Confirm Password",
@@ -61,5 +60,8 @@
     "email": "Email",
     "password": "Password",
     "sendForm": "Sign In"
+  },
+  "formSubmitButton": {
+    "sending": "Sending"
   }
 }
