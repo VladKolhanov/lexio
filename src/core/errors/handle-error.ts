@@ -4,8 +4,11 @@ import { getTranslations } from 'next-intl/server'
 
 import { AppError } from '@/core/errors/exceptions'
 import type { ServerError, ZodFlattenError } from '@/core/types/global'
+import type { AvailableFormFields } from '@/lib/db/types'
 
-export const handleError = async (error: unknown) => {
+export const handleError = async (
+  error: unknown
+): Promise<ServerError<AvailableFormFields>> => {
   if (isRedirectError(error)) {
     throw error
   }
@@ -27,11 +30,13 @@ export const handleError = async (error: unknown) => {
       return {
         ...actionResponse,
         message: t('zodParseSchema'),
-        details: (error.details as ZodFlattenError).fieldErrors,
+        details: {
+          fieldErrors: error.details as ZodFlattenError['fieldErrors'],
+        },
       }
     }
 
-    return { ...actionResponse, message: t('failed') } as ServerError
+    return { ...actionResponse, message: t('failed') }
   }
 
   if (error instanceof APIError) {
@@ -40,7 +45,7 @@ export const handleError = async (error: unknown) => {
         code: error.status,
         message: t('emailExist'),
         details: {
-          fields: ['email'],
+          paths: ['email'],
         },
       }
     }
@@ -50,7 +55,7 @@ export const handleError = async (error: unknown) => {
         code: error.status,
         message: t('invalidCredentials'),
         details: {
-          fields: ['root'],
+          paths: ['root'],
         },
       }
     }

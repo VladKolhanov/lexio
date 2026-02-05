@@ -1,22 +1,20 @@
-import type { Message } from 'react-hook-form'
+import type { UseFormReturn } from 'react-hook-form'
 
-import { Alert, AlertTitle } from '@/ui/components/atoms/alert'
+import {
+  Alert,
+  AlertDescription,
+  AlertTitle,
+} from '@/ui/components/atoms/alert'
 import { ShieldXIcon } from '@/ui/icons'
 import { cn } from '@/utils/cn'
 
-type Error = Partial<{
-  type: string | number
-  message: Message
-}>
-
 type Props = {
-  error: (Record<string, Error> & Error) | undefined
+  error: UseFormReturn['formState']['errors']['root'] | null
+  description?: Record<string, string | string[]>
   className?: string
 }
 
-// TODO: Refactor component for display many mistakes
-
-export const FormRootError = ({ error, className }: Props) => {
+export const FormRootError = ({ error, description, className }: Props) => {
   if (!error) return null
 
   return (
@@ -35,10 +33,10 @@ export const FormRootError = ({ error, className }: Props) => {
         {error.message}
       </AlertTitle>
 
-      {/* {!!error.details && (
+      {!!description && (
         <AlertDescription className="col-start-2 mt-1">
           <div className="space-y-1">
-            {Object.entries(error.details).map(([key, value], i) => (
+            {Object.entries(description).map(([key, value], i) => (
               <div key={i}>
                 {Array.isArray(value) ? (
                   <div>
@@ -58,7 +56,7 @@ export const FormRootError = ({ error, className }: Props) => {
             ))}
           </div>
         </AlertDescription>
-      )} */}
+      )}
     </Alert>
   )
 }

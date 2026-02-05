@@ -10,7 +10,7 @@ export const parseFormData = <TSchema extends ZodType>(
 
   if (!parsedData.success) {
     throw new AppError('ZOD_PARSE_SCHEMA', {
-      details: z.flattenError(parsedData.error),
+      details: z.flattenError(parsedData.error).fieldErrors,
     })
   }
 

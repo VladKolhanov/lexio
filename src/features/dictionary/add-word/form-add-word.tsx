@@ -7,10 +7,8 @@ import { toast } from 'sonner'
 import { PersistKeys } from '@/core/constants'
 import * as actions from '@/features/dictionary/actions'
 import { useFormWithAction } from '@/hooks'
-import {
-  getWordInsertSchema,
-  type WordInsertSchema,
-} from '@/lib/db/validation/words'
+import type { WordInsertSchema } from '@/lib/db/types'
+import { getWordInsertSchema } from '@/lib/db/validation/words'
 import { Button } from '@/ui/components/atoms/button'
 import {
   Card,

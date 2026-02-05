@@ -1,15 +1,12 @@
 'use client'
 
-import { useEffect } from 'react'
 import { useTranslations } from 'next-intl'
 
 import { PersistKeys } from '@/core/constants'
 import * as actions from '@/features/auth/actions'
-import { useFormWithAction } from '@/hooks'
-import {
-  getSignInInputSchema,
-  type SignInInputSchema,
-} from '@/lib/db/validation/auth'
+import { useFormWithAction, useHandleServerError } from '@/hooks'
+import type { SignInInputSchema } from '@/lib/db/types'
+import { getSignInInputSchema } from '@/lib/db/validation/auth'
 import { Form } from '@/ui/components/atoms/form'
 import { FieldInputController } from '@/ui/components/molecules/field-input-controller'
 import { FormRootError } from '@/ui/components/molecules/form-root-error'
@@ -31,17 +28,16 @@ export const FormSignIn = ({ className }: Props) => {
     disableIfPending: true,
   })
 
-  const t = useTranslations('signInForm')
+  const { rootError, description } = useHandleServerError(
+    form,
+    actionState.error
+  )
 
-  useEffect(() => {
-    if (actionState.error?.code === 'UNAUTHORIZED') {
-      form.setError('root', { message: actionState.error.message })
-    }
-  }, [actionState.error, form])
+  const t = useTranslations('signInForm')
 
   return (
     <Form {...form}>
-      <FormRootError error={form.formState.errors.root} />
+      <FormRootError error={rootError} description={description} />
       <form
         action={formAction}
         className={cn('grid gap-y-7 md:gap-x-6 lg:gap-x-12', className)}

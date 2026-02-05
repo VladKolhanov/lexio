@@ -1,5 +1,4 @@
 import { createInsertSchema } from 'drizzle-zod'
-import type z from 'zod'
 
 import { schemaWithIntl } from '@/utils/schema-with-intl'
 
@@ -14,7 +13,3 @@ export const getWordInsertSchema = schemaWithIntl((t) =>
     createdAt: true,
   })
 )
-
-export type WordInsertSchema = z.infer<
-  Awaited<ReturnType<typeof getWordInsertSchema>>
->

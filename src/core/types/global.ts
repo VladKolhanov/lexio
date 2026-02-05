@@ -20,10 +20,10 @@ export type ZodFlattenError = {
   fieldErrors: Record<string, string[]>
 }
 
-export type ServerError = {
+export type ServerError<TPaths = string> = {
   code: ErrorCodes | APIError['status']
   message: string
-  details?: { fields: string[] } | Record<string, string | string[]>
+  details?: { paths?: TPaths[]; fieldErrors?: ZodFlattenError['fieldErrors'] }
 }
 
 export type ActionResponse<TData> =

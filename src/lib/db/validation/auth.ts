@@ -29,10 +29,6 @@ export const getSignUpInputSchema = schemaWithIntl((t) =>
     })
 )
 
-export type SignUpInputSchema = z.infer<
-  Awaited<ReturnType<typeof getSignUpInputSchema>>
->
-
 export const getSignInInputSchema = schemaWithIntl((t) =>
   getUserInsertSchema(t)
     .pick({ email: true })
@@ -40,7 +36,3 @@ export const getSignInInputSchema = schemaWithIntl((t) =>
       password: ztPasswordRequired(t),
     })
 )
-
-export type SignInInputSchema = z.infer<
-  Awaited<ReturnType<typeof getSignInInputSchema>>
->

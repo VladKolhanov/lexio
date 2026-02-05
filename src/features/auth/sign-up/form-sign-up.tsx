@@ -1,15 +1,12 @@
 'use client'
 
-import { useEffect } from 'react'
 import { useTranslations } from 'next-intl'
 
 import { PersistKeys } from '@/core/constants'
 import * as actions from '@/features/auth/actions'
-import { useFormWithAction } from '@/hooks'
-import {
-  getSignUpInputSchema,
-  type SignUpInputSchema,
-} from '@/lib/db/validation/auth'
+import { useFormWithAction, useHandleServerError } from '@/hooks'
+import type { SignUpInputSchema } from '@/lib/db/types'
+import { getSignUpInputSchema } from '@/lib/db/validation/auth'
 import { Form } from '@/ui/components/atoms/form'
 import { FieldInputController } from '@/ui/components/molecules/field-input-controller'
 import { FormRootError } from '@/ui/components/molecules/form-root-error'
@@ -31,18 +28,16 @@ export const FormSignUp = ({ className }: Props) => {
     disableIfPending: true,
   })
 
-  const t = useTranslations('signUpForm')
-  const tErr = useTranslations('errors')
+  const { rootError, description } = useHandleServerError(
+    form,
+    actionState.error
+  )
 
-  useEffect(() => {
-    if (actionState.error?.code === 'UNPROCESSABLE_ENTITY') {
-      form.setError('email', { message: tErr('emailExist') })
-    }
-  }, [actionState.error, form, tErr])
+  const t = useTranslations('signUpForm')
 
   return (
     <Form {...form}>
-      <FormRootError error={form.formState.errors.root} />
+      <FormRootError error={rootError} description={description} />
       <form
         action={formAction}
         className={cn('grid gap-y-7 md:gap-x-6 lg:gap-x-12', className)}
