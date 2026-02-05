@@ -1,3 +1,4 @@
+import type { APIError } from 'better-auth'
 import type { Locale, useTranslations } from 'next-intl'
 
 import { type ErrorCodes } from '@/core/errors/definitions'
@@ -18,7 +19,7 @@ export type ZodFlattenError = {
 }
 
 export type ActionError = {
-  code: ErrorCodes
+  code: ErrorCodes | APIError['status']
   message: string
   details?: Record<string, string | string[]>
 }

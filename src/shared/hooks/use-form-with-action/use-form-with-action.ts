@@ -1,15 +1,12 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useActionState, useEffect } from 'react'
-import {
-  type DeepPartial,
-  type FieldValues,
-  useForm,
-  type UseFormProps,
-} from 'react-hook-form'
+import { type FieldValues, useForm, type UseFormProps } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
+import Cookie from 'js-cookie'
 import { useTranslations } from 'next-intl'
 import type z from 'zod'
 
+import { type PersistKeys } from '@/core/constants'
 import type { ActionResponse } from '@/core/types/global'
 import { debounce } from '@/shared/utils/debounce'
 import * as localStorage from '@/shared/utils/local-storage'
@@ -21,7 +18,7 @@ type PersistDisabled = {
 }
 
 type PersistEnabled<TValues> = {
-  persistKey: string
+  persistKey: PersistKeys
   persistFields?: (keyof TValues)[]
   persistDebounceMs?: number
 }
@@ -40,6 +37,22 @@ type Options<
   initActionStateData?: Awaited<ReturnType<TAction>>['data']
 } & (PersistDisabled | PersistEnabled<TValues>) &
   Omit<UseFormProps<TValues>, 'resolver' | 'disabled' | 'defaultValues'>
+
+function getPersistData<
+  TValues extends FieldValues,
+  T extends UseFormProps<TValues>['defaultValues'],
+>(persistKey: PersistKeys | undefined, defaultValues: Required<TValues>): T {
+  if (!persistKey) return defaultValues as T
+
+  const persistData = localStorage.getItem(persistKey)
+
+  if (!persistData) return defaultValues as T
+
+  return {
+    ...defaultValues,
+    ...persistData,
+  } as T
+}
 
 export const useFormWithAction = <
   TAction extends (
@@ -67,46 +80,42 @@ export const useFormWithAction = <
 
   const t = useTranslations('validation')
 
-  function gePersistData() {
-    const formData =
-      (persistKey && localStorage.getItem(persistKey)) || defaultValues
-
-    return formData as UseFormProps<TValues>['defaultValues']
-  }
-
   const form = useForm<TValues>({
     resolver: zodResolver(getSchemaFn(t)),
     disabled: disableIfPending ? isPending : undefined,
-    defaultValues: gePersistData(),
+    defaultValues: getPersistData(persistKey, defaultValues),
     ...formHookProps,
   })
 
   useEffect(() => {
     if (!persistKey) return
 
-    const saveToLocalStorage = debounce((values: DeepPartial<TValues>) => {
-      if (!persistFields?.length) {
-        localStorage.setItem(persistKey, values)
-      } else {
-        const formData = Object.entries(values).reduce<Record<string, unknown>>(
-          (acc, [key, value]) => {
-            if (persistFields.includes(key)) {
-              acc[key] = value
-            } else {
-              acc[key] = defaultValues[key]
-            }
-
-            return acc
-          },
-          {}
-        )
-
-        localStorage.setItem(persistKey, formData)
-      }
+    const saveToLocalStorage = debounce((values: Record<string, unknown>) => {
+      Cookie.set(persistKey, 'true')
+      localStorage.setItem(persistKey, values)
     }, persistDebounceMs)
 
     const subscription = form.watch((values) => {
-      saveToLocalStorage(values)
+      const formData = Object.entries(values).reduce<Record<string, unknown>>(
+        (acc, [key, value]) => {
+          if (!persistFields || persistFields.includes(key)) {
+            acc[key] = value
+          }
+
+          return acc
+        },
+        {}
+      )
+
+      const isEmptyValues = !Object.values(formData).some(Boolean)
+
+      if (isEmptyValues) {
+        Cookie.remove(persistKey)
+        localStorage.removeItem(persistKey)
+        return
+      }
+
+      saveToLocalStorage(formData)
     })
 
     return () => {
@@ -116,12 +125,16 @@ export const useFormWithAction = <
   }, [defaultValues, form, persistDebounceMs, persistFields, persistKey])
 
   useEffect(() => {
-    if (actionState.status === 'success' && persistKey) {
+    if (!persistKey) return
+
+    if (actionState.status === 'success') {
+      Cookie.remove(persistKey)
       localStorage.removeItem(persistKey)
     }
 
+    /* Clear persist data only if ${persistKey} cookie was removed in server */
     return () => {
-      if (isPending && persistKey) {
+      if (isPending && !Cookie.get(persistKey)) {
         localStorage.removeItem(persistKey)
       }
     }

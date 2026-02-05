@@ -1,3 +1,4 @@
+import { APIError } from 'better-auth'
 import { isRedirectError } from 'next/dist/client/components/redirect-error'
 
 import { AppError } from '@/core/errors/exceptions'
@@ -26,6 +27,22 @@ export const handleError = (error: unknown): ActionError | never => {
       }
     } else {
       return actionResponse as ActionError
+    }
+  }
+
+  if (error instanceof APIError) {
+    if (error.statusCode === 422 && error.status === 'UNPROCESSABLE_ENTITY') {
+      return {
+        code: error.status,
+        message: error.message,
+      }
+    }
+
+    if (error.statusCode === 401 && error.status === 'UNAUTHORIZED') {
+      return {
+        code: error.status,
+        message: error.message,
+      }
     }
   }
 

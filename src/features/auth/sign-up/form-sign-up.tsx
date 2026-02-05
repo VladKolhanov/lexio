@@ -1,7 +1,9 @@
 'use client'
 
+import { useEffect } from 'react'
 import { useTranslations } from 'next-intl'
 
+import { PersistKeys } from '@/core/constants'
 import * as actions from '@/features/auth/actions'
 import {
   getSignUpInputSchema,
@@ -18,17 +20,23 @@ type Props = {
 }
 
 export const FormSignUp = ({ className }: Props) => {
-  const { form, formAction, isPending } = useFormWithAction({
+  const { form, actionState, formAction, isPending } = useFormWithAction({
     action: actions.signUp,
     getSchemaFn: getSignUpInputSchema,
     defaultValues: { name: '', email: '', password: '', confirmPassword: '' },
-    persistKey: 'form-sign-up',
+    persistKey: PersistKeys.FormSignUp,
     persistFields: ['email', 'name'],
     mode: 'onChange',
     disableIfPending: true,
   })
 
   const t = useTranslations('signUpForm')
+
+  useEffect(() => {
+    if (actionState.error?.code === 'UNPROCESSABLE_ENTITY') {
+      form.setError('email', { message: t('errors.emailExist') })
+    }
+  }, [actionState.error, form, t])
 
   return (
     <Form {...form}>

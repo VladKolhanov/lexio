@@ -2,7 +2,7 @@
 
 import { headers } from 'next/headers'
 
-import { Routes } from '@/core/constants'
+import { PersistKeys, Routes } from '@/core/constants'
 import { auth } from '@/lib/auth'
 import {
   getSignInInputSchema,
@@ -12,6 +12,7 @@ import {
   safeAction,
   safeActionWithPayload,
 } from '@/shared/utils/action/safe-action'
+import { clearPersistFormData as clearPersistCookie } from '@/shared/utils/clear-persist-form-data'
 import { parseFormData } from '@/shared/utils/parse-form-data'
 import { redirectWithSafeLocale } from '@/shared/utils/redirect-with-safe-locale'
 
@@ -27,6 +28,7 @@ export const signUp = safeActionWithPayload(async (_state, formData) => {
     },
   })
 
+  await clearPersistCookie(PersistKeys.FormSignUp)
   await redirectWithSafeLocale(Routes.Dashboard)
 })
 
@@ -49,5 +51,6 @@ export const signIn = safeActionWithPayload(async (_state, formData) => {
     },
   })
 
+  await clearPersistCookie(PersistKeys.FormSignIn)
   await redirectWithSafeLocale(Routes.Dashboard)
 })

@@ -1,7 +1,9 @@
 'use client'
 
+import { useEffect } from 'react'
 import { useTranslations } from 'next-intl'
 
+import { PersistKeys } from '@/core/constants'
 import * as actions from '@/features/auth/actions'
 import {
   getSignInInputSchema,
@@ -18,17 +20,23 @@ type Props = {
 }
 
 export const FormSignIn = ({ className }: Props) => {
-  const { form, formAction, isPending } = useFormWithAction({
+  const { form, actionState, formAction, isPending } = useFormWithAction({
     action: actions.signIn,
     getSchemaFn: getSignInInputSchema,
     defaultValues: { email: '', password: '' },
-    persistKey: 'form-sign-in',
+    persistKey: PersistKeys.FormSignIn,
     persistFields: ['email'],
     mode: 'onChange',
     disableIfPending: true,
   })
 
   const t = useTranslations('signInForm')
+
+  useEffect(() => {
+    if (actionState.error?.code === 'UNAUTHORIZED') {
+      form.setError('root', { message: t('errors.invalidCredentials') })
+    }
+  }, [actionState.error, form, t])
 
   return (
     <Form {...form}>

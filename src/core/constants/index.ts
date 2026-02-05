@@ -4,3 +4,11 @@ export const Routes = {
   SignUp: '/sign-up',
   Dashboard: '/dashboard',
 } as const
+
+export const PersistKeys = {
+  FormSignUp: 'form-sign-up',
+  FormSignIn: 'form-sign-in',
+  FormAddWord: 'form-add-word',
+} as const
+
+export type PersistKeys = (typeof PersistKeys)[keyof typeof PersistKeys]

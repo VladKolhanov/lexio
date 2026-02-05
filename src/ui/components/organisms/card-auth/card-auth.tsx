@@ -37,7 +37,7 @@ export const CardAuth = ({
   const showSocials = separatorLabel && googleButtonText && facebookButtonText
 
   return (
-    <Card className={cn('w-full sm:w-2/3 lg:w-2/4 xl:w-1/3', className)}>
+    <Card className={cn('w-full sm:w-2/3 lg:w-2/4 xl:w-2/5', className)}>
       <CardHeader className="mb-4 text-center">
         <CardTitle>{title}</CardTitle>
         <CardDescription>{description}</CardDescription>

@@ -4,6 +4,7 @@ import { useEffect } from 'react'
 import { useTranslations } from 'next-intl'
 import { toast } from 'sonner'
 
+import { PersistKeys } from '@/core/constants'
 import * as actions from '@/features/dictionary/actions'
 import {
   getWordInsertSchema,
@@ -33,7 +34,7 @@ export const FormAddWord = ({ className }: Props) => {
     action: actions.addWord,
     getSchemaFn: getWordInsertSchema,
     defaultValues: { word: '', translation: '' },
-    persistKey: 'form-add-word',
+    persistKey: PersistKeys.FormAddWord,
     mode: 'onChange',
     disableIfPending: true,
   })
