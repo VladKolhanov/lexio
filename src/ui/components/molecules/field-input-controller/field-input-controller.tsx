@@ -5,7 +5,6 @@ import {
   useFormContext,
 } from 'react-hook-form'
 
-import { cn } from '@/shared/utils/cn'
 import {
   FormControl as FormInputControl,
   FormDescription,
@@ -16,6 +15,7 @@ import {
 } from '@/ui/components/atoms/form'
 import { Input } from '@/ui/components/atoms/input'
 import { InputPassword } from '@/ui/components/molecules/input-password'
+import { cn } from '@/utils/cn'
 
 type Props<TSchema extends FieldValues> = Omit<
   ControllerProps<TSchema, Path<TSchema>>,

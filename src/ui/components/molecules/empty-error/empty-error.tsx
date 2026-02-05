@@ -1,6 +1,5 @@
 import { useTranslations } from 'next-intl'
 
-import { cn } from '@/shared/utils/cn'
 import { Button } from '@/ui/components/atoms/button'
 import {
   Empty,
@@ -9,6 +8,7 @@ import {
   EmptyHeader,
   EmptyTitle,
 } from '@/ui/components/atoms/empty'
+import { cn } from '@/utils/cn'
 
 type Props = {
   className?: string

@@ -3,7 +3,6 @@
 import { useTranslations } from 'next-intl'
 
 import { useLocale } from '@/lib/i18n/navigation'
-import { cn } from '@/shared/utils/cn'
 import { Button } from '@/ui/components/atoms/button'
 import {
   DropdownMenu,
@@ -15,6 +14,7 @@ import {
   DropdownMenuTrigger,
 } from '@/ui/components/atoms/dropdown-menu'
 import { UkraineFlagIcon, UnitedKingdomFlagIcon } from '@/ui/icons'
+import { cn } from '@/utils/cn'
 
 type Props = {
   className?: string

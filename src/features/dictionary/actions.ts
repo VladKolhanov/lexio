@@ -2,8 +2,8 @@
 
 import * as dal from '@/lib/db/repositories/words.repository'
 import { getWordInsertSchema } from '@/lib/db/validation/words'
-import { safeActionWithPayload } from '@/shared/utils/action/safe-action'
-import { parseFormData } from '@/shared/utils/parse-form-data'
+import { parseFormData } from '@/utils/parse-form-data'
+import { safeActionWithPayload } from '@/utils/safe-action'
 
 export const addWord = safeActionWithPayload(async (_state, formData) => {
   const parsedData = parseFormData(getWordInsertSchema(), formData)

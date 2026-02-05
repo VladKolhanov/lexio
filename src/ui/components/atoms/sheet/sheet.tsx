@@ -4,9 +4,9 @@
 import type * as React from 'react'
 import { Dialog as SheetPrimitive } from '@base-ui/react/dialog'
 
-import { cn } from '@/shared/utils/cn'
 import { Button } from '@/ui/components/atoms/button'
 import { XIcon } from '@/ui/icons'
+import { cn } from '@/utils/cn'
 
 function Sheet({ ...props }: SheetPrimitive.Root.Props) {
   return <SheetPrimitive.Root data-slot="sheet" {...props} />

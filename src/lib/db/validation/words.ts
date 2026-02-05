@@ -1,7 +1,7 @@
 import { createInsertSchema } from 'drizzle-zod'
 import type z from 'zod'
 
-import { schemaWithIntl } from '@/shared/utils/schema-with-intl'
+import { schemaWithIntl } from '@/utils/schema-with-intl'
 
 import { words } from '../schemas/words'
 

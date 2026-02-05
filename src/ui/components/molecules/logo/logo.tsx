@@ -5,7 +5,7 @@ import Image from 'next/image'
 import { useTranslations } from 'next-intl'
 import { useTheme } from 'next-themes'
 
-import { cn } from '@/shared/utils/cn'
+import { cn } from '@/utils/cn'
 
 type Props = {
   className?: string

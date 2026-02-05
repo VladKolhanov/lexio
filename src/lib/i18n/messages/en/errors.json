@@ -1,0 +1,6 @@
+{
+  "errors": {
+    "emailExist": "User already exists. Use another email.",
+    "invalidCredentials": "Invalid email or password."
+  }
+}

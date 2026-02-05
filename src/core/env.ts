@@ -1,4 +1,4 @@
-import { zStringRequired } from '@/shared/utils/zod'
+import { zStringRequired } from '@/utils/zod'
 import { z } from 'zod'
 
 const envSchema = z

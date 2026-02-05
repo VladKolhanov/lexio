@@ -3,6 +3,7 @@ import type { Locale, useTranslations } from 'next-intl'
 
 import { type ErrorCodes } from '@/core/errors/definitions'
 import type componentsMessages from '@/lib/i18n/messages/en/components.json'
+import type errorsMessages from '@/lib/i18n/messages/en/errors.json'
 import type metadataMessages from '@/lib/i18n/messages/en/metadata.json'
 import type validationMessages from '@/lib/i18n/messages/en/validation.json'
 
@@ -10,7 +11,8 @@ export type TranslationKeys<
   TKey extends
     | keyof typeof componentsMessages
     | keyof typeof validationMessages
-    | keyof typeof metadataMessages,
+    | keyof typeof metadataMessages
+    | keyof typeof errorsMessages,
 > = ReturnType<typeof useTranslations<TKey>>
 
 export type ZodFlattenError = {

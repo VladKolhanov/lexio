@@ -3,9 +3,9 @@
 import { useTransition } from 'react'
 
 import * as actions from '@/features/auth/actions'
-import { cn } from '@/shared/utils/cn'
 import { Button } from '@/ui/components/atoms/button'
 import { LoaderCircleIcon } from '@/ui/icons'
+import { cn } from '@/utils/cn'
 
 type Props = Omit<React.ComponentProps<typeof Button>, 'onClick'>
 

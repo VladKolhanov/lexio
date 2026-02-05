@@ -1,4 +1,3 @@
-import { cn } from '@/shared/utils/cn'
 import { Button } from '@/ui/components/atoms/button'
 import {
   Card,
@@ -9,6 +8,7 @@ import {
   CardTitle,
 } from '@/ui/components/atoms/card'
 import { SeparatorWithLabel } from '@/ui/components/atoms/separator'
+import { cn } from '@/utils/cn'
 
 type Props = {
   title: string

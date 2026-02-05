@@ -3,7 +3,7 @@
 
 import type * as React from 'react'
 
-import { cn } from '@/shared/utils/cn'
+import { cn } from '@/utils/cn'
 
 function Label({ className, ...props }: React.ComponentProps<'label'>) {
   return (

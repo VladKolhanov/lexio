@@ -1,11 +1,11 @@
 import type { ActionError } from '@/core/types/global'
-import { cn } from '@/shared/utils/cn'
 import {
   Alert,
   AlertDescription,
   AlertTitle,
 } from '@/ui/components/atoms/alert'
 import { ShieldXIcon } from '@/ui/icons'
+import { cn } from '@/utils/cn'
 
 type Props = {
   error: ActionError | null

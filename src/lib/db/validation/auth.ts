@@ -1,8 +1,8 @@
 import { createInsertSchema } from 'drizzle-zod'
 import z from 'zod'
 
-import { schemaWithIntl } from '@/shared/utils/schema-with-intl'
-import { ztPasswordRequired } from '@/shared/utils/zod'
+import { schemaWithIntl } from '@/utils/schema-with-intl'
+import { ztPasswordRequired } from '@/utils/zod'
 
 import { user } from '../schemas/auth'
 

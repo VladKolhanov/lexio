@@ -8,8 +8,8 @@ import type z from 'zod'
 
 import { type PersistKeys } from '@/core/constants'
 import type { ActionResponse } from '@/core/types/global'
-import { debounce } from '@/shared/utils/debounce'
-import * as localStorage from '@/shared/utils/local-storage'
+import { debounce } from '@/utils/debounce'
+import * as localStorage from '@/utils/local-storage'
 
 type PersistDisabled = {
   persistKey?: undefined

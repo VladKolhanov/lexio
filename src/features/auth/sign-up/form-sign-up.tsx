@@ -5,15 +5,15 @@ import { useTranslations } from 'next-intl'
 
 import { PersistKeys } from '@/core/constants'
 import * as actions from '@/features/auth/actions'
+import { useFormWithAction } from '@/hooks'
 import {
   getSignUpInputSchema,
   type SignUpInputSchema,
 } from '@/lib/db/validation/auth'
-import { useFormWithAction } from '@/shared/hooks'
-import { cn } from '@/shared/utils/cn'
 import { Form } from '@/ui/components/atoms/form'
 import { FieldInputController } from '@/ui/components/molecules/field-input-controller'
 import { FormSubmitButton } from '@/ui/components/molecules/form-submit-button'
+import { cn } from '@/utils/cn'
 
 type Props = {
   className?: string
@@ -31,12 +31,13 @@ export const FormSignUp = ({ className }: Props) => {
   })
 
   const t = useTranslations('signUpForm')
+  const tErr = useTranslations('errors')
 
   useEffect(() => {
     if (actionState.error?.code === 'UNPROCESSABLE_ENTITY') {
-      form.setError('email', { message: t('errors.emailExist') })
+      form.setError('email', { message: tErr('emailExist') })
     }
-  }, [actionState.error, form, t])
+  }, [actionState.error, form, tErr])
 
   return (
     <Form {...form}>

@@ -1,6 +1,6 @@
 import type * as React from 'react'
 
-import { cn } from '@/shared/utils/cn'
+import { cn } from '@/utils/cn'
 
 function Card({
   className,

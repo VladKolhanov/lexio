@@ -1,7 +1,19 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import { handleError } from '@/core/errors/handle-error-server'
 import type { ActionResponse } from '@/core/types/global'
-import { handleResponse } from '@/shared/utils/action/handle-response'
-import { tryCatch } from '@/shared/utils/try-catch'
+import { tryCatch } from '@/utils/try-catch'
+
+export const handleResponse = <TData>(
+  response: Awaited<ReturnType<typeof tryCatch<TData>>>
+): ActionResponse<TData> => {
+  const [data, error] = response
+
+  if (data || (!data && !error)) {
+    return { status: 'success', error: null, data }
+  } else {
+    return { status: 'error', error: handleError(error), data: null }
+  }
+}
 
 export const safeActionWithPayload = <TResult>(
   fn: (

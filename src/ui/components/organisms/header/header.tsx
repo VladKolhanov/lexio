@@ -1,7 +1,6 @@
 import { useTranslations } from 'next-intl'
 
 import { Routes } from '@/core/constants'
-import { cn } from '@/shared/utils/cn'
 import { Button } from '@/ui/components/atoms/button'
 import { Link } from '@/ui/components/atoms/link'
 import { Separator } from '@/ui/components/atoms/separator'
@@ -15,6 +14,7 @@ import { LanguageToggle } from '@/ui/components/molecules/language-toggle'
 import { Logo } from '@/ui/components/molecules/logo'
 import { ThemeToggle } from '@/ui/components/molecules/theme-toggle'
 import { LogInIcon, MenuIcon, UserPlusIcon } from '@/ui/icons'
+import { cn } from '@/utils/cn'
 
 type Props = {
   className?: string

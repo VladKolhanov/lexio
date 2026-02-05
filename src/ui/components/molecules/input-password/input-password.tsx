@@ -1,6 +1,5 @@
 import { useState } from 'react'
 
-import { cn } from '@/shared/utils/cn'
 import {
   InputGroup,
   InputGroupAddon,
@@ -8,6 +7,7 @@ import {
   InputGroupInput,
 } from '@/ui/components/atoms/input-group'
 import { EyeIcon, EyeOffIcon } from '@/ui/icons'
+import { cn } from '@/utils/cn'
 
 type Props = React.ComponentProps<typeof InputGroupInput>
 

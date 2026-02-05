@@ -47,10 +47,7 @@
     "email": "Електронна пошта",
     "password": "Пароль",
     "confirmPassword": "Підтвердьте пароль",
-    "sendForm": "Створити обліковий запис",
-    "errors": {
-      "emailExist": "Користувач вже існує. Використайте іншу електронну адресу."
-    }
+    "sendForm": "Створити обліковий запис"
   },
   "signInPage": {
     "title": "Ласкаво просимо до Ai Smart Dictionary",
@@ -62,10 +59,7 @@
   "signInForm": {
     "email": "Електронна пошта",
     "password": "Пароль",
-    "sendForm": "Увійти",
-    "errors": {
-      "invalidCredentials": "Недійсна електронна адреса або пароль."
-    }
+    "sendForm": "Увійти"
   },
   "formSubmitButton": {
     "sending": "Відправка"

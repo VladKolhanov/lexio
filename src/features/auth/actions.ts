@@ -8,13 +8,10 @@ import {
   getSignInInputSchema,
   getSignUpInputSchema,
 } from '@/lib/db/validation/auth'
-import {
-  safeAction,
-  safeActionWithPayload,
-} from '@/shared/utils/action/safe-action'
-import { clearPersistFormData as clearPersistCookie } from '@/shared/utils/clear-persist-form-data'
-import { parseFormData } from '@/shared/utils/parse-form-data'
-import { redirectWithSafeLocale } from '@/shared/utils/redirect-with-safe-locale'
+import { clearPersistFormData as clearPersistCookie } from '@/utils/clear-persist-form-data'
+import { parseFormData } from '@/utils/parse-form-data'
+import { redirectWithSafeLocale } from '@/utils/redirect-with-safe-locale'
+import { safeAction, safeActionWithPayload } from '@/utils/safe-action'
 
 export const signUp = safeActionWithPayload(async (_state, formData) => {
   const data = parseFormData(getSignUpInputSchema(), formData)

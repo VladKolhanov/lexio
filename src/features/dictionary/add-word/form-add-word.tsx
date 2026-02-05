@@ -6,12 +6,11 @@ import { toast } from 'sonner'
 
 import { PersistKeys } from '@/core/constants'
 import * as actions from '@/features/dictionary/actions'
+import { useFormWithAction } from '@/hooks'
 import {
   getWordInsertSchema,
   type WordInsertSchema,
 } from '@/lib/db/validation/words'
-import { useFormWithAction } from '@/shared/hooks/use-form-with-action/use-form-with-action'
-import { cn } from '@/shared/utils/cn'
 import { Button } from '@/ui/components/atoms/button'
 import {
   Card,
@@ -24,6 +23,7 @@ import {
 import { Form } from '@/ui/components/atoms/form'
 import { FieldInputController } from '@/ui/components/molecules/field-input-controller'
 import { FormErrorAlert } from '@/ui/components/molecules/form-error-alert'
+import { cn } from '@/utils/cn'
 
 export type Props = {
   className?: string
