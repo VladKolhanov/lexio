@@ -17,6 +17,7 @@ export default getRequestConfig(async ({ requestLocale }) => {
       ...(await import(`./messages/${locale}/components.json`)).default,
       ...(await import(`./messages/${locale}/validation.json`)).default,
       ...(await import(`./messages/${locale}/metadata.json`)).default,
+      ...(await import(`./messages/${locale}/errors.json`)).default,
     },
   }
 })
