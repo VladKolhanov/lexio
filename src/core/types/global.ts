@@ -20,10 +20,10 @@ export type ZodFlattenError = {
   fieldErrors: Record<string, string[]>
 }
 
-export type ActionError = {
+export type ServerError = {
   code: ErrorCodes | APIError['status']
   message: string
-  details?: Record<string, string | string[]>
+  details?: { fields: string[] } | Record<string, string | string[]>
 }
 
 export type ActionResponse<TData> =
@@ -35,7 +35,7 @@ export type ActionResponse<TData> =
   | {
       status: 'error'
       data: null
-      error: ActionError
+      error: ServerError
     }
 
 type ParamsWithLocale<TParams> =

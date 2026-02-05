@@ -1,7 +1,6 @@
-import { type ErrorCodes, ErrorMessages } from './definitions'
+import { type ErrorCodes } from './definitions'
 
 type Options = {
-  message?: string
   details?: Record<string, unknown>
 }
 
@@ -10,8 +9,7 @@ export class AppError extends Error {
   readonly details?: Options['details']
 
   constructor(code: ErrorCodes, options?: Options) {
-    const message = options?.message ? options.message : ErrorMessages[code]
-    super(message)
+    super()
 
     this.code = code
     this.details = options?.details

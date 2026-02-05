@@ -1,17 +1,17 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { handleError } from '@/core/errors/handle-error-server'
+import { handleError } from '@/core/errors/handle-error'
 import type { ActionResponse } from '@/core/types/global'
 import { tryCatch } from '@/utils/try-catch'
 
-export const handleResponse = <TData>(
+export const handleResponse = async <TData>(
   response: Awaited<ReturnType<typeof tryCatch<TData>>>
-): ActionResponse<TData> => {
+): Promise<ActionResponse<TData>> => {
   const [data, error] = response
 
   if (data || (!data && !error)) {
     return { status: 'success', error: null, data }
   } else {
-    return { status: 'error', error: handleError(error), data: null }
+    return { status: 'error', error: await handleError(error), data: null }
   }
 }
 
@@ -27,7 +27,7 @@ export const safeActionWithPayload = <TResult>(
   ): Promise<ActionResponse<TResult | null>> => {
     const response = await tryCatch(fn(state, formData))
 
-    return handleResponse(response)
+    return await handleResponse(response)
   }
 }
 
@@ -37,6 +37,6 @@ export const safeAction = <TResult, TArgs extends any[] = any[]>(
   return async (...args: TArgs) => {
     const response = await tryCatch(fn(...args))
 
-    return handleResponse(response)
+    return await handleResponse(response)
   }
 }

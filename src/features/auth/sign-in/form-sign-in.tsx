@@ -12,6 +12,7 @@ import {
 } from '@/lib/db/validation/auth'
 import { Form } from '@/ui/components/atoms/form'
 import { FieldInputController } from '@/ui/components/molecules/field-input-controller'
+import { FormRootError } from '@/ui/components/molecules/form-root-error'
 import { FormSubmitButton } from '@/ui/components/molecules/form-submit-button'
 import { cn } from '@/utils/cn'
 
@@ -31,16 +32,16 @@ export const FormSignIn = ({ className }: Props) => {
   })
 
   const t = useTranslations('signInForm')
-  const tErr = useTranslations('errors')
 
   useEffect(() => {
     if (actionState.error?.code === 'UNAUTHORIZED') {
-      form.setError('root', { message: tErr('invalidCredentials') })
+      form.setError('root', { message: actionState.error.message })
     }
-  }, [actionState.error, form, tErr])
+  }, [actionState.error, form])
 
   return (
     <Form {...form}>
+      <FormRootError error={form.formState.errors.root} />
       <form
         action={formAction}
         className={cn('grid gap-y-7 md:gap-x-6 lg:gap-x-12', className)}

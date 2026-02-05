@@ -1,13 +1,16 @@
 import { APIError } from 'better-auth'
 import { isRedirectError } from 'next/dist/client/components/redirect-error'
+import { getTranslations } from 'next-intl/server'
 
 import { AppError } from '@/core/errors/exceptions'
-import type { ActionError, ZodFlattenError } from '@/core/types/global'
+import type { ServerError, ZodFlattenError } from '@/core/types/global'
 
-export const handleError = (error: unknown): ActionError | never => {
+export const handleError = async (error: unknown) => {
   if (isRedirectError(error)) {
     throw error
   }
+
+  const t = await getTranslations('errors')
 
   if (error instanceof AppError) {
     const actionResponse = {
@@ -23,25 +26,32 @@ export const handleError = (error: unknown): ActionError | never => {
     ) {
       return {
         ...actionResponse,
+        message: t('zodParseSchema'),
         details: (error.details as ZodFlattenError).fieldErrors,
       }
-    } else {
-      return actionResponse as ActionError
     }
+
+    return { ...actionResponse, message: t('failed') } as ServerError
   }
 
   if (error instanceof APIError) {
     if (error.statusCode === 422 && error.status === 'UNPROCESSABLE_ENTITY') {
       return {
         code: error.status,
-        message: error.message,
+        message: t('emailExist'),
+        details: {
+          fields: ['email'],
+        },
       }
     }
 
     if (error.statusCode === 401 && error.status === 'UNAUTHORIZED') {
       return {
         code: error.status,
-        message: error.message,
+        message: t('invalidCredentials'),
+        details: {
+          fields: ['root'],
+        },
       }
     }
   }

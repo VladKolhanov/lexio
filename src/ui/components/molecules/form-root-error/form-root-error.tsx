@@ -1,18 +1,22 @@
-import type { ActionError } from '@/core/types/global'
-import {
-  Alert,
-  AlertDescription,
-  AlertTitle,
-} from '@/ui/components/atoms/alert'
+import type { Message } from 'react-hook-form'
+
+import { Alert, AlertTitle } from '@/ui/components/atoms/alert'
 import { ShieldXIcon } from '@/ui/icons'
 import { cn } from '@/utils/cn'
 
+type Error = Partial<{
+  type: string | number
+  message: Message
+}>
+
 type Props = {
-  error: ActionError | null
+  error: (Record<string, Error> & Error) | undefined
   className?: string
 }
 
-export const FormErrorAlert = ({ error, className }: Props) => {
+// TODO: Refactor component for display many mistakes
+
+export const FormRootError = ({ error, className }: Props) => {
   if (!error) return null
 
   return (
@@ -31,7 +35,7 @@ export const FormErrorAlert = ({ error, className }: Props) => {
         {error.message}
       </AlertTitle>
 
-      {!!error.details && (
+      {/* {!!error.details && (
         <AlertDescription className="col-start-2 mt-1">
           <div className="space-y-1">
             {Object.entries(error.details).map(([key, value], i) => (
@@ -54,7 +58,7 @@ export const FormErrorAlert = ({ error, className }: Props) => {
             ))}
           </div>
         </AlertDescription>
-      )}
+      )} */}
     </Alert>
   )
 }

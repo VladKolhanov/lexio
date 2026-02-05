@@ -1,6 +1,8 @@
 {
   "errors": {
     "emailExist": "User already exists. Use another email.",
-    "invalidCredentials": "Invalid email or password."
+    "invalidCredentials": "Invalid email or password.",
+    "zodParseSchema": "Some fields have been filled out incorrectly. Please correct them.",
+    "failed": "The action failed."
   }
 }

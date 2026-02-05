@@ -12,6 +12,7 @@ import {
 } from '@/lib/db/validation/auth'
 import { Form } from '@/ui/components/atoms/form'
 import { FieldInputController } from '@/ui/components/molecules/field-input-controller'
+import { FormRootError } from '@/ui/components/molecules/form-root-error'
 import { FormSubmitButton } from '@/ui/components/molecules/form-submit-button'
 import { cn } from '@/utils/cn'
 
@@ -41,6 +42,7 @@ export const FormSignUp = ({ className }: Props) => {
 
   return (
     <Form {...form}>
+      <FormRootError error={form.formState.errors.root} />
       <form
         action={formAction}
         className={cn('grid gap-y-7 md:gap-x-6 lg:gap-x-12', className)}

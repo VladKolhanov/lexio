@@ -22,7 +22,6 @@ import {
 } from '@/ui/components/atoms/card'
 import { Form } from '@/ui/components/atoms/form'
 import { FieldInputController } from '@/ui/components/molecules/field-input-controller'
-import { FormErrorAlert } from '@/ui/components/molecules/form-error-alert'
 import { cn } from '@/utils/cn'
 
 export type Props = {
@@ -50,8 +49,6 @@ export const FormAddWord = ({ className }: Props) => {
 
   return (
     <div className={cn('flex w-1/3 flex-col gap-12', className)}>
-      <FormErrorAlert error={actionState.error} />
-
       <Form {...form}>
         <form
           id="add-word"
