@@ -3,6 +3,7 @@
 import { headers } from 'next/headers'
 
 import { PersistKeys, Routes } from '@/core/constants'
+import { protect } from '@/lib/arcjet'
 import { auth } from '@/lib/auth'
 import {
   getSignInInputSchema,
@@ -15,6 +16,7 @@ import { safeAction, safeActionWithPayload } from '@/utils/safe-action'
 
 export const signUp = safeActionWithPayload(async (_state, formData) => {
   const data = parseFormData(getSignUpInputSchema(), formData)
+  await protect(data.email)
 
   await auth.api.signUpEmail({
     headers: await headers(),
@@ -39,6 +41,7 @@ export const signOut = safeAction(async () => {
 
 export const signIn = safeActionWithPayload(async (_state, formData) => {
   const data = parseFormData(getSignInInputSchema(), formData)
+  await protect()
 
   await auth.api.signInEmail({
     headers: await headers(),

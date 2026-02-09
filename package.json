@@ -24,6 +24,8 @@
     "prepare": "husky"
   },
   "dependencies": {
+    "@arcjet/inspect": "^1.1.0",
+    "@arcjet/next": "^1.1.0",
     "@base-ui/react": "^1.1.0",
     "@hookform/resolvers": "^5.2.2",
     "@neondatabase/serverless": "^1.0.2",

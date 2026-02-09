@@ -36,6 +36,44 @@ export const handleError = async (
       }
     }
 
+    if (
+      error.code === 'TOO_MANY_REQUESTS' ||
+      error.code === 'INVALID_EMAIL' ||
+      error.code === 'EMAIL_DOMAIN_NOT_VALID' ||
+      error.code === 'DISPOSABLE_EMAIL' ||
+      error.code === 'EMAIL_FORMAT_INVALID'
+    ) {
+      let translationKey: Parameters<typeof t>[0]
+
+      switch (error.code) {
+        case 'TOO_MANY_REQUESTS':
+          translationKey = 'tooManyRequests'
+          break
+        case 'INVALID_EMAIL':
+          translationKey = 'invalidEmail'
+          break
+        case 'EMAIL_DOMAIN_NOT_VALID':
+          translationKey = 'emailDomainNotValid'
+          break
+        case 'DISPOSABLE_EMAIL':
+          translationKey = 'disposableEmail'
+          break
+        case 'EMAIL_FORMAT_INVALID':
+          translationKey = 'emailFormatInvalid'
+          break
+      }
+
+      return {
+        ...actionResponse,
+        message: t(translationKey),
+        details: { paths: ['root'] },
+      }
+    }
+
+    if (error.code === 'DETECT_BOT') {
+      throw error
+    }
+
     return { ...actionResponse, message: t('failed') }
   }
 

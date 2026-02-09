@@ -10,6 +10,7 @@ const envSchema = z
     NEXT_PUBLIC_APP_DESCRIPTION: zStringRequired(),
     NEXT_PUBLIC_BASE_URL: z.url().trim().min(1),
     DATABASE_URL: z.url().trim().min(1),
+    ARCJET_KEY: zStringRequired(),
     DB_DRIVER: z.enum(['pg', 'neon']).default('pg'),
   })
   .transform((env) => ({
