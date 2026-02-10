@@ -1,4 +1,4 @@
-import { Button } from '@/ui/components/atoms/button'
+import { ButtonOauth } from '@/features/auth/oauth/button-oauth'
 import {
   Card,
   CardContent,
@@ -16,8 +16,7 @@ type Props = {
   children: React.ReactNode
 
   separatorLabel?: string
-  googleButtonText?: string
-  facebookButtonText?: string
+  socialProviders?: React.ComponentProps<typeof ButtonOauth>['provider'][]
 
   footer?: React.ReactNode
 
@@ -29,15 +28,14 @@ export const CardAuth = ({
   description,
   children,
   separatorLabel,
-  googleButtonText,
-  facebookButtonText,
+  socialProviders,
   footer,
   className,
 }: Props) => {
-  const showSocials = separatorLabel && googleButtonText && facebookButtonText
+  const showSocials = separatorLabel && socialProviders
 
   return (
-    <Card className={cn('w-full sm:w-2/3 lg:w-2/4 xl:w-2/5', className)}>
+    <Card className={cn('w-full sm:w-2/3 lg:w-4/8 xl:w-3/10', className)}>
       <CardHeader className="mb-4 text-center">
         <CardTitle>{title}</CardTitle>
         <CardDescription>{description}</CardDescription>
@@ -50,9 +48,10 @@ export const CardAuth = ({
           <>
             <SeparatorWithLabel label={separatorLabel} />
 
-            <div className="grid-col grid justify-items-center gap-2 *:w-1/2">
-              <Button>{googleButtonText}</Button>
-              <Button variant="outline">{facebookButtonText}</Button>
+            <div className="grid-col grid justify-items-center gap-2 *:w-full">
+              {socialProviders.map((provider, i) => (
+                <ButtonOauth key={i} provider={provider} />
+              ))}
             </div>
           </>
         )}

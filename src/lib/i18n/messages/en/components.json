@@ -37,8 +37,6 @@
     "title": "Create an account",
     "subtitle": "Sign up to start using Ai Smart Dictionary",
     "separator": "Or continue with",
-    "googleProvider": "Continue with Google",
-    "facebookProvider": "Continue with Facebook",
     "haveAccount": "Already have an account?",
     "signinLink": "Sign in"
   },
@@ -52,14 +50,15 @@
   "signInPage": {
     "title": "Welcome to Ai Smart Dictionary",
     "subtitle": "Enter your email and password to sign in to your account",
-    "separator": "Or continue with",
-    "googleProvider": "Continue with Google",
-    "facebookProvider": "Continue with Facebook"
+    "separator": "Or continue with"
   },
   "signInForm": {
     "email": "Email",
     "password": "Password",
     "sendForm": "Sign In"
+  },
+  "providers": {
+    "google": "Continue with Google"
   },
   "formSubmitButton": {
     "sending": "Sending"

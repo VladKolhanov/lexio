@@ -28,8 +28,7 @@ export default function SignUpPage() {
       title={t('title')}
       description={t('subtitle')}
       separatorLabel={t('separator')}
-      googleButtonText={t('googleProvider')}
-      facebookButtonText={t('facebookProvider')}
+      socialProviders={['google']}
       footer={
         <p className="md:text-md text-sm text-muted-foreground lg:text-lg">
           {t('haveAccount')}{' '}

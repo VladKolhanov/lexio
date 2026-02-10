@@ -3,17 +3,18 @@
 import { headers } from 'next/headers'
 
 import { PersistKeys, Routes } from '@/core/constants'
+import type { SocialProviders } from '@/core/constants/social-providers'
+import { AppError } from '@/core/errors/exceptions'
 import { protect } from '@/lib/arcjet'
 import { auth } from '@/lib/auth'
 import {
   getSignInInputSchema,
   getSignUpInputSchema,
 } from '@/lib/db/validation/auth'
-import { clearPersistFormData as clearPersistCookie } from '@/utils/clear-persist-form-data'
+import { clearPersistFormData } from '@/utils/clear-persist-form-data'
 import { parseFormData } from '@/utils/parse-form-data'
 import { redirectWithSafeLocale } from '@/utils/redirect-with-safe-locale'
 import { safeAction, safeActionWithPayload } from '@/utils/safe-action'
-
 export const signUp = safeActionWithPayload(async (_state, formData) => {
   const data = parseFormData(getSignUpInputSchema(), formData)
   await protect(data.email)
@@ -27,7 +28,7 @@ export const signUp = safeActionWithPayload(async (_state, formData) => {
     },
   })
 
-  await clearPersistCookie(PersistKeys.FormSignUp)
+  await clearPersistFormData(PersistKeys.FormSignUp)
   await redirectWithSafeLocale(Routes.Dashboard)
 })
 
@@ -51,6 +52,24 @@ export const signIn = safeActionWithPayload(async (_state, formData) => {
     },
   })
 
-  await clearPersistCookie(PersistKeys.FormSignIn)
+  await clearPersistFormData(PersistKeys.FormSignIn)
   await redirectWithSafeLocale(Routes.Dashboard)
 })
+
+export const signInWithProvider = safeAction(
+  async (provider: SocialProviders) => {
+    const result = await auth.api.signInSocial({
+      headers: await headers(),
+      body: {
+        provider: provider,
+        callbackURL: Routes.Dashboard,
+      },
+    })
+
+    if (result.redirect && result.url) {
+      await redirectWithSafeLocale(result.url)
+    } else {
+      throw new AppError('AUTH_PROVIDER_ERROR')
+    }
+  }
+)

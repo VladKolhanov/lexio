@@ -37,8 +37,6 @@
     "title": "Створіть обліковий запис",
     "subtitle": "Зареєструйтеся, щоб почати користуватися Ai Smart Dictionary",
     "separator": "Або продовжити через",
-    "googleProvider": "Продовжити з Google",
-    "facebookProvider": "Продовжити з Facebook",
     "haveAccount": "Вже маєте обліковий запис?",
     "signinLink": "Увійти"
   },
@@ -52,14 +50,15 @@
   "signInPage": {
     "title": "Ласкаво просимо до Ai Smart Dictionary",
     "subtitle": "Введіть вашу електронну пошту та пароль, щоб увійти до акаунту",
-    "separator": "Або продовжити через",
-    "googleProvider": "Продовжити через Google",
-    "facebookProvider": "Продовжити через Facebook"
+    "separator": "Або продовжити через"
   },
   "signInForm": {
     "email": "Електронна пошта",
     "password": "Пароль",
     "sendForm": "Увійти"
+  },
+  "providers": {
+    "google": "Продовжити з Google"
   },
   "formSubmitButton": {
     "sending": "Відправка"

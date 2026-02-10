@@ -26,8 +26,7 @@ export default function SignInPage() {
       title={t('title')}
       description={t('subtitle')}
       separatorLabel={t('separator')}
-      googleButtonText={t('googleProvider')}
-      facebookButtonText={t('facebookProvider')}
+      socialProviders={['google']}
     >
       <FormSignIn />
     </CardAuth>

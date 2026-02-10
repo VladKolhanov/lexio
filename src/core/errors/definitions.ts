@@ -7,6 +7,7 @@ export const ErrorCodes = new Set([
   'EMAIL_DOMAIN_NOT_VALID',
   'INVALID_EMAIL',
   'DETECT_BOT',
+  'AUTH_PROVIDER_ERROR',
 ] as const)
 
 export type ErrorCodes = typeof ErrorCodes extends Set<infer T> ? T : never

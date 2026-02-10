@@ -8,6 +8,7 @@
     "disposableEmail": "We do not allow disposable email addresses.",
     "emailDomainNotValid": "Email domain is not valid.",
     "invalidEmail": "Invalid email. Please try another one.",
+    "authProviderError": "Failed to connect to the login provider. Please try again.",
     "failed": "The action failed."
   }
 }

@@ -41,7 +41,8 @@ export const handleError = async (
       error.code === 'INVALID_EMAIL' ||
       error.code === 'EMAIL_DOMAIN_NOT_VALID' ||
       error.code === 'DISPOSABLE_EMAIL' ||
-      error.code === 'EMAIL_FORMAT_INVALID'
+      error.code === 'EMAIL_FORMAT_INVALID' ||
+      error.code === 'AUTH_PROVIDER_ERROR'
     ) {
       let translationKey: Parameters<typeof t>[0]
 
@@ -60,6 +61,9 @@ export const handleError = async (
           break
         case 'EMAIL_FORMAT_INVALID':
           translationKey = 'emailFormatInvalid'
+          break
+        case 'AUTH_PROVIDER_ERROR':
+          translationKey = 'authProviderError'
           break
       }
 
