@@ -1,4 +1,4 @@
-declare module '*.svg' {
+declare module '*.svg?react' {
   import { type FC, type SVGProps } from 'react'
 
   const content: FC<SVGProps<SVGElement>>
