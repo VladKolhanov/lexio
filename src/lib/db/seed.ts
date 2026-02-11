@@ -6,6 +6,7 @@ async function main() {
     email: 'admin@gmail.com',
     id: 'ksHBkYCVvdgLz3cT9GuxRGnSQYGi3AFW',
     name: 'Admin',
+    emailVerified: true,
   })
 
   await dbClient.insert(account).values({
