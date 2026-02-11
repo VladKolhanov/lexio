@@ -101,6 +101,16 @@ export const handleError = async (
         },
       }
     }
+
+    if (error.statusCode === 403 && error.status === 'FORBIDDEN') {
+      return {
+        code: error.status,
+        message: t('emailNotVerified'),
+        details: {
+          paths: ['root'],
+        },
+      }
+    }
   }
 
   throw error

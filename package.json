@@ -21,7 +21,10 @@
     "db:studio": "drizzle-kit studio --port 5433 --verbose",
     "docker:up": "docker compose --env-file ./.env.development.local up -d && sleep 5 && drizzle-kit migrate && tsx --env-file=./.env.development.local ./src/lib/db/seed",
     "docker:down": "docker compose down",
-    "prepare": "husky"
+    "prepare": "husky",
+    "email:build": "email build --dir src/lib/resend/emails --packageManager pnpm",
+    "email:dev": "email dev --dir src/lib/resend/emails --port 3100",
+    "email:export": "email export --dir src/lib/resend/emails --outDir src/lib/resend/out"
   },
   "dependencies": {
     "@arcjet/inspect": "^1.1.0",
@@ -31,6 +34,7 @@
     "@neondatabase/serverless": "^1.0.2",
     "@radix-ui/react-label": "^2.1.8",
     "@radix-ui/react-slot": "^1.2.4",
+    "@react-email/components": "1.0.7",
     "@types/js-cookie": "^3.0.6",
     "better-auth": "^1.4.18",
     "class-variance-authority": "^0.7.1",
@@ -47,6 +51,7 @@
     "react": "19.2.4",
     "react-dom": "19.2.4",
     "react-hook-form": "^7.71.1",
+    "resend": "^6.9.2",
     "shadcn": "^3.7.0",
     "sonner": "^2.0.7",
     "tailwind-merge": "^3.4.0",
@@ -56,6 +61,7 @@
     "@eslint/compat": "^2.0.1",
     "@eslint/js": "^9.39.2",
     "@next/eslint-plugin-next": "16.1.6",
+    "@react-email/preview-server": "^5.2.8",
     "@svgr/webpack": "^8.1.0",
     "@tailwindcss/postcss": "^4.1.18",
     "@testing-library/dom": "^10.4.1",
@@ -80,6 +86,7 @@
     "lint-staged": "^16.2.7",
     "prettier": "3.6.2",
     "prettier-plugin-tailwindcss": "^0.6.14",
+    "react-email": "^5.2.8",
     "tailwindcss": "^4.1.18",
     "tsx": "^4.21.0",
     "tw-animate-css": "^1.4.0",

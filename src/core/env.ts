@@ -12,6 +12,8 @@ const envSchema = z
     ARCJET_KEY: zStringRequired(),
     GOOGLE_CLIENT_ID: zStringRequired(),
     GOOGLE_CLIENT_SECRET: zStringRequired(),
+    RESEND_API_KEY: zStringRequired(),
+    RESEND_DOMAIN: zStringRequired(),
     DATABASE_URL: z.url().trim().min(1),
     DB_DRIVER: z.enum(['pg', 'neon']).default('pg'),
   })

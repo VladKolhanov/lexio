@@ -1,3 +1,4 @@
+import type commonMessages from '@/lib/i18n/messages/en/common.json'
 import type componentsMessages from '@/lib/i18n/messages/en/components.json'
 import type errorsMessages from '@/lib/i18n/messages/en/errors.json'
 import type validationMessages from '@/lib/i18n/messages/en/metadata.json'
@@ -10,6 +11,7 @@ declare module 'next-intl' {
     Messages: typeof componentsMessages &
       typeof validationMessages &
       typeof metadataMessages &
-      typeof errorsMessages
+      typeof errorsMessages &
+      typeof commonMessages
   }
 }

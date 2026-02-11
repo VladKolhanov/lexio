@@ -9,6 +9,7 @@
     "emailDomainNotValid": "Email domain is not valid.",
     "invalidEmail": "Invalid email. Please try another one.",
     "authProviderError": "Failed to connect to the login provider. Please try again.",
+    "emailNotVerified": "Email not verified.",
     "failed": "The action failed."
   }
 }

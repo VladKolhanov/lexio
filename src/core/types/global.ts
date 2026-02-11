@@ -2,6 +2,7 @@ import type { APIError } from 'better-auth'
 import type { Locale, useTranslations } from 'next-intl'
 
 import { type ErrorCodes } from '@/core/errors/definitions'
+import type commonMessages from '@/lib/i18n/messages/en/common.json'
 import type componentsMessages from '@/lib/i18n/messages/en/components.json'
 import type errorsMessages from '@/lib/i18n/messages/en/errors.json'
 import type metadataMessages from '@/lib/i18n/messages/en/metadata.json'
@@ -12,7 +13,8 @@ export type TranslationKeys<
     | keyof typeof componentsMessages
     | keyof typeof validationMessages
     | keyof typeof metadataMessages
-    | keyof typeof errorsMessages,
+    | keyof typeof errorsMessages
+    | keyof typeof commonMessages,
 > = ReturnType<typeof useTranslations<TKey>>
 
 export type ZodFlattenError = {
