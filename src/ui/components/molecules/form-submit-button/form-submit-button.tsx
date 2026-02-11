@@ -2,7 +2,7 @@ import { useFormStatus } from 'react-dom'
 import { useTranslations } from 'next-intl'
 
 import { Button } from '@/ui/components/atoms/button'
-import { LoaderCircleIcon } from '@/ui/icons'
+import { Spinner } from '@/ui/components/atoms/spinner'
 
 export const FormSubmitButton = ({
   children,
@@ -15,7 +15,7 @@ export const FormSubmitButton = ({
     <Button disabled={pending} type="submit" {...props}>
       {pending ? (
         <>
-          <LoaderCircleIcon className="animate-spin" /> {t('sending')}...
+          <Spinner /> {t('sending')}...
         </>
       ) : (
         children

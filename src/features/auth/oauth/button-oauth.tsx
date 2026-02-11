@@ -9,7 +9,7 @@ import {
 } from '@/core/constants/social-providers'
 import * as actions from '@/features/auth/actions'
 import { Button } from '@/ui/components/atoms/button'
-import { LoaderCircleIcon } from '@/ui/icons'
+import { Spinner } from '@/ui/components/atoms/spinner'
 import { cn } from '@/utils/cn'
 
 type Props = {
@@ -42,7 +42,7 @@ export const ButtonOauth = ({
       onClick={handleClick}
       {...props}
     >
-      {isPending ? <LoaderCircleIcon className="animate-spin" /> : <Icon />}
+      {isPending ? <Spinner /> : <Icon />}
 
       {t(translationKey)}
     </Button>

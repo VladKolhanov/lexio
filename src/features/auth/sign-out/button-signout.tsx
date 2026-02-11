@@ -4,7 +4,7 @@ import { useTransition } from 'react'
 
 import * as actions from '@/features/auth/actions'
 import { Button } from '@/ui/components/atoms/button'
-import { LoaderCircleIcon } from '@/ui/icons'
+import { Spinner } from '@/ui/components/atoms/spinner'
 import { cn } from '@/utils/cn'
 
 type Props = Omit<React.ComponentProps<typeof Button>, 'onClick'>
@@ -31,7 +31,7 @@ export const ButtonSignout = ({
       variant={variant}
       {...props}
     >
-      {isPending && <LoaderCircleIcon className="animate-spin" />}
+      {isPending && <Spinner />}
 
       {children}
     </Button>
