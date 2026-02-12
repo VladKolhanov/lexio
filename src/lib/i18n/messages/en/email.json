@@ -4,7 +4,7 @@
     "heading": "Hi, {name}!",
     "paragraphMain": "Thank you for registering! We are happy to welcome you to our community. Please click the button below to confirm your email and complete your registration.",
     "button": "Confirm email",
-    "paragraphDescription": "This link is valid for 24 hours. If you haven't created an account, simply ignore this email.",
+    "paragraphDescription": "This link is valid for 3 hours. If you haven't created an account, simply ignore this email.",
     "footer": "If the button doesn't work, copy this link into your browser:",
     "footer-copyright": "All rights reserved."
   }

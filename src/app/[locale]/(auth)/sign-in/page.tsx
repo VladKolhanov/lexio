@@ -1,9 +1,9 @@
 import { type Metadata } from 'next'
-import { useTranslations } from 'next-intl'
 import { getTranslations } from 'next-intl/server'
 
 import type { GenerateMetadataProps } from '@/core/types/global'
 import { FormSignIn } from '@/features/auth/sign-in/form-sign-in'
+import { redirectIfSessionExist } from '@/lib/auth/utils'
 import { CardAuth } from '@/ui/components/organisms/card-auth/card-auth'
 
 export async function generateMetadata({
@@ -17,8 +17,9 @@ export async function generateMetadata({
   }
 }
 
-export default function SignInPage() {
-  const t = useTranslations('signInPage')
+export default async function SignInPage() {
+  await redirectIfSessionExist()
+  const t = await getTranslations('signInPage')
 
   return (
     <CardAuth

@@ -3,6 +3,8 @@ export const Routes = {
   SignIn: '/sign-in',
   SignUp: '/sign-up',
   Dashboard: '/dashboard',
+  ConfirmEmail: '/confirm-email',
+  EmailVerified: '/email-verified',
 } as const
 
 export const PersistKeys = {

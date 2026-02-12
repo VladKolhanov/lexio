@@ -4,7 +4,7 @@ import { getTranslations } from 'next-intl/server'
 
 import type { GenerateMetadataProps } from '@/core/types/global'
 import { ButtonSignout } from '@/features/auth/sign-out/button-signout'
-import { auth } from '@/lib/auth'
+import { auth } from '@/lib/auth/auth'
 
 export async function generateMetadata({
   params,

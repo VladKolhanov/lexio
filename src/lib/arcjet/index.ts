@@ -8,7 +8,7 @@ import arcjet, {
 
 import { ENV } from '@/core/env'
 import { AppError } from '@/core/errors/exceptions'
-import { auth } from '@/lib/auth'
+import { auth } from '@/lib/auth/auth'
 
 const baseRules = [
   shield({ mode: 'LIVE' }),

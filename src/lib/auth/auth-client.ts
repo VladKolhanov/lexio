@@ -1,7 +1,6 @@
 import { createAuthClient } from 'better-auth/react'
 
-import { ENV } from '@/core/env'
-
 export const authClient = createAuthClient({
-  baseURL: ENV.NEXT_PUBLIC_BASE_URL,
+  // eslint-disable-next-line no-restricted-properties
+  baseURL: process.env.NEXT_PUBLIC_BASE_URL!,
 })

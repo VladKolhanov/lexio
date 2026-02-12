@@ -62,5 +62,24 @@
   },
   "formSubmitButton": {
     "sending": "Sending"
+  },
+  "cardConfirmEmail": {
+    "title": "Check your email",
+    "description": "We have sent a confirmation link to:",
+    "main": "Please follow the link in the email to activate your account. This will help us keep your profile secure.",
+    "note": "Don't see the email? Check your <strong>Spam</strong> folder or try sending your request again.",
+    "openPost": "Open mail"
+  },
+  "buttonResendEmail": {
+    "repeatSending": "Send the email again{hasTime, select, true { in {time} seconds} other {}}",
+    "success": "A new confirmation email has been sent to your email.",
+    "error": "Failed to send email.{hasTime, select, true { Try again in {time} seconds.} other { Try again later.}}"
+  },
+  "emailVerified": {
+    "title": "Email successfully confirmed!",
+    "description": "Your account has been activated. You can close this tab and return to the previous page.",
+    "dashboardButton": "Go to Dashboard",
+    "closeHint": "You can now safely close this window.",
+    "separator": "OR"
   }
 }
