@@ -15,7 +15,12 @@ const gitignorePath = fileURLToPath(new URL('.gitignore', import.meta.url))
 
 const restrictUnnecessaryImports = defineConfig([
   {
-    ignores: ['**/env.ts', 'src/lib/i18n/**/*', 'src/ui/components/atoms/link'],
+    ignores: [
+      '**/env.ts',
+      '**/env-client.ts',
+      'src/lib/i18n/**/*',
+      'src/ui/components/atoms/link',
+    ],
   },
   {
     files: ['**/*.js', '**/*.ts', '**/*.tsx'],

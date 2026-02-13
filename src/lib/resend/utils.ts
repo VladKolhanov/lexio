@@ -2,6 +2,7 @@ import { getLocale, getTranslations } from 'next-intl/server'
 import { Resend } from 'resend'
 
 import { ENV } from '@/core/env'
+import { ENV_CLIENT } from '@/core/env-client'
 
 import { EmailVerification } from './emails/email-verification'
 
@@ -20,7 +21,7 @@ export async function sendEmailVerification({
   const t = await getTranslations('verificationEmail')
 
   await resend.emails.send({
-    from: `${ENV.NEXT_PUBLIC_APP_NAME} ${ENV.RESEND_DOMAIN}`,
+    from: `${ENV_CLIENT.APP_NAME} ${ENV.RESEND_DOMAIN}`,
     to: [email],
     subject: t('subject'),
     react: EmailVerification({ name, url, locale }),

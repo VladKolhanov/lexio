@@ -2,7 +2,7 @@ import { type Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import { hasLocale, NextIntlClientProvider } from 'next-intl'
 
-import { ENV } from '@/core/env'
+import { ENV_CLIENT } from '@/core/env-client'
 import { ThemeProvider } from '@/core/providers/theme-provider'
 import type { LayoutProps } from '@/core/types/global'
 import { routing } from '@/lib/i18n/routing'
@@ -13,11 +13,11 @@ import '@/ui/styles/globals.css'
 
 export const metadata: Metadata = {
   title: {
-    template: `%s | ${ENV.NEXT_PUBLIC_APP_NAME}`,
-    default: ENV.NEXT_PUBLIC_APP_NAME,
+    template: `%s | ${ENV_CLIENT.APP_NAME}`,
+    default: ENV_CLIENT.APP_NAME,
   },
-  description: ENV.NEXT_PUBLIC_APP_DESCRIPTION,
-  applicationName: ENV.NEXT_PUBLIC_APP_NAME,
+  description: ENV_CLIENT.APP_DESCRIPTION,
+  applicationName: ENV_CLIENT.APP_NAME,
   icons: '/favicon/favicon.ico',
 }
 

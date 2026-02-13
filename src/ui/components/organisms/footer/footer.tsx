@@ -1,6 +1,6 @@
 import { useTranslations } from 'next-intl'
 
-import { ENV } from '@/core/env'
+import { ENV_CLIENT } from '@/core/env-client'
 import { cn } from '@/utils/cn'
 
 type Props = {
@@ -18,7 +18,7 @@ export const Footer = ({ className }: Props) => {
       )}
     >
       <p>
-        © {new Date().getFullYear()} {ENV.NEXT_PUBLIC_APP_NAME}. {t('rights')}
+        © {new Date().getFullYear()} {ENV_CLIENT.APP_NAME}. {t('rights')}
       </p>
     </footer>
   )
