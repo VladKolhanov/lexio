@@ -31,7 +31,7 @@ export const LanguageToggle = ({ className }: Props) => {
         render={
           <Button
             className={cn(
-              'focus-visible:ring-0 focus-visible:ring-offset-0',
+              'm-0 focus-visible:ring-0 focus-visible:ring-offset-0',
               className
             )}
             variant="ghost"

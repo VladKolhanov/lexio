@@ -52,6 +52,7 @@ export const signIn = safeActionWithPayload(async (_state, formData) => {
     body: {
       email: data.email,
       password: data.password,
+      callbackURL: Routes.Dashboard,
     },
   })
 
@@ -89,6 +90,7 @@ export const resendEmail = safeAction(async (email: string) => {
     headers: await headers(),
     body: {
       email,
+      callbackURL: Routes.Dashboard,
     },
   })
 
