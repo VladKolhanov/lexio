@@ -4,7 +4,7 @@ import { useEffect } from 'react'
 import { useTranslations } from 'next-intl'
 
 import { Routes } from '@/core/constants'
-import { authClient } from '@/lib/auth/auth-client'
+import { useSessionPolling } from '@/features/auth/queries'
 import { useRouter } from '@/lib/i18n/navigation'
 import {
   Card,
@@ -28,23 +28,14 @@ type Props = {
 export default function CardConfirmEmail({ className, email }: Props) {
   const t = useTranslations('cardConfirmEmail')
   const router = useRouter()
+  const session = useSessionPolling(10000)
 
   useEffect(() => {
-    const checkStatus = async () => {
-      const { data: session } = await authClient.getSession()
-
-      if (session?.user.emailVerified) {
-        router.push(Routes.Dashboard)
-        router.refresh()
-      }
+    if (session?.user.emailVerified) {
+      router.push(Routes.Dashboard)
+      router.refresh()
     }
-
-    const intervalId = setInterval(() => {
-      void checkStatus()
-    }, 3000)
-
-    return () => clearInterval(intervalId)
-  }, [router])
+  }, [session, router])
 
   return (
     <Card className={cn('mx-auto w-full max-w-md shadow-lg', className)}>
