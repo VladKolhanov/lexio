@@ -5,6 +5,7 @@ export const Routes = {
   Dashboard: '/dashboard',
   ConfirmEmail: '/confirm-email',
   EmailVerified: '/email-verified',
+  ForgotPassword: '/forgot-password',
 } as const
 
 export const PersistKeys = {

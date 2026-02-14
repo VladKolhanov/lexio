@@ -52,6 +52,7 @@ export const signIn = safeActionWithPayload(async (_state, formData) => {
     body: {
       email: data.email,
       password: data.password,
+      rememberMe: data.rememberMe,
       callbackURL: Routes.Dashboard,
     },
   })

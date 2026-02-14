@@ -55,7 +55,9 @@
   "signInForm": {
     "email": "Email",
     "password": "Password",
-    "sendForm": "Sign In"
+    "sendForm": "Sign In",
+    "rememberMe": "Remember me",
+    "forgotPassword": "Forgot your password?"
   },
   "providers": {
     "google": "Continue with Google"

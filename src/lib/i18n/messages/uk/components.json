@@ -55,7 +55,9 @@
   "signInForm": {
     "email": "Електронна пошта",
     "password": "Пароль",
-    "sendForm": "Увійти"
+    "sendForm": "Увійти",
+    "rememberMe": "Запам'ятати мене",
+    "forgotPassword": "Забули пароль?"
   },
   "providers": {
     "google": "Продовжити з Google"

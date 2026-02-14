@@ -2,7 +2,7 @@ import { createInsertSchema } from 'drizzle-zod'
 import z from 'zod'
 
 import { schemaWithIntl } from '@/utils/schema-with-intl'
-import { ztPasswordRequired } from '@/utils/zod'
+import { zCheckbox, ztPasswordRequired } from '@/utils/zod'
 
 import { user } from '../schemas/auth'
 
@@ -34,5 +34,6 @@ export const getSignInInputSchema = schemaWithIntl((t) =>
     .pick({ email: true })
     .extend({
       password: ztPasswordRequired(t),
+      rememberMe: zCheckbox(),
     })
 )

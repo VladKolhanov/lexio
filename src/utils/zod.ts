@@ -6,6 +6,14 @@ export const zStringRequired = () =>
   z.string().trim().min(1, { error: 'string is required' })
 export const zStringOptional = () => z.string().trim().optional()
 
+export const zCheckbox = () =>
+  z
+    .preprocess(
+      (val) => val === 'on' || val === 'true' || val === true,
+      z.boolean()
+    )
+    .default(false)
+
 export const ztPasswordRequired = (
   t: TranslationKeys<'validation'> | undefined
 ) =>
