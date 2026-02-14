@@ -1,6 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { useActionState, useEffect } from 'react'
-import { type FieldValues, useForm, type UseFormProps } from 'react-hook-form'
+import { useActionState, useEffect, useRef } from 'react'
+import {
+  type DefaultValues,
+  type FieldValues,
+  useForm,
+  type UseFormProps,
+} from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import Cookie from 'js-cookie'
 import { useTranslations } from 'next-intl'
@@ -32,27 +37,11 @@ type Options<
 > = {
   action: TAction
   getSchemaFn: (t: any) => z.ZodType<TValues, any>
-  defaultValues: Required<TValues>
+  defaultValues: DefaultValues<TValues>
   disableIfPending?: UseFormProps<TValues>['disabled']
   initActionStateData?: Awaited<ReturnType<TAction>>['data']
 } & (PersistDisabled | PersistEnabled<TValues>) &
   Omit<UseFormProps<TValues>, 'resolver' | 'disabled' | 'defaultValues'>
-
-function getPersistData<
-  TValues extends FieldValues,
-  T extends UseFormProps<TValues>['defaultValues'],
->(persistKey: PersistKeys | undefined, defaultValues: Required<TValues>): T {
-  if (!persistKey) return defaultValues as T
-
-  const persistData = localStorage.getItem(persistKey)
-
-  if (!persistData) return defaultValues as T
-
-  return {
-    ...defaultValues,
-    ...persistData,
-  } as T
-}
 
 export const useFormWithAction = <
   TAction extends (
@@ -83,9 +72,25 @@ export const useFormWithAction = <
   const form = useForm<TValues>({
     resolver: zodResolver(getSchemaFn(t)),
     disabled: disableIfPending ? isPending : undefined,
-    defaultValues: getPersistData(persistKey, defaultValues),
+    defaultValues: defaultValues,
     ...formHookProps,
   })
+
+  const isLoadedRef = useRef(false)
+
+  useEffect(() => {
+    if (!persistKey || isLoadedRef.current) return
+
+    const persistData = localStorage.getItem<TValues>(persistKey)
+
+    if (persistData) {
+      form.reset({
+        ...defaultValues,
+        ...persistData,
+      })
+      isLoadedRef.current = true
+    }
+  }, [persistKey, form, defaultValues])
 
   useEffect(() => {
     if (!persistKey) return
