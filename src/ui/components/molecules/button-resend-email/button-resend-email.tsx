@@ -4,18 +4,28 @@ import { useEffect, useState, useTransition } from 'react'
 import { useTranslations } from 'next-intl'
 import { toast } from 'sonner'
 
-import * as actions from '@/features/auth/actions'
+import type { ActionResponse } from '@/core/types/global'
 import { Button } from '@/ui/components/atoms/button'
 import { RefreshCwIcon } from '@/ui/icons'
 import { cn } from '@/utils/cn'
 
+const REPEAT_RESEND_TIME = 45
+
 type Props = {
   email: string
+  sendEmailAction: (
+    email: string
+  ) => Promise<ActionResponse<{ status: boolean }>>
   className?: string
 } & React.ComponentProps<typeof Button>
 
-export const ButtonResendEmail = ({ className, email, ...props }: Props) => {
-  const [time, setTime] = useState(30)
+export const ButtonResendEmail = ({
+  className,
+  email,
+  sendEmailAction,
+  ...props
+}: Props) => {
+  const [time, setTime] = useState(REPEAT_RESEND_TIME)
   const [isPending, startTransition] = useTransition()
 
   const t = useTranslations('buttonResendEmail')
@@ -34,13 +44,13 @@ export const ButtonResendEmail = ({ className, email, ...props }: Props) => {
 
   const handleResendEmail = () => {
     startTransition(async () => {
-      const response = await actions.resendEmail(email)
+      const response = await sendEmailAction(email)
 
       if (response.data?.status) {
-        setTime(30)
+        setTime(REPEAT_RESEND_TIME)
         toast.success(t('success'), { position: 'bottom-center' })
       } else {
-        setTime(30)
+        setTime(REPEAT_RESEND_TIME)
         toast.error(t('error'), { position: 'bottom-center' })
       }
     })

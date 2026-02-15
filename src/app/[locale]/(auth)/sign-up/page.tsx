@@ -6,7 +6,7 @@ import type { GenerateMetadataProps } from '@/core/types/global'
 import { FormSignUp } from '@/features/auth/sign-up/form-sign-up'
 import { redirectIfSessionExist } from '@/lib/auth/utils'
 import { Link } from '@/ui/components/atoms/link'
-import { CardAuth } from '@/ui/components/organisms/card-auth/card-auth'
+import { CardAuth } from '@/ui/components/organisms/card-auth'
 
 export async function generateMetadata({
   params,

@@ -4,21 +4,11 @@ import { useEffect } from 'react'
 import { useTranslations } from 'next-intl'
 
 import { Routes } from '@/core/constants'
+import * as actions from '@/features/auth/actions'
 import { useSessionPolling } from '@/features/auth/queries'
 import { useRouter } from '@/lib/i18n/navigation'
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from '@/ui/components/atoms/card'
-import { Link } from '@/ui/components/atoms/link'
-import { ExternalLinkIcon, MailIcon } from '@/ui/icons'
-import { cn } from '@/utils/cn'
-
-import { ButtonResendEmail } from './button-resend-email'
+import { CardCheckEmail } from '@/ui/components/organisms/card-check-email'
+import { MailIcon } from '@/ui/icons'
 
 type Props = {
   email: string | null
@@ -38,52 +28,19 @@ export default function CardConfirmEmail({ className, email }: Props) {
   }, [session, router])
 
   return (
-    <Card className={cn('mx-auto w-full max-w-md shadow-lg', className)}>
-      <CardHeader className="text-center">
-        <div className="mb-2 flex justify-center">
-          <div className="rounded-full bg-primary/10 p-3">
-            <MailIcon className="size-8 text-primary" />
-          </div>
-        </div>
-
-        <CardTitle className="text-2xl font-bold">{t('title')}</CardTitle>
-
-        {email && (
-          <CardDescription className="text-base">
-            {t('description')} <br />
-            <span className="font-medium text-foreground italic">{email}</span>
-          </CardDescription>
-        )}
-      </CardHeader>
-
-      <CardContent className="space-y-4 text-center text-sm text-muted-foreground">
-        <p>{t('main')}</p>
-
-        <div className="flex items-center gap-3 rounded-lg bg-muted p-2 text-left">
-          <span className="text-xl">💡</span>
-          <p>
-            {t.rich('note', {
-              strong: (chunks) => <strong>{chunks}</strong>,
-            })}
-          </p>
-        </div>
-      </CardContent>
-
-      {email && (
-        <CardFooter className="grid grid-cols-2 grid-rows-2 gap-2">
-          <ButtonResendEmail className="col-span-2 gap-2" email={email} />
-
-          <Link
-            href="https://mail.google.com"
-            target="_blank"
-            variant="link"
-            className="col-start-2 justify-self-end text-primary"
-          >
-            {t('openPost')}
-            <ExternalLinkIcon className="size-4" />
-          </Link>
-        </CardFooter>
-      )}
-    </Card>
+    <CardCheckEmail
+      className={className}
+      Icon={MailIcon}
+      email={email || undefined}
+      title={t('title')}
+      mainText={t('main')}
+      note={t.rich('note', {
+        strong: (chunks) => <strong>{chunks}</strong>,
+      })}
+      description={t('description')}
+      backLink={t('backButton')}
+      gmail={t('openPost')}
+      resendEmailAction={actions.resendEmail}
+    />
   )
 }

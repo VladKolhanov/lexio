@@ -36,7 +36,7 @@ export const CardAuth = ({
 
   return (
     <Card className={cn('w-full sm:w-2/3 lg:w-4/8 xl:w-3/10', className)}>
-      <CardHeader className="mb-4 text-center">
+      <CardHeader className="text-center">
         <CardTitle>{title}</CardTitle>
         <CardDescription>{description}</CardDescription>
       </CardHeader>
