@@ -1,6 +1,6 @@
 import { getEnvDataOrThrowError } from '@/utils/get-env-data-or-throw-error'
 import { zStringRequired } from '@/utils/zod'
-import { z, ZodError, ZodObject, ZodPipe, ZodSafeParseResult } from 'zod'
+import { z } from 'zod'
 
 const envSchema = z
   .object({

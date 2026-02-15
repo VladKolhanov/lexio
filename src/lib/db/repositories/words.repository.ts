@@ -1,3 +1,5 @@
+import 'server-only'
+
 import { dbClient } from '../db-client'
 import { words } from '../schemas/words'
 import { type WordInsertSchema } from '../types'
