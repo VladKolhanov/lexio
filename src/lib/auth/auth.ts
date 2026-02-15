@@ -4,7 +4,7 @@ import { nextCookies } from 'better-auth/next-js'
 
 import { ENV } from '@/core/env'
 import { dbClient } from '@/lib/db/db-client'
-import { sendEmailVerification } from '@/lib/resend/utils'
+import { sendEmail } from '@/lib/resend/utils'
 
 export const auth = betterAuth({
   emailAndPassword: {
@@ -20,7 +20,12 @@ export const auth = betterAuth({
     sendOnSignIn: true,
     sendOnSignUp: true,
     sendVerificationEmail: async ({ user, url }) => {
-      await sendEmailVerification({ email: user.email, name: user.name, url })
+      await sendEmail({
+        subject: 'verificationEmail',
+        email: user.email,
+        name: user.name,
+        url,
+      })
     },
   },
   socialProviders: {

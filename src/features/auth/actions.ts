@@ -1,9 +1,11 @@
 'use server'
 
+import { APIError } from 'better-auth'
 import { headers } from 'next/headers'
 
 import { PersistKeys, Routes } from '@/core/constants'
 import type { SocialProviders } from '@/core/constants/social-providers'
+import { ENV_CLIENT } from '@/core/env-client'
 import { AppError } from '@/core/errors/exceptions'
 import { protect } from '@/lib/arcjet'
 import { auth } from '@/lib/auth/auth'
@@ -12,24 +14,47 @@ import {
   getSignInInputSchema,
   getSignUpInputSchema,
 } from '@/lib/db/validation/auth'
+import { sendEmail } from '@/lib/resend/utils'
 import { clearPersistFormData } from '@/utils/clear-persist-form-data'
 import { parseFormData } from '@/utils/parse-form-data'
 import { redirectWithSafeLocale } from '@/utils/redirect-with-safe-locale'
 import { safeAction, safeActionWithPayload } from '@/utils/safe-action'
+import { tryCatch } from '@/utils/try-catch'
 
 export const signUp = safeActionWithPayload(async (_state, formData) => {
   const data = parseFormData(getSignUpInputSchema(), formData)
   await protect(data.email)
 
-  await auth.api.signUpEmail({
-    headers: await headers(),
-    body: {
-      name: data.name,
-      email: data.email,
-      password: data.password,
-      callbackURL: Routes.EmailVerified,
-    },
-  })
+  const [_response, error] = await tryCatch(
+    auth.api.signUpEmail({
+      headers: await headers(),
+      body: {
+        name: data.name,
+        email: data.email,
+        password: data.password,
+        callbackURL: Routes.EmailVerified,
+      },
+    })
+  )
+
+  if (error) {
+    const isUserExistsError =
+      error instanceof APIError &&
+      (error.status === 422 ||
+        error.status === 'UNPROCESSABLE_ENTITY' ||
+        error.message.includes('exists'))
+
+    if (isUserExistsError) {
+      await sendEmail({
+        subject: 'alreadyRegisteredEmail',
+        name: data.name,
+        email: data.email,
+        url: `${ENV_CLIENT.BASE_URL}/${Routes.SignIn}`,
+      })
+    } else {
+      throw error as APIError
+    }
+  }
 
   await clearPersistFormData(PersistKeys.FormSignUp)
   await redirectWithSafeLocale(`${Routes.ConfirmEmail}?email=${data.email}`)
@@ -83,7 +108,18 @@ export const resendEmail = safeAction(async (email: string) => {
   await protect()
   const user = await dal.findFirstUser(email)
 
-  if (!user || user.emailVerified) {
+  if (!user) {
+    return { status: true }
+  }
+
+  if (user.emailVerified) {
+    await sendEmail({
+      subject: 'alreadyRegisteredEmail',
+      name: user.name,
+      email: user.email,
+      url: `${ENV_CLIENT.BASE_URL}/${Routes.SignIn}`,
+    })
+
     return { status: true }
   }
 
@@ -91,7 +127,6 @@ export const resendEmail = safeAction(async (email: string) => {
     headers: await headers(),
     body: {
       email,
-      callbackURL: Routes.Dashboard,
     },
   })
 

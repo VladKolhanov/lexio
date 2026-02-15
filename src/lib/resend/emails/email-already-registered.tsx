@@ -20,10 +20,10 @@ type Props = {
   locale: Locale
 }
 
-export const EmailVerification = async ({ name, url, locale }: Props) => {
+export const EmailAlreadyRegistered = async ({ name, url, locale }: Props) => {
   const t = createTranslator({
     messages: await import(`../../i18n/messages/${locale}/email.json`),
-    namespace: 'emailVerification',
+    namespace: 'emailAlreadyRegistered',
     locale,
   })
 
@@ -33,7 +33,9 @@ export const EmailVerification = async ({ name, url, locale }: Props) => {
       <Preview>{t('preview')}</Preview>
       <Body style={main}>
         <Container style={container}>
-          <Heading style={heading}>{t('heading', { name })}</Heading>
+          <Heading style={heading}>
+            {name ? t('heading', { name }) : t('headingDefault')}
+          </Heading>
 
           <Text style={paragraph}>{t('paragraphMain')}</Text>
 
@@ -65,13 +67,13 @@ export const EmailVerification = async ({ name, url, locale }: Props) => {
   )
 }
 
-EmailVerification.PreviewProps = {
+EmailAlreadyRegistered.PreviewProps = {
   name: 'John Doe',
   url: 'http://sdadwqe123wddsjhakh4h324hdnas',
   locale: 'en',
 } as Props
 
-export default EmailVerification
+export default EmailAlreadyRegistered
 
 const main = {
   backgroundColor: '#f6f9fc',

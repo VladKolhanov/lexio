@@ -67,8 +67,8 @@
   },
   "cardConfirmEmail": {
     "title": "Check your email",
-    "description": "We have sent a confirmation link to:",
-    "main": "Please follow the link in the email to activate your account. This will help us keep your profile secure.",
+    "description": "We sent an email to:",
+    "main": "Click the link inside to sign in or activate your account.",
     "note": "Don't see the email? Check your <strong>Spam</strong> folder or try sending your request again.",
     "openPost": "Open mail"
   },

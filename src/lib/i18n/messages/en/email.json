@@ -7,5 +7,15 @@
     "paragraphDescription": "This link is valid for 3 hours. If you haven't created an account, simply ignore this email.",
     "footer": "If the button doesn't work, copy this link into your browser:",
     "footer-copyright": "All rights reserved."
+  },
+  "emailAlreadyRegistered": {
+    "preview": "Sign in to your AI Smart Dictionary account",
+    "heading": "Welcome back, {name}!",
+    "headingDefault": "You are already registered",
+    "paragraphMain": "We received a request to sign up with this email address. However, you already have an account with us. You don't need to register again.",
+    "button": "Sign In",
+    "paragraphDescription": "If you want to access your account, simply click the button above. If you didn't try to sign up, you can safely ignore this email.",
+    "footer": "If the button above doesn't work, copy and paste this link into your browser:",
+    "footer-copyright": "All rights reserved."
   }
 }

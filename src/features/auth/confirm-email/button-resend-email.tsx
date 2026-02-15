@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useTransition } from 'react'
 import { useTranslations } from 'next-intl'
 import { toast } from 'sonner'
 
@@ -16,6 +16,7 @@ type Props = {
 
 export const ButtonResendEmail = ({ className, email, ...props }: Props) => {
   const [time, setTime] = useState(30)
+  const [isPending, startTransition] = useTransition()
 
   const t = useTranslations('buttonResendEmail')
 
@@ -31,14 +32,18 @@ export const ButtonResendEmail = ({ className, email, ...props }: Props) => {
     return () => clearInterval(interval)
   }, [time])
 
-  const handleResendEmail = async () => {
-    const response = await actions.resendEmail(email)
+  const handleResendEmail = () => {
+    startTransition(async () => {
+      const response = await actions.resendEmail(email)
 
-    if (response.data?.status) {
-      toast.success(t('success'), { position: 'bottom-center' })
-    } else {
-      toast.error(t('error'), { position: 'bottom-center' })
-    }
+      if (response.data?.status) {
+        setTime(30)
+        toast.success(t('success'), { position: 'bottom-center' })
+      } else {
+        setTime(30)
+        toast.error(t('error'), { position: 'bottom-center' })
+      }
+    })
   }
 
   return (
@@ -49,7 +54,11 @@ export const ButtonResendEmail = ({ className, email, ...props }: Props) => {
       {...props}
       onClick={handleResendEmail}
     >
-      <RefreshCwIcon className="size-4" />
+      {isPending ? (
+        <RefreshCwIcon className="size-4 animate-spin" />
+      ) : (
+        <RefreshCwIcon className="size-4" />
+      )}
       {t('repeatSending', { time, hasTime: String(!!time) })}
     </Button>
   )

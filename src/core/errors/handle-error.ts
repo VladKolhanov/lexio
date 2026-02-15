@@ -82,16 +82,6 @@ export const handleError = async (
   }
 
   if (error instanceof APIError) {
-    if (error.statusCode === 422 && error.status === 'UNPROCESSABLE_ENTITY') {
-      return {
-        code: error.status,
-        message: t('emailExist'),
-        details: {
-          paths: ['email'],
-        },
-      }
-    }
-
     if (error.statusCode === 401 && error.status === 'UNAUTHORIZED') {
       return {
         code: error.status,
