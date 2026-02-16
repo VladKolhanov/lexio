@@ -10,9 +10,14 @@ export const auth = betterAuth({
   emailAndPassword: {
     enabled: true,
     requireEmailVerification: true,
-    // sendResetPassword: async ({ user, url }) => {
-    //   await sendPasswordResetEmail({ user, url })
-    // },
+    sendResetPassword: async ({ user, url }) => {
+      await sendEmail({
+        subject: 'resetPasswordEmail',
+        email: user.email,
+        name: user.name,
+        url,
+      })
+    },
   },
   emailVerification: {
     expiresIn: 3600 * 3, // 3 Hours

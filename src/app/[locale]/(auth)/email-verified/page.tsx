@@ -1,5 +1,20 @@
+import type { Metadata } from 'next'
+import { getTranslations } from 'next-intl/server'
+
+import type { GenerateMetadataProps } from '@/core/types/global'
 import { CardConfirmSuccess } from '@/features/auth/confirm-email/card-confirm-success'
 import { redirectIfSessionNotExist } from '@/lib/auth/utils'
+
+export async function generateMetadata({
+  params,
+}: GenerateMetadataProps): Promise<Metadata> {
+  const { locale } = await params
+  const t = await getTranslations({ locale })
+
+  return {
+    title: t('metadata.emailVerified'),
+  }
+}
 
 export default async function EmailVerifiedPage() {
   await redirectIfSessionNotExist()

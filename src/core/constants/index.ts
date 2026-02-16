@@ -6,12 +6,16 @@ export const Routes = {
   ConfirmEmail: '/confirm-email',
   EmailVerified: '/email-verified',
   ForgotPassword: '/forgot-password',
+  ResetPassword: '/reset-password',
+  CheckEmail: '/check-email',
 } as const
 
 export const PersistKeys = {
   FormSignUp: 'form-sign-up',
   FormSignIn: 'form-sign-in',
   FormAddWord: 'form-add-word',
+  FormForgotPassword: 'form-forgot-password',
+  FormResetPassword: 'form-reset-password',
 } as const
 
 export type PersistKeys = (typeof PersistKeys)[keyof typeof PersistKeys]

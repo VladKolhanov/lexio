@@ -6,6 +6,7 @@ import { ENV } from '@/core/env'
 import { ENV_CLIENT } from '@/core/env-client'
 
 import EmailAlreadyRegistered from './emails/email-already-registered'
+import EmailResetPassword from './emails/email-reset-password'
 import { EmailVerification } from './emails/email-verification'
 
 const resend = new Resend(ENV.RESEND_API_KEY)
@@ -13,7 +14,8 @@ const resend = new Resend(ENV.RESEND_API_KEY)
 const TEMPLATES = {
   verificationEmail: EmailVerification,
   alreadyRegisteredEmail: EmailAlreadyRegistered,
-} as const
+  resetPasswordEmail: EmailResetPassword,
+}
 
 export async function sendEmail({
   email,

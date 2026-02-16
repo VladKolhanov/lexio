@@ -2,20 +2,20 @@ import { APIError } from 'better-auth'
 import { isRedirectError } from 'next/dist/client/components/redirect-error'
 import { getTranslations } from 'next-intl/server'
 
-import { AppError } from '@/core/errors/exceptions'
+import { AppError, BussinessError } from '@/core/errors/exceptions'
 import type { ServerError, ZodFlattenError } from '@/core/types/global'
 import type { AvailableFormFields } from '@/lib/db/types'
 
 export const handleError = async (
   error: unknown
 ): Promise<ServerError<AvailableFormFields>> => {
-  if (isRedirectError(error)) {
+  if (isRedirectError(error) || error instanceof AppError) {
     throw error
   }
 
   const t = await getTranslations('errors')
 
-  if (error instanceof AppError) {
+  if (error instanceof BussinessError) {
     const actionResponse = {
       code: error.code,
       message: error.message,
@@ -72,10 +72,6 @@ export const handleError = async (
         message: t(translationKey),
         details: { paths: ['root'] },
       }
-    }
-
-    if (error.code === 'DETECT_BOT') {
-      throw error
     }
 
     return { ...actionResponse, message: t('failed') }

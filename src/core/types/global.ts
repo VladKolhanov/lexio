@@ -1,7 +1,7 @@
 import type { APIError } from 'better-auth'
 import type { Locale, useTranslations } from 'next-intl'
 
-import { type ErrorCodes } from '@/core/errors/definitions'
+import { type BussinessErrorCodes } from '@/core/errors/definitions'
 import type commonMessages from '@/lib/i18n/messages/en/common.json'
 import type componentsMessages from '@/lib/i18n/messages/en/components.json'
 import type errorsMessages from '@/lib/i18n/messages/en/errors.json'
@@ -23,7 +23,7 @@ export type ZodFlattenError = {
 }
 
 export type ServerError<TPaths = string> = {
-  code: ErrorCodes | APIError['status']
+  code: BussinessErrorCodes | APIError['status']
   message: string
   details?: { paths?: TPaths[]; fieldErrors?: ZodFlattenError['fieldErrors'] }
 }

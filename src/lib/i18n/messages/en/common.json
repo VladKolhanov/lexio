@@ -1,6 +1,7 @@
 {
   "subject": {
     "verificationEmail": "Verify your email address",
-    "alreadyRegisteredEmail": "You already have an account on Ai Smart Dictionary"
+    "alreadyRegisteredEmail": "You already have an account on Ai Smart Dictionary",
+    "resetPasswordEmail": "Confirm your email address to recover your password."
   }
 }

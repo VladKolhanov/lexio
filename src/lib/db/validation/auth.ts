@@ -2,7 +2,7 @@ import { createInsertSchema } from 'drizzle-zod'
 import z from 'zod'
 
 import { schemaWithIntl } from '@/utils/schema-with-intl'
-import { zCheckbox, ztPasswordRequired } from '@/utils/zod'
+import { zCheckbox, zStringOptional, ztPasswordRequired } from '@/utils/zod'
 
 import { user } from '../schemas/auth'
 
@@ -35,5 +35,18 @@ export const getSignInInputSchema = schemaWithIntl((t) =>
     .extend({
       password: ztPasswordRequired(t),
       rememberMe: zCheckbox(),
+    })
+)
+
+export const getForgotPasswordInputSchema = schemaWithIntl((t) =>
+  getUserInsertSchema(t).pick({ email: true })
+)
+
+export const getResetPasswordInputSchema = schemaWithIntl((t) =>
+  getUserInsertSchema(t)
+    .pick({})
+    .extend({
+      token: zStringOptional(),
+      password: ztPasswordRequired(t),
     })
 )

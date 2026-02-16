@@ -17,5 +17,14 @@
     "paragraphDescription": "If you want to access your account, simply click the button above. If you didn't try to sign up, you can safely ignore this email.",
     "footer": "If the button above doesn't work, copy and paste this link into your browser:",
     "footer-copyright": "All rights reserved."
+  },
+  "emailResetPassword": {
+    "preview": "Recovering your password",
+    "heading": "Hello, {name}!",
+    "paragraphMain": "We have received a request to reset the password for your account.",
+    "button": "Reset password",
+    "paragraphDescription": "If you did not send this request, simply ignore this email.",
+    "footer": "If the button doesn't work, copy and paste the following link into your browser:",
+    "footer-copyright": "All rights reserved."
   }
 }

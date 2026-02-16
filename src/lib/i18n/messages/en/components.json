@@ -70,7 +70,8 @@
     "description": "We sent an email to:",
     "main": "Click the link inside to sign in or activate your account.",
     "note": "Don't see the email? Check your <strong>Spam</strong> folder or try sending your request again.",
-    "openPost": "Open mail"
+    "openPost": "Open mail",
+    "backButton": "Return to previous page"
   },
   "buttonResendEmail": {
     "repeatSending": "Send the email again{hasTime, select, true { in {time} seconds} other {}}",
@@ -83,5 +84,32 @@
     "dashboardButton": "Go to Dashboard",
     "closeHint": "You can now safely close this window.",
     "separator": "OR"
+  },
+  "forgotPasswordPage": {
+    "title": "Forgot Password?",
+    "successTitle": "Check your email",
+    "description": "Enter your email address and we will send you a reset link.",
+    "successMessage": "If an account exists, we have sent instructions to your email.",
+    "backToLogin": "Back to Login"
+  },
+  "formForgotPassword": {
+    "labelEmail": "Email",
+    "submitButton": "Send Reset Link"
+  },
+  "cardCheckEmail": {
+    "title": "Check your email",
+    "description": "If an account with the email exist we have sent a password reset link to",
+    "main": "Click the link inside to reset your password.",
+    "note": "Don't see the email? Check your <strong>Spam</strong> folder or try sending your request again.",
+    "openPost": "Open mail",
+    "backButton": "Return to previous page"
+  },
+  "resetPasswordCard": {
+    "title": "Reset Password",
+    "description": "Enter a new password for your account."
+  },
+  "formResetPassword": {
+    "password": "Password",
+    "sendForm": "Change Password"
   }
 }

@@ -6,11 +6,13 @@ import { headers } from 'next/headers'
 import { PersistKeys, Routes } from '@/core/constants'
 import type { SocialProviders } from '@/core/constants/social-providers'
 import { ENV_CLIENT } from '@/core/env-client'
-import { AppError } from '@/core/errors/exceptions'
+import { AppError, BussinessError } from '@/core/errors/exceptions'
 import { protect } from '@/lib/arcjet'
 import { auth } from '@/lib/auth/auth'
 import * as dal from '@/lib/db/repositories/user.repository'
 import {
+  getForgotPasswordInputSchema,
+  getResetPasswordInputSchema,
   getSignInInputSchema,
   getSignUpInputSchema,
 } from '@/lib/db/validation/auth'
@@ -99,7 +101,7 @@ export const signInWithProvider = safeAction(
     if (result.redirect && result.url) {
       await redirectWithSafeLocale(result.url)
     } else {
-      throw new AppError('AUTH_PROVIDER_ERROR')
+      throw new BussinessError('AUTH_PROVIDER_ERROR')
     }
   }
 )
@@ -132,3 +134,59 @@ export const resendEmail = safeAction(async (email: string) => {
 
   return result
 })
+
+export const forgotPassword = safeActionWithPayload(
+  async (_state, formData) => {
+    const data = parseFormData(getForgotPasswordInputSchema(), formData)
+    await protect()
+
+    await auth.api.requestPasswordReset({
+      body: {
+        email: data.email,
+        redirectTo: Routes.ResetPassword,
+      },
+    })
+
+    await clearPersistFormData(PersistKeys.FormForgotPassword)
+    await redirectWithSafeLocale(`${Routes.CheckEmail}?email=${data.email}`)
+  }
+)
+
+export const resendForgotPassword = safeAction(async (email: string) => {
+  await protect()
+  const user = await dal.findFirstUser(email)
+
+  if (!user) {
+    return { status: true }
+  }
+
+  const result = await auth.api.requestPasswordReset({
+    body: {
+      email: email,
+      redirectTo: Routes.ResetPassword,
+    },
+  })
+
+  return result
+})
+
+export const resetPassword = safeActionWithPayload(
+  async (_actionState, formData) => {
+    const data = parseFormData(getResetPasswordInputSchema(), formData)
+    await protect()
+
+    if (!data.token) {
+      throw new AppError('TOKEN_NOT_EXIST')
+    }
+
+    await auth.api.resetPassword({
+      body: {
+        newPassword: data.password,
+        token: data.token,
+      },
+    })
+
+    await clearPersistFormData(PersistKeys.FormResetPassword)
+    await redirectWithSafeLocale(Routes.SignIn)
+  }
+)
