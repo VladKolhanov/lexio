@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import { getTranslations } from 'next-intl/server'
 
 import type { GenerateMetadataProps } from '@/core/types/global'
-import { CardConfirmSuccess } from '@/features/auth/confirm-email/card-confirm-success'
+import { ConfirmSuccessCard } from '@/features/auth/confirm-email/confirm-success-card'
 import { redirectIfSessionNotExist } from '@/lib/auth/utils'
 
 export async function generateMetadata({
@@ -19,5 +19,5 @@ export async function generateMetadata({
 export default async function EmailVerifiedPage() {
   await redirectIfSessionNotExist()
 
-  return <CardConfirmSuccess className="mt-15 md:mt-25" />
+  return <ConfirmSuccessCard className="mt-15 md:mt-25" />
 }

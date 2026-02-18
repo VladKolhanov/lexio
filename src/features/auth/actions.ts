@@ -19,6 +19,7 @@ import {
 import { sendEmail } from '@/lib/resend/utils'
 import { clearPersistFormData } from '@/utils/clear-persist-form-data'
 import { parseFormData } from '@/utils/parse-form-data'
+import { buildQueryString } from '@/utils/query-string'
 import { redirectWithSafeLocale } from '@/utils/redirect-with-safe-locale'
 import { safeAction, safeActionWithPayload } from '@/utils/safe-action'
 import { tryCatch } from '@/utils/try-catch'
@@ -187,6 +188,10 @@ export const resetPassword = safeActionWithPayload(
     })
 
     await clearPersistFormData(PersistKeys.FormResetPassword)
-    await redirectWithSafeLocale(Routes.SignIn)
+    await redirectWithSafeLocale(
+      buildQueryString(Routes.SignIn, {
+        toast: { variant: 'success', keyMessage: 'resetPasswordSuccess' },
+      })
+    )
   }
 )

@@ -33,7 +33,7 @@
   "formAddWord": {
     "toastSuccess": "The word has been added to your dictionary"
   },
-  "signUpPage": {
+  "signUpCard": {
     "title": "Create an account",
     "subtitle": "Sign up to start using Ai Smart Dictionary",
     "separator": "Or continue with",
@@ -47,7 +47,7 @@
     "confirmPassword": "Confirm Password",
     "sendForm": "Create account"
   },
-  "signInPage": {
+  "signInCard": {
     "title": "Welcome to Ai Smart Dictionary",
     "subtitle": "Enter your email and password to sign in to your account",
     "separator": "Or continue with"
@@ -85,7 +85,7 @@
     "closeHint": "You can now safely close this window.",
     "separator": "OR"
   },
-  "forgotPasswordPage": {
+  "forgotPasswordCard": {
     "title": "Forgot Password?",
     "successTitle": "Check your email",
     "description": "Enter your email address and we will send you a reset link.",
@@ -111,5 +111,8 @@
   "formResetPassword": {
     "password": "Password",
     "sendForm": "Change Password"
+  },
+  "toastListener": {
+    "resetPasswordSuccess": "Your password has been changed successfully. You can now log in with your new password."
   }
 }

@@ -33,7 +33,7 @@
   "formAddWord": {
     "toastSuccess": "Слово додано до вашого словника"
   },
-  "signUpPage": {
+  "signUpCard": {
     "title": "Створіть обліковий запис",
     "subtitle": "Зареєструйтеся, щоб почати користуватися Ai Smart Dictionary",
     "separator": "Або продовжити через",
@@ -47,7 +47,7 @@
     "confirmPassword": "Підтвердьте пароль",
     "sendForm": "Створити обліковий запис"
   },
-  "signInPage": {
+  "signInCard": {
     "title": "Ласкаво просимо до Ai Smart Dictionary",
     "subtitle": "Введіть вашу електронну пошту та пароль, щоб увійти до акаунту",
     "separator": "Або продовжити через"
@@ -85,7 +85,7 @@
     "closeHint": "Тепер ви можете безпечно закрити це вікно.",
     "separator": "АБО"
   },
-  "forgotPasswordPage": {
+  "forgotPasswordCard": {
     "title": "Забули пароль?",
     "successTitle": "Перевірте пошту",
     "description": "Введіть свою електронну пошту, і ми надішлемо вам посилання для відновлення пароля.",
@@ -111,5 +111,8 @@
   "formResetPassword": {
     "password": "Пароль",
     "sendForm": "Змінити Пароль"
+  },
+  "toastListener": {
+    "resetPasswordSuccess": "Пароль успішно змінено. Тепер ви можете увійти в систему з новим паролем."
   }
 }

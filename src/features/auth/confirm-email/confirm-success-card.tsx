@@ -17,7 +17,7 @@ type Props = {
   className?: string
 }
 
-export const CardConfirmSuccess = async ({ className }: Props) => {
+export const ConfirmSuccessCard = async ({ className }: Props) => {
   const t = await getTranslations('emailVerified')
 
   return (

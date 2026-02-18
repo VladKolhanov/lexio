@@ -3,6 +3,7 @@ import { useActionState, useEffect, useRef } from 'react'
 import {
   type DefaultValues,
   type FieldValues,
+  type Path,
   useForm,
   type UseFormProps,
 } from 'react-hook-form'
@@ -84,13 +85,21 @@ export const useFormWithAction = <
     const persistData = localStorage.getItem<TValues>(persistKey)
 
     if (persistData) {
-      form.reset({
-        ...defaultValues,
-        ...persistData,
+      const fieldsToApply: (keyof TValues)[] =
+        persistFields && persistFields.length > 0
+          ? persistFields
+          : (Object.keys(persistData) as (keyof TValues)[])
+
+      fieldsToApply.forEach((key) => {
+        const value = persistData[key]
+
+        if (value !== undefined) {
+          form.setValue(key as Path<TValues>, value)
+        }
       })
       isLoadedRef.current = true
     }
-  }, [persistKey, form, defaultValues])
+  }, [persistKey, form, defaultValues, persistFields])
 
   useEffect(() => {
     if (!persistKey) return
@@ -112,7 +121,9 @@ export const useFormWithAction = <
         {}
       )
 
-      const isEmptyValues = !Object.values(formData).some(Boolean)
+      const isEmptyValues = Object.values(formData).every(
+        (value) => value === '' || value === null || value === undefined
+      )
 
       if (isEmptyValues) {
         Cookie.remove(persistKey)

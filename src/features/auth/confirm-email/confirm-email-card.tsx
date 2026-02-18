@@ -15,7 +15,7 @@ type Props = {
   className?: string
 }
 
-export default function CardConfirmEmail({ className, email }: Props) {
+export default function ConfirmEmailCard({ className, email }: Props) {
   const t = useTranslations('cardConfirmEmail')
   const router = useRouter()
   const session = useSessionPolling(10000)

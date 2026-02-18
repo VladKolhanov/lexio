@@ -3,7 +3,7 @@ import { getTranslations } from 'next-intl/server'
 
 import type { GenerateMetadataProps } from '@/core/types/global'
 import type { PageProps } from '@/core/types/global.ts'
-import CardConfirmEmail from '@/features/auth/confirm-email/card-confirm-email'
+import ConfirmEmailCard from '@/features/auth/confirm-email/confirm-email-card'
 import { redirectIfSessionExist } from '@/lib/auth/utils'
 
 export async function generateMetadata({
@@ -23,5 +23,5 @@ export default async function ConfirmEmailPage({ searchParams }: Props) {
   await redirectIfSessionExist()
   const { email } = await searchParams
 
-  return <CardConfirmEmail email={email} className="mt-15 md:mt-25" />
+  return <ConfirmEmailCard email={email} className="mt-15 md:mt-25" />
 }
