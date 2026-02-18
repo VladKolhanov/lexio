@@ -8,6 +8,7 @@ export const Routes = {
   ForgotPassword: '/forgot-password',
   ResetPassword: '/reset-password',
   CheckEmail: '/check-email',
+  Profile: '/profile',
 } as const
 
 export const PersistKeys = {

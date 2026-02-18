@@ -1,10 +1,11 @@
 import type { Metadata } from 'next'
-import { headers } from 'next/headers'
 import { getTranslations } from 'next-intl/server'
 
+import { Routes } from '@/core/constants'
 import type { GenerateMetadataProps } from '@/core/types/global'
 import { ButtonSignout } from '@/features/auth/sign-out/button-signout'
-import { auth } from '@/lib/auth/auth'
+import { getSessionOrRedirect } from '@/lib/auth/utils'
+import { Link } from '@/ui/components/atoms/link'
 
 export async function generateMetadata({
   params,
@@ -18,9 +19,7 @@ export async function generateMetadata({
 }
 
 export default async function DashboardPage() {
-  const session = await auth.api.getSession({
-    headers: await headers(),
-  })
+  const session = await getSessionOrRedirect()
 
   return (
     <div className="grid place-items-center">
@@ -38,6 +37,12 @@ export default async function DashboardPage() {
           <p>Email: {session.user.email}</p>
           <p>Token: {session.session.token}</p>
           <ButtonSignout>Sign Out</ButtonSignout>
+
+          <hr />
+
+          <Link variant="outline" href={Routes.Profile}>
+            Profile
+          </Link>
         </div>
       )}
     </div>
