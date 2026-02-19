@@ -1,4 +1,6 @@
+import type { FC, SVGProps } from 'react'
 import type { APIError } from 'better-auth'
+import type { LucideIcon } from 'lucide-react'
 import type { Locale, useTranslations } from 'next-intl'
 
 import { type BussinessErrorCodes } from '@/core/errors/definitions'
@@ -65,3 +67,5 @@ export type GenerateMetadataProps<
   params: Promise<ParamsWithLocale<TParams>>
   searchParams: Promise<Record<string, string | string[] | undefined>>
 }
+
+export type Icon = LucideIcon | FC<SVGProps<SVGElement>>

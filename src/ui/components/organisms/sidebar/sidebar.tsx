@@ -6,7 +6,7 @@ import {
   SidebarSeparator,
   useSidebar,
 } from '@/ui/components/atoms/sidebar'
-import { BookOpenIcon, Gamepad2Icon, LayoutDashboardIcon } from '@/ui/icons'
+import { DashboardIcon, DictionaryIcon, GamesIcon } from '@/ui/icons'
 
 import { SidebarFooter } from './sidebar-footer'
 import { SidebarHeader } from './sidebar-header'
@@ -15,17 +15,17 @@ import { SidebarMain } from './sidebar-main'
 const navItems = [
   {
     title: 'Dashboard',
-    icon: LayoutDashboardIcon,
+    icon: DashboardIcon,
     href: Routes.Dashboard,
   },
   {
     title: 'Dictionary',
-    icon: BookOpenIcon,
+    icon: DictionaryIcon,
     href: Routes.Dictionary,
   },
   {
     title: 'Games',
-    icon: Gamepad2Icon,
+    icon: GamesIcon,
     href: Routes.Games,
   },
 ]

@@ -1,9 +1,11 @@
+export { default as DashboardIcon } from '@/public/icons/dashboard.svg?react'
+export { default as DictionaryIcon } from '@/public/icons/dictionary.svg?react'
+export { default as GamesIcon } from '@/public/icons/games.svg?react'
 export { default as GoogleIcon } from '@/public/icons/google.svg?react'
 export { default as UkraineFlagIcon } from '@/public/icons/ukraine-flag-icon.svg?react'
 export { default as UnitedKingdomFlagIcon } from '@/public/icons/united-kingdom-flag-icon.svg?react'
 export {
   ArrowLeftIcon,
-  BookOpenIcon,
   CheckCircle2Icon,
   CheckCircleIcon,
   CheckIcon,
@@ -15,10 +17,8 @@ export {
   ExternalLinkIcon,
   EyeIcon,
   EyeOffIcon,
-  Gamepad2Icon,
   HomeIcon,
   InfoIcon,
-  LayoutDashboardIcon,
   Loader2Icon,
   LoaderCircleIcon,
   LogInIcon,

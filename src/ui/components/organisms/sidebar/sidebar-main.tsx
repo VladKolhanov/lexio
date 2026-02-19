@@ -1,5 +1,4 @@
-import type { LucideIcon } from 'lucide-react'
-
+import type { Icon } from '@/core/types/global'
 import { Link } from '@/ui/components/atoms/link'
 import {
   SidebarContent,
@@ -17,7 +16,7 @@ type Props = {
   items: {
     title: string
     href: string
-    icon: LucideIcon
+    icon: Icon
   }[]
 }
 
@@ -37,7 +36,7 @@ export const SidebarMain = ({ className, items, isCollapsed }: Props) => {
                       isCollapsed && 'flex-center'
                     )}
                   >
-                    <item.icon className="size-5!" />
+                    <item.icon className="size-7!" />
 
                     {!isCollapsed && (
                       <p className="text-lg font-medium">{item.title}</p>

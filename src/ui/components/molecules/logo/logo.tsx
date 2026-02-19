@@ -1,6 +1,5 @@
 'use client'
 
-import { useEffect, useState } from 'react'
 import Image from 'next/image'
 import { useTranslations } from 'next-intl'
 import { useTheme } from 'next-themes'
@@ -8,36 +7,31 @@ import { useTheme } from 'next-themes'
 import { cn } from '@/utils/cn'
 
 type Props = {
+  asSmall?: boolean
   className?: string
 }
 
-export const Logo = ({ className }: Props) => {
-  const [isMounted, setIsMounted] = useState(false)
-  const { theme, systemTheme } = useTheme()
+export const Logo = ({ asSmall, className }: Props) => {
+  const { resolvedTheme } = useTheme()
   const t = useTranslations('logo')
 
-  useEffect(() => {
-    setIsMounted(true)
-  }, [])
-
-  if (!isMounted) {
-    return null
-  }
-
-  const logoPath =
-    theme === 'dark' || (theme === 'system' && systemTheme === 'dark')
-      ? '/images/logo-light.webp'
-      : '/images/logo-dark.webp'
-
   return (
-    <div
-      className={cn(
-        'flex w-min items-center gap-1 font-domine text-lg leading-4 font-bold',
-        className
-      )}
-    >
-      <Image src={logoPath} alt={t('altText')} width={40} height={40} />
-      Smart Dictionary
-    </div>
+    <Image
+      key={resolvedTheme}
+      src={
+        resolvedTheme === 'light'
+          ? asSmall
+            ? '/images/logo-light-small.webp'
+            : '/images/logo-light.webp'
+          : asSmall
+            ? '/images/logo-dark-small.webp'
+            : '/images/logo-dark.webp'
+      }
+      alt={t('altText')}
+      width={asSmall ? 32 : 120}
+      height={30}
+      className={cn(className)}
+      priority
+    />
   )
 }
