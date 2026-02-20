@@ -56,8 +56,7 @@ export const EmailResetPassword = async ({ name, url, locale }: Props) => {
           </Text>
 
           <Text style={footer}>
-            © {new Date().getFullYear()} Ai Smart Dictionary.{' '}
-            {t('footer-copyright')}
+            © {new Date().getFullYear()} LEXIO. {t('footer-copyright')}
           </Text>
         </Container>
       </Body>

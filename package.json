@@ -1,8 +1,8 @@
 {
-  "name": "ai-smart-dictionary",
+  "name": "lexio",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://ai-smart-dictionary.vercel.app/",
+  "homepage": "https://lexio-dictionary.vercel.app/",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -53,7 +53,7 @@
     "react-hook-form": "^7.71.1",
     "resend": "^6.9.2",
     "server-only": "^0.0.1",
-    "shadcn": "^3.7.0",
+    "shadcn": "^3.8.5",
     "sonner": "^2.0.7",
     "swr": "^2.4.0",
     "tailwind-merge": "^3.4.0",
