@@ -31,5 +31,6 @@ jobs:
         run: pnpm run build
         env:
           DATABASE_URL: "postgres://mock:mock@localhost:5432/mock"
-          NEXT_PUBLIC_APP_NAME: "Ai Smart Dictionary"
-          NEXT_PUBLIC_APP_DESCRIPTION: "Ai Smart Dictionary"
+          NEXT_PUBLIC_APP_NAME: "LEXIO"
+          NEXT_PUBLIC_APP_DESCRIPTION: "LEXIO"
+          NEXT_PUBLIC_BASE_URL: "https://lexio-dictionary.vercel.app/"
