@@ -1,12 +1,12 @@
-'use client'
+"use client"
 
-import { Separator as SeparatorPrimitive } from '@base-ui/react/separator'
+import { Separator as SeparatorPrimitive } from "@base-ui/react/separator"
 
-import { cn } from '@/utils/cn'
+import { cn } from "@/utils/cn"
 
 function Separator({
   className,
-  orientation = 'horizontal',
+  orientation = "horizontal",
   ...props
 }: SeparatorPrimitive.Props) {
   return (
@@ -14,7 +14,7 @@ function Separator({
       data-slot="separator"
       orientation={orientation}
       className={cn(
-        'shrink-0 bg-border data-[orientation=horizontal]:h-px data-[orientation=horizontal]:w-full data-[orientation=vertical]:w-px data-[orientation=vertical]:self-stretch',
+        "shrink-0 bg-border data-[orientation=horizontal]:h-px data-[orientation=horizontal]:w-full data-[orientation=vertical]:w-px data-[orientation=vertical]:self-stretch",
         className
       )}
       {...props}
@@ -29,7 +29,10 @@ function SeparatorWithLabel({
   return (
     <div className="relative">
       <div className="absolute inset-0 flex items-center">
-        <Separator className="w-full" {...props} />
+        <Separator
+          className="w-full"
+          {...props}
+        />
       </div>
       <div className="relative flex justify-center text-xs uppercase">
         <span className="bg-transparent px-2 text-muted-foreground">

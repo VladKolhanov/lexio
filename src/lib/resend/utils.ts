@@ -1,13 +1,13 @@
-import type { Messages } from 'next-intl'
-import { getLocale, getTranslations } from 'next-intl/server'
-import { Resend } from 'resend'
+import type { Messages } from "next-intl"
+import { getLocale, getTranslations } from "next-intl/server"
+import { Resend } from "resend"
 
-import { ENV } from '@/core/env'
-import { ENV_CLIENT } from '@/core/env-client'
+import { ENV } from "@/core/env"
+import { ENV_CLIENT } from "@/core/env-client"
 
-import EmailAlreadyRegistered from './emails/email-already-registered'
-import EmailResetPassword from './emails/email-reset-password'
-import { EmailVerification } from './emails/email-verification'
+import EmailAlreadyRegistered from "./emails/email-already-registered"
+import EmailResetPassword from "./emails/email-reset-password"
+import { EmailVerification } from "./emails/email-verification"
 
 const resend = new Resend(ENV.RESEND_API_KEY)
 
@@ -24,12 +24,12 @@ export async function sendEmail({
   url,
 }: {
   name: string
-  subject: keyof Messages['subject']
+  subject: keyof Messages["subject"]
   email: string
   url: string
 }) {
   const locale = await getLocale()
-  const t = await getTranslations('subject')
+  const t = await getTranslations("subject")
 
   const EmailComponent = TEMPLATES[subject]
 

@@ -1,9 +1,9 @@
-'use client'
+"use client"
 
-import { useTranslations } from 'next-intl'
+import { useTranslations } from "next-intl"
 
-import { useLocale } from '@/lib/i18n/navigation'
-import { Button } from '@/ui/components/atoms/button'
+import { useLocale } from "@/lib/i18n/navigation"
+import { Button } from "@/ui/components/atoms/button"
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -12,9 +12,9 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from '@/ui/components/atoms/dropdown-menu'
-import { UkraineFlagIcon, UnitedKingdomFlagIcon } from '@/ui/icons'
-import { cn } from '@/utils/cn'
+} from "@/ui/components/atoms/dropdown-menu"
+import { UkraineFlagIcon, UnitedKingdomFlagIcon } from "@/ui/icons"
+import { cn } from "@/utils/cn"
 
 type Props = {
   className?: string
@@ -23,7 +23,7 @@ type Props = {
 export const LanguageToggle = ({ className }: Props) => {
   const { locale, setLocale } = useLocale()
 
-  const t = useTranslations('languageToggle')
+  const t = useTranslations("languageToggle")
 
   return (
     <DropdownMenu>
@@ -31,14 +31,14 @@ export const LanguageToggle = ({ className }: Props) => {
         render={
           <Button
             className={cn(
-              'm-0 focus-visible:ring-0 focus-visible:ring-offset-0',
+              "m-0 focus-visible:ring-0 focus-visible:ring-offset-0",
               className
             )}
             variant="ghost"
             size="icon"
           >
-            {locale === 'en' ? <UnitedKingdomFlagIcon /> : <UkraineFlagIcon />}
-            <span className="sr-only">{t('srLabel')}</span>
+            {locale === "en" ? <UnitedKingdomFlagIcon /> : <UkraineFlagIcon />}
+            <span className="sr-only">{t("srLabel")}</span>
           </Button>
         }
       />
@@ -46,13 +46,13 @@ export const LanguageToggle = ({ className }: Props) => {
       <DropdownMenuContent align="end">
         <DropdownMenuGroup>
           <DropdownMenuLabel className="text-center">
-            {t('language')}
+            {t("language")}
           </DropdownMenuLabel>
           <DropdownMenuSeparator />
-          <DropdownMenuItem onClick={() => setLocale('en')}>
+          <DropdownMenuItem onClick={() => setLocale("en")}>
             <UnitedKingdomFlagIcon /> English
           </DropdownMenuItem>
-          <DropdownMenuItem onClick={() => setLocale('uk')}>
+          <DropdownMenuItem onClick={() => setLocale("uk")}>
             <UkraineFlagIcon /> Українська
           </DropdownMenuItem>
         </DropdownMenuGroup>

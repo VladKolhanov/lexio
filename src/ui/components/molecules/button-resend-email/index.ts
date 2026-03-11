@@ -1,1 +1,1 @@
-export * from './button-resend-email'
+export * from "./button-resend-email"

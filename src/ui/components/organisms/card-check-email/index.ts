@@ -1,1 +1,1 @@
-export * from './card-check-email'
+export * from "./card-check-email"

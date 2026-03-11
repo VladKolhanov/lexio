@@ -1,14 +1,14 @@
-import { useEffect, useState } from 'react'
-import type { FieldValues, Path, UseFormReturn } from 'react-hook-form'
+import { useEffect, useState } from "react"
+import type { FieldValues, Path, UseFormReturn } from "react-hook-form"
 
-import type { ServerError } from '@/core/types/global'
+import type { ServerError } from "@/core/types/global"
 
 export const useHandleServerError = <TFieldValues extends FieldValues>(
   form: UseFormReturn<TFieldValues>,
   error: ServerError | null
 ) => {
   const [rootError, setRootError] =
-    useState<UseFormReturn['formState']['errors']['root']>()
+    useState<UseFormReturn["formState"]["errors"]["root"]>()
   const [description, setDescription] =
     useState<Record<string, string | string[]>>()
 
@@ -16,8 +16,8 @@ export const useHandleServerError = <TFieldValues extends FieldValues>(
     if (!error || !error.details) return
 
     if (error.details.paths) {
-      if (error.details.paths.includes('root')) {
-        form.setError('root', { message: error.message })
+      if (error.details.paths.includes("root")) {
+        form.setError("root", { message: error.message })
         setRootError(form.formState.errors.root)
         return
       }
@@ -34,7 +34,7 @@ export const useHandleServerError = <TFieldValues extends FieldValues>(
     }
 
     if (error.details.fieldErrors) {
-      form.setError('root', { message: error.message })
+      form.setError("root", { message: error.message })
       setDescription(error.details.fieldErrors)
       return
     }

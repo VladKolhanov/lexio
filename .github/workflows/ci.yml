@@ -2,9 +2,9 @@ name: ci
 
 on:
   push:
-    branches-ignore: ['main']
+    branches-ignore: ["main"]
   pull_request:
-    branches: ['main']
+    branches: ["main"]
 
 jobs:
   build-and-lint:
@@ -30,6 +30,6 @@ jobs:
       - name: Run Build
         run: pnpm run build
         env:
-          DATABASE_URL: 'postgres://mock:mock@localhost:5432/mock'
-          NEXT_PUBLIC_APP_NAME: 'Ai Smart Dictionary'
-          NEXT_PUBLIC_APP_DESCRIPTION: 'Ai Smart Dictionary'
+          DATABASE_URL: "postgres://mock:mock@localhost:5432/mock"
+          NEXT_PUBLIC_APP_NAME: "Ai Smart Dictionary"
+          NEXT_PUBLIC_APP_DESCRIPTION: "Ai Smart Dictionary"

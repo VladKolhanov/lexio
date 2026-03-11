@@ -1,10 +1,10 @@
-import { betterAuth } from 'better-auth'
-import { drizzleAdapter } from 'better-auth/adapters/drizzle'
-import { nextCookies } from 'better-auth/next-js'
+import { betterAuth } from "better-auth"
+import { drizzleAdapter } from "better-auth/adapters/drizzle"
+import { nextCookies } from "better-auth/next-js"
 
-import { ENV } from '@/core/env'
-import { dbClient } from '@/lib/db/db-client'
-import { sendEmail } from '@/lib/resend/utils'
+import { ENV } from "@/core/env"
+import { dbClient } from "@/lib/db/db-client"
+import { sendEmail } from "@/lib/resend/utils"
 
 export const auth = betterAuth({
   emailAndPassword: {
@@ -12,7 +12,7 @@ export const auth = betterAuth({
     requireEmailVerification: true,
     sendResetPassword: async ({ user, url }) => {
       await sendEmail({
-        subject: 'resetPasswordEmail',
+        subject: "resetPasswordEmail",
         email: user.email,
         name: user.name,
         url,
@@ -26,7 +26,7 @@ export const auth = betterAuth({
     sendOnSignUp: true,
     sendVerificationEmail: async ({ user, url }) => {
       await sendEmail({
-        subject: 'verificationEmail',
+        subject: "verificationEmail",
         email: user.email,
         name: user.name,
         url,
@@ -35,7 +35,7 @@ export const auth = betterAuth({
   },
   socialProviders: {
     google: {
-      prompt: 'select_account',
+      prompt: "select_account",
       clientId: ENV.GOOGLE_CLIENT_ID,
       clientSecret: ENV.GOOGLE_CLIENT_SECRET,
     },
@@ -48,6 +48,6 @@ export const auth = betterAuth({
   },
   plugins: [nextCookies()],
   database: drizzleAdapter(dbClient, {
-    provider: 'pg',
+    provider: "pg",
   }),
 })

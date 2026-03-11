@@ -2,8 +2,8 @@ import {
   Avatar,
   AvatarFallback,
   AvatarImage,
-} from '@/ui/components/atoms/avatar'
-import { cn } from '@/utils/cn'
+} from "@/ui/components/atoms/avatar"
+import { cn } from "@/utils/cn"
 
 type Props = {
   className?: string
@@ -21,13 +21,13 @@ type Props = {
 )
 
 const getFallback = (name?: string) => {
-  if (!name) return '??'
+  if (!name) return "??"
 
   return name
-    .split(' ')
+    .split(" ")
     .filter(Boolean)
     .map((word) => word[0])
-    .join('')
+    .join("")
     .toUpperCase()
     .slice(0, 2)
 }
@@ -43,7 +43,7 @@ export const AvatarWithDescription = ({
   return (
     <div
       className={cn(
-        'flex items-center justify-center gap-2 p-2 text-left',
+        "flex items-center justify-center gap-2 p-2 text-left",
         className
       )}
     >

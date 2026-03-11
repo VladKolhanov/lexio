@@ -1,5 +1,5 @@
-import type { Icon } from '@/core/types/global'
-import { Link } from '@/ui/components/atoms/link'
+import type { Icon } from "@/core/types/global"
+import { Link } from "@/ui/components/atoms/link"
 import {
   SidebarContent,
   SidebarGroup,
@@ -7,8 +7,8 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-} from '@/ui/components/atoms/sidebar'
-import { cn } from '@/utils/cn'
+} from "@/ui/components/atoms/sidebar"
+import { cn } from "@/utils/cn"
 
 type Props = {
   className?: string
@@ -28,12 +28,15 @@ export const SidebarMain = ({ className, items, isCollapsed }: Props) => {
           <SidebarMenu className="gap-2">
             {items.map((item) => (
               <SidebarMenuItem key={item.title}>
-                <Link variant="wrapper" href={item.href}>
+                <Link
+                  variant="wrapper"
+                  href={item.href}
+                >
                   <SidebarMenuButton
                     tooltip={item.title}
                     className={cn(
-                      'cursor-pointer',
-                      isCollapsed && 'flex-center'
+                      "cursor-pointer",
+                      isCollapsed && "flex-center"
                     )}
                   >
                     <item.icon className="size-7!" />

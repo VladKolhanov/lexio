@@ -2,7 +2,7 @@ import {
   type AppErrorCodes,
   AppErrorMessages,
   type BussinessErrorCodes,
-} from './definitions'
+} from "./definitions"
 
 type Options = {
   details?: Record<string, unknown>
@@ -10,7 +10,7 @@ type Options = {
 
 export class BussinessError extends Error {
   readonly code
-  readonly details?: Options['details']
+  readonly details?: Options["details"]
 
   constructor(code: BussinessErrorCodes, options?: Options) {
     super()
@@ -22,7 +22,7 @@ export class BussinessError extends Error {
 
 export class AppError extends Error {
   readonly code
-  readonly details?: Options['details']
+  readonly details?: Options["details"]
 
   constructor(code: AppErrorCodes, options?: Options) {
     super(AppErrorMessages[code])

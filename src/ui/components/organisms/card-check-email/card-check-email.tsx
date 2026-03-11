@@ -1,5 +1,5 @@
-import type { ComponentProps, ReactNode } from 'react'
-import type { LucideIcon } from 'lucide-react'
+import type { ComponentProps, ReactNode } from "react"
+import type { LucideIcon } from "lucide-react"
 
 import {
   Card,
@@ -8,19 +8,19 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from '@/ui/components/atoms/card'
-import { Link } from '@/ui/components/atoms/link'
-import { ButtonResendEmail } from '@/ui/components/molecules/button-resend-email'
-import { ButtonReturnBack } from '@/ui/components/molecules/button-return-back'
-import { ArrowLeftIcon, ExternalLinkIcon, MailOpenIcon } from '@/ui/icons'
-import { cn } from '@/utils/cn'
+} from "@/ui/components/atoms/card"
+import { Link } from "@/ui/components/atoms/link"
+import { ButtonResendEmail } from "@/ui/components/molecules/button-resend-email"
+import { ButtonReturnBack } from "@/ui/components/molecules/button-return-back"
+import { ArrowLeftIcon, ExternalLinkIcon, MailOpenIcon } from "@/ui/icons"
+import { cn } from "@/utils/cn"
 
 type Props = {
   title: string
   mainText: string
   resendEmailAction?: ComponentProps<
     typeof ButtonResendEmail
-  >['sendEmailAction']
+  >["sendEmailAction"]
   Icon?: LucideIcon
   email?: string
   description?: string
@@ -43,7 +43,7 @@ export const CardCheckEmail = ({
   className,
 }: Props) => {
   return (
-    <Card className={cn('mx-auto w-full max-w-md shadow-lg', className)}>
+    <Card className={cn("mx-auto w-full max-w-md shadow-lg", className)}>
       <CardHeader className="text-center">
         {Icon && (
           <div className="mb-2 flex justify-center">
@@ -85,7 +85,10 @@ export const CardCheckEmail = ({
           )}
 
           {backButton && (
-            <ButtonReturnBack variant="outline" className="col-span-2">
+            <ButtonReturnBack
+              variant="outline"
+              className="col-span-2"
+            >
               <ArrowLeftIcon />
               {backButton}
             </ButtonReturnBack>

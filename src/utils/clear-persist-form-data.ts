@@ -1,6 +1,6 @@
-import { cookies } from 'next/headers'
+import { cookies } from "next/headers"
 
-import { type PersistKeys } from '@/core/constants'
+import { type PersistKeys } from "@/core/constants"
 
 export const clearPersistFormData = async (key: PersistKeys) => {
   const cookiesStore = await cookies()

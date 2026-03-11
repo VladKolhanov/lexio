@@ -1,4 +1,4 @@
-import { ButtonOauth } from '@/features/auth/oauth/button-oauth'
+import { ButtonOauth } from "@/features/auth/oauth/button-oauth"
 import {
   Card,
   CardContent,
@@ -6,9 +6,9 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from '@/ui/components/atoms/card'
-import { SeparatorWithLabel } from '@/ui/components/atoms/separator'
-import { cn } from '@/utils/cn'
+} from "@/ui/components/atoms/card"
+import { SeparatorWithLabel } from "@/ui/components/atoms/separator"
+import { cn } from "@/utils/cn"
 
 type Props = {
   title: string
@@ -16,7 +16,7 @@ type Props = {
   children: React.ReactNode
 
   separatorLabel?: string
-  socialProviders?: React.ComponentProps<typeof ButtonOauth>['provider'][]
+  socialProviders?: React.ComponentProps<typeof ButtonOauth>["provider"][]
 
   footer?: React.ReactNode
 
@@ -35,7 +35,7 @@ export const CardAuth = ({
   const showSocials = separatorLabel && socialProviders
 
   return (
-    <Card className={cn('w-full sm:w-2/3 lg:w-4/8 xl:w-3/10', className)}>
+    <Card className={cn("w-full sm:w-2/3 lg:w-4/8 xl:w-3/10", className)}>
       <CardHeader className="text-center">
         <CardTitle>{title}</CardTitle>
         <CardDescription>{description}</CardDescription>
@@ -50,7 +50,10 @@ export const CardAuth = ({
 
             <div className="grid-col grid justify-items-center gap-2 *:w-full">
               {socialProviders.map((provider, i) => (
-                <ButtonOauth key={i} provider={provider} />
+                <ButtonOauth
+                  key={i}
+                  provider={provider}
+                />
               ))}
             </div>
           </>

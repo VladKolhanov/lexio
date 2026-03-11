@@ -1,24 +1,24 @@
-import type { ReadonlyURLSearchParams } from 'next/navigation'
-import type { Messages } from 'next-intl'
+import type { ReadonlyURLSearchParams } from "next/navigation"
+import type { Messages } from "next-intl"
 
-import { ENV_CLIENT } from '@/core/env-client'
+import { ENV_CLIENT } from "@/core/env-client"
 
 export const QueryStringToastKeys = {
-  variant: 'tvariant',
-  translationKey: 'tkey',
+  variant: "tvariant",
+  translationKey: "tkey",
 } as const
 
 export type QueryStringToastKeys =
   (typeof QueryStringToastKeys)[keyof typeof QueryStringToastKeys]
 
 export type QueryStringToastVariants =
-  | 'success'
-  | 'error'
-  | 'info'
-  | 'warning'
-  | 'message'
+  | "success"
+  | "error"
+  | "info"
+  | "warning"
+  | "message"
 
-export type QueryStringToastTranslationKeys = keyof Messages['toastListener']
+export type QueryStringToastTranslationKeys = keyof Messages["toastListener"]
 
 type Params = {
   toast?: {

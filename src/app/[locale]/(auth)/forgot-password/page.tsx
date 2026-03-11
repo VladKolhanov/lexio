@@ -1,9 +1,9 @@
-import type { Metadata } from 'next'
-import { getTranslations } from 'next-intl/server'
+import type { Metadata } from "next"
+import { getTranslations } from "next-intl/server"
 
-import type { GenerateMetadataProps } from '@/core/types/global'
-import { ForgotPasswordCard } from '@/features/auth/forgot-password/forgot-password-card'
-import { redirectIfSessionExist } from '@/lib/auth/utils'
+import type { GenerateMetadataProps } from "@/core/types/global"
+import { ForgotPasswordCard } from "@/features/auth/forgot-password/forgot-password-card"
+import { redirectIfSessionExist } from "@/lib/auth/utils"
 
 export async function generateMetadata({
   params,
@@ -12,7 +12,7 @@ export async function generateMetadata({
   const t = await getTranslations({ locale })
 
   return {
-    title: t('metadata.forgotPassword'),
+    title: t("metadata.forgotPassword"),
   }
 }
 

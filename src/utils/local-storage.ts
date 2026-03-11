@@ -1,5 +1,5 @@
 export const getItem = <TItem = unknown>(key: string) => {
-  if (typeof window === 'undefined') return null
+  if (typeof window === "undefined") return null
   const item = window.localStorage.getItem(key)
 
   if (!item) return null

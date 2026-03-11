@@ -3,7 +3,7 @@ import {
   type FieldValues,
   type Path,
   useFormContext,
-} from 'react-hook-form'
+} from "react-hook-form"
 
 import {
   FormControl as FormInputControl,
@@ -12,14 +12,14 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from '@/ui/components/atoms/form'
-import { Input } from '@/ui/components/atoms/input'
-import { InputPassword } from '@/ui/components/molecules/input-password'
-import { cn } from '@/utils/cn'
+} from "@/ui/components/atoms/form"
+import { Input } from "@/ui/components/atoms/input"
+import { InputPassword } from "@/ui/components/molecules/input-password"
+import { cn } from "@/utils/cn"
 
 type Props<TSchema extends FieldValues> = Omit<
   ControllerProps<TSchema, Path<TSchema>>,
-  'render' | 'control'
+  "render" | "control"
 > & {
   label: string
   description?: string
@@ -43,17 +43,23 @@ export const FieldInputController = <TSchema extends FieldValues>({
       name={name}
       {...props}
       render={({ field }) => (
-        <FormItem className={cn('relative', className)}>
+        <FormItem className={cn("relative", className)}>
           <FormLabel>{label}</FormLabel>
           <FormInputControl>
-            {inputProps?.type === 'password' ? (
-              <InputPassword {...inputProps} {...field} />
+            {inputProps?.type === "password" ? (
+              <InputPassword
+                {...inputProps}
+                {...field}
+              />
             ) : (
-              <Input {...inputProps} {...field} />
+              <Input
+                {...inputProps}
+                {...field}
+              />
             )}
           </FormInputControl>
           <FormMessage
-            className={cn(!description ? 'absolute top-full mt-1' : '')}
+            className={cn(!description ? "absolute top-full mt-1" : "")}
           />
           {description && <FormDescription>{description}</FormDescription>}
         </FormItem>

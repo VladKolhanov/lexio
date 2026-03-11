@@ -1,6 +1,6 @@
-import useSWR from 'swr'
+import useSWR from "swr"
 
-import { authClient } from '@/lib/auth/auth-client'
+import { authClient } from "@/lib/auth/auth-client"
 
 export async function getSession() {
   const { data } = await authClient.getSession()
@@ -9,7 +9,7 @@ export async function getSession() {
 }
 
 export const useSessionPolling = (refreshInterval: number) => {
-  const { data } = useSWR('check-session', getSession, {
+  const { data } = useSWR("check-session", getSession, {
     refreshInterval: refreshInterval,
     revalidateOnFocus: true,
   })

@@ -1,27 +1,27 @@
-import { getTranslations } from 'next-intl/server'
+import { getTranslations } from "next-intl/server"
 
-import { Routes } from '@/core/constants'
+import { Routes } from "@/core/constants"
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from '@/ui/components/atoms/card'
-import { Link } from '@/ui/components/atoms/link'
-import { SeparatorWithLabel } from '@/ui/components/atoms/separator'
-import { CheckCircleIcon } from '@/ui/icons'
-import { cn } from '@/utils/cn'
+} from "@/ui/components/atoms/card"
+import { Link } from "@/ui/components/atoms/link"
+import { SeparatorWithLabel } from "@/ui/components/atoms/separator"
+import { CheckCircleIcon } from "@/ui/icons"
+import { cn } from "@/utils/cn"
 
 type Props = {
   className?: string
 }
 
 export const ConfirmSuccessCard = async ({ className }: Props) => {
-  const t = await getTranslations('emailVerified')
+  const t = await getTranslations("emailVerified")
 
   return (
-    <Card className={cn('mx-auto w-full max-w-md shadow-lg', className)}>
+    <Card className={cn("mx-auto w-full max-w-md shadow-lg", className)}>
       <CardHeader className="text-center">
         <div className="mb-2 flex justify-center">
           <div className="rounded-full bg-primary/10 p-3">
@@ -30,22 +30,25 @@ export const ConfirmSuccessCard = async ({ className }: Props) => {
         </div>
 
         <CardTitle className="text-lg font-bold md:text-2xl">
-          {t('title')}
+          {t("title")}
         </CardTitle>
 
         <CardDescription className="text-base">
-          {t('description')}
+          {t("description")}
         </CardDescription>
       </CardHeader>
 
-      <SeparatorWithLabel label={t('separator')} />
+      <SeparatorWithLabel label={t("separator")} />
 
       <CardContent className="space-y-4 text-center">
-        <Link size="lg" href={Routes.Dashboard}>
-          {t('dashboardButton')}
+        <Link
+          size="lg"
+          href={Routes.Dashboard}
+        >
+          {t("dashboardButton")}
         </Link>
 
-        <p className="text-xs text-muted-foreground">{t('closeHint')}</p>
+        <p className="text-xs text-muted-foreground">{t("closeHint")}</p>
       </CardContent>
     </Card>
   )

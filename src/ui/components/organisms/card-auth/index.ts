@@ -1,1 +1,1 @@
-export * from './card-auth'
+export * from "./card-auth"

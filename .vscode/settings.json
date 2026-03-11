@@ -1,6 +1,12 @@
 {
   "typescript.tsdk": "node_modules\\typescript\\lib",
   "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "explorer.fileNesting.enabled": true,
+  "explorer.fileNesting.patterns": {
+    ".env.development.local": ".env.*",
+    "tsconfig.json": "tsconfig.*.json, next-env.d.ts, env.d.ts, typed-router.d.ts, tsconfig.tsbuildinfo",
+    "package.json": "package-lock.json, pnpm*, .eslint*, eslint*, .prettier*, prettier*, .editorconfig, .lintstagedrc*, .node-version"
+  },
   "editor.formatOnSave": true,
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": "explicit",

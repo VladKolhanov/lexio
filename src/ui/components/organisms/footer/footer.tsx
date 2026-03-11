@@ -1,24 +1,24 @@
-import { useTranslations } from 'next-intl'
+import { useTranslations } from "next-intl"
 
-import { ENV_CLIENT } from '@/core/env-client'
-import { cn } from '@/utils/cn'
+import { ENV_CLIENT } from "@/core/env-client"
+import { cn } from "@/utils/cn"
 
 type Props = {
   className?: string
 }
 
 export const Footer = ({ className }: Props) => {
-  const t = useTranslations('footer')
+  const t = useTranslations("footer")
 
   return (
     <footer
       className={cn(
-        'py-2 text-center text-sm text-muted-foreground',
+        "py-2 text-center text-sm text-muted-foreground",
         className
       )}
     >
       <p>
-        © {new Date().getFullYear()} {ENV_CLIENT.APP_NAME}. {t('rights')}
+        © {new Date().getFullYear()} {ENV_CLIENT.APP_NAME}. {t("rights")}
       </p>
     </footer>
   )

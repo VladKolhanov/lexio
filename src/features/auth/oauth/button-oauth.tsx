@@ -1,29 +1,29 @@
-'use client'
+"use client"
 
-import { useTransition } from 'react'
-import { useTranslations } from 'next-intl'
+import { useTransition } from "react"
+import { useTranslations } from "next-intl"
 
 import {
   type SocialProviders,
   SocialProvidersOptions,
-} from '@/core/constants/social-providers'
-import * as actions from '@/features/auth/actions'
-import { Button } from '@/ui/components/atoms/button'
-import { Spinner } from '@/ui/components/atoms/spinner'
-import { cn } from '@/utils/cn'
+} from "@/core/constants/social-providers"
+import * as actions from "@/features/auth/actions"
+import { Button } from "@/ui/components/atoms/button"
+import { Spinner } from "@/ui/components/atoms/spinner"
+import { cn } from "@/utils/cn"
 
 type Props = {
   provider: SocialProviders
-} & Omit<React.ComponentProps<typeof Button>, 'onClick' | 'children'>
+} & Omit<React.ComponentProps<typeof Button>, "onClick" | "children">
 
 export const ButtonOauth = ({
   className,
   provider,
-  variant = 'outline',
+  variant = "outline",
   ...props
 }: Props) => {
   const [isPending, startTransition] = useTransition()
-  const t = useTranslations('providers')
+  const t = useTranslations("providers")
 
   const { icon: Icon, translationKey } = SocialProvidersOptions[provider]
 

@@ -1,21 +1,21 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { useActionState, useEffect, useRef } from 'react'
+import { useActionState, useEffect, useRef } from "react"
 import {
   type DefaultValues,
   type FieldValues,
   type Path,
   useForm,
   type UseFormProps,
-} from 'react-hook-form'
-import { zodResolver } from '@hookform/resolvers/zod'
-import Cookie from 'js-cookie'
-import { useTranslations } from 'next-intl'
-import type z from 'zod'
+} from "react-hook-form"
+import { zodResolver } from "@hookform/resolvers/zod"
+import Cookie from "js-cookie"
+import { useTranslations } from "next-intl"
+import type z from "zod"
 
-import { type PersistKeys } from '@/core/constants'
-import type { ActionResponse } from '@/core/types/global'
-import { debounce } from '@/utils/debounce'
-import * as localStorage from '@/utils/local-storage'
+import { type PersistKeys } from "@/core/constants"
+import type { ActionResponse } from "@/core/types/global"
+import { debounce } from "@/utils/debounce"
+import * as localStorage from "@/utils/local-storage"
 
 type PersistDisabled = {
   persistKey?: undefined
@@ -39,10 +39,10 @@ type Options<
   action: TAction
   getSchemaFn: (t: any) => z.ZodType<TValues, any>
   defaultValues: DefaultValues<TValues>
-  disableIfPending?: UseFormProps<TValues>['disabled']
-  initActionStateData?: Awaited<ReturnType<TAction>>['data']
+  disableIfPending?: UseFormProps<TValues>["disabled"]
+  initActionStateData?: Awaited<ReturnType<TAction>>["data"]
 } & (PersistDisabled | PersistEnabled<TValues>) &
-  Omit<UseFormProps<TValues>, 'resolver' | 'disabled' | 'defaultValues'>
+  Omit<UseFormProps<TValues>, "resolver" | "disabled" | "defaultValues">
 
 export const useFormWithAction = <
   TAction extends (
@@ -63,12 +63,12 @@ export const useFormWithAction = <
   ...formHookProps
 }: Options<TAction, TValues>) => {
   const [actionState, formAction, isPending] = useActionState(action, {
-    status: 'init',
+    status: "init",
     error: null,
     data: initActionStateData || null,
   })
 
-  const t = useTranslations('validation')
+  const t = useTranslations("validation")
 
   const form = useForm<TValues>({
     resolver: zodResolver(getSchemaFn(t)),
@@ -105,7 +105,7 @@ export const useFormWithAction = <
     if (!persistKey) return
 
     const saveToLocalStorage = debounce((values: Record<string, unknown>) => {
-      Cookie.set(persistKey, 'true')
+      Cookie.set(persistKey, "true")
       localStorage.setItem(persistKey, values)
     }, persistDebounceMs)
 
@@ -122,7 +122,7 @@ export const useFormWithAction = <
       )
 
       const isEmptyValues = Object.values(formData).every(
-        (value) => value === '' || value === null || value === undefined
+        (value) => value === "" || value === null || value === undefined
       )
 
       if (isEmptyValues) {
@@ -143,7 +143,7 @@ export const useFormWithAction = <
   useEffect(() => {
     if (!persistKey) return
 
-    if (actionState.status === 'success') {
+    if (actionState.status === "success") {
       Cookie.remove(persistKey)
       localStorage.removeItem(persistKey)
     }

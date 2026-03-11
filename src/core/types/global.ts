@@ -1,14 +1,14 @@
-import type { FC, SVGProps } from 'react'
-import type { APIError } from 'better-auth'
-import type { LucideIcon } from 'lucide-react'
-import type { Locale, useTranslations } from 'next-intl'
+import type { FC, SVGProps } from "react"
+import type { APIError } from "better-auth"
+import type { LucideIcon } from "lucide-react"
+import type { Locale, useTranslations } from "next-intl"
 
-import { type BussinessErrorCodes } from '@/core/errors/definitions'
-import type commonMessages from '@/lib/i18n/messages/en/common.json'
-import type componentsMessages from '@/lib/i18n/messages/en/components.json'
-import type errorsMessages from '@/lib/i18n/messages/en/errors.json'
-import type metadataMessages from '@/lib/i18n/messages/en/metadata.json'
-import type validationMessages from '@/lib/i18n/messages/en/validation.json'
+import { type BussinessErrorCodes } from "@/core/errors/definitions"
+import type commonMessages from "@/lib/i18n/messages/en/common.json"
+import type componentsMessages from "@/lib/i18n/messages/en/components.json"
+import type errorsMessages from "@/lib/i18n/messages/en/errors.json"
+import type metadataMessages from "@/lib/i18n/messages/en/metadata.json"
+import type validationMessages from "@/lib/i18n/messages/en/validation.json"
 
 export type TranslationKeys<
   TKey extends
@@ -25,19 +25,19 @@ export type ZodFlattenError = {
 }
 
 export type ServerError<TPaths = string> = {
-  code: BussinessErrorCodes | APIError['status']
+  code: BussinessErrorCodes | APIError["status"]
   message: string
-  details?: { paths?: TPaths[]; fieldErrors?: ZodFlattenError['fieldErrors'] }
+  details?: { paths?: TPaths[]; fieldErrors?: ZodFlattenError["fieldErrors"] }
 }
 
 export type ActionResponse<TData> =
   | {
-      status: 'init' | 'success'
+      status: "init" | "success"
       data: TData | null
       error: null
     }
   | {
-      status: 'error'
+      status: "error"
       data: null
       error: ServerError
     }

@@ -1,24 +1,24 @@
-import { z } from 'zod'
+import { z } from "zod"
 
-import type { TranslationKeys } from '@/core/types/global'
+import type { TranslationKeys } from "@/core/types/global"
 
 export const zStringRequired = () =>
-  z.string().trim().min(1, { error: 'string is required' })
+  z.string().trim().min(1, { error: "string is required" })
 export const zStringOptional = () => z.string().trim().optional()
 
 export const zCheckbox = () =>
   z
     .preprocess(
-      (val) => val === 'on' || val === 'true' || val === true,
+      (val) => val === "on" || val === "true" || val === true,
       z.boolean()
     )
     .default(false)
 
 export const ztPasswordRequired = (
-  t: TranslationKeys<'validation'> | undefined
+  t: TranslationKeys<"validation"> | undefined
 ) =>
   z
     .string()
-    .min(6, t?.('minChar', { min: 6 }))
-    .regex(/[A-Z]/, t?.('requiredUppercase'))
-    .regex(/\d/, t?.('requiredNumber'))
+    .min(6, t?.("minChar", { min: 6 }))
+    .regex(/[A-Z]/, t?.("requiredUppercase"))
+    .regex(/\d/, t?.("requiredNumber"))

@@ -1,5 +1,5 @@
-import { Routes } from '@/core/constants'
-import { Button } from '@/ui/components/atoms/button'
+import { Routes } from "@/core/constants"
+import { Button } from "@/ui/components/atoms/button"
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -8,28 +8,28 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from '@/ui/components/atoms/dropdown-menu'
-import { Link } from '@/ui/components/atoms/link'
+} from "@/ui/components/atoms/dropdown-menu"
+import { Link } from "@/ui/components/atoms/link"
 import {
   SidebarFooter as SidebarFooterPrimitive,
   type useSidebar,
-} from '@/ui/components/atoms/sidebar'
+} from "@/ui/components/atoms/sidebar"
 import {
   Tooltip,
   TooltipContent,
   TooltipTrigger,
-} from '@/ui/components/atoms/tooltip'
-import { AvatarWithDescription } from '@/ui/components/molecules/avatar-with-description'
+} from "@/ui/components/atoms/tooltip"
+import { AvatarWithDescription } from "@/ui/components/molecules/avatar-with-description"
 import {
   ChevronsLeftIcon,
   ChevronsRightIcon,
   LogOutIcon,
   UserIcon,
-} from '@/ui/icons'
-import { cn } from '@/utils/cn'
+} from "@/ui/icons"
+import { cn } from "@/utils/cn"
 
 type Props = {
-  toggleSidebar: ReturnType<typeof useSidebar>['toggleSidebar']
+  toggleSidebar: ReturnType<typeof useSidebar>["toggleSidebar"]
   isCollapsed: boolean
   className?: string
 }
@@ -53,7 +53,11 @@ export const SidebarFooter = ({
             </button>
           }
         />
-        <DropdownMenuContent side="top" align="start" className="w-52">
+        <DropdownMenuContent
+          side="top"
+          align="start"
+          className="w-52"
+        >
           <DropdownMenuGroup>
             <DropdownMenuLabel>
               <AvatarWithDescription
@@ -93,7 +97,10 @@ export const SidebarFooter = ({
         <Tooltip>
           <TooltipTrigger
             render={
-              <Button variant="ghost" onClick={toggleSidebar}>
+              <Button
+                variant="ghost"
+                onClick={toggleSidebar}
+              >
                 <ChevronsRightIcon className="size-5" />
                 <span className="sr-only">Expand sidebar</span>
               </Button>
@@ -102,7 +109,10 @@ export const SidebarFooter = ({
           <TooltipContent side="right">Expand sidebar</TooltipContent>
         </Tooltip>
       ) : (
-        <Button variant="ghost" onClick={toggleSidebar}>
+        <Button
+          variant="ghost"
+          onClick={toggleSidebar}
+        >
           <ChevronsLeftIcon className="size-5" />
           <span className="sr-only">Collapse sidebar</span>
         </Button>

@@ -1,22 +1,22 @@
-import { z } from 'zod'
+import { z } from "zod"
 
-import { getEnvDataOrThrowError } from '@/utils/get-env-data-or-throw-error'
-import { zStringRequired } from '@/utils/zod'
+import { getEnvDataOrThrowError } from "@/utils/get-env-data-or-throw-error"
+import { zStringRequired } from "@/utils/zod"
 
 export const envClientSchema = z
   .object({
     NODE_ENV: z
-      .enum(['development', 'production', 'test'])
-      .default('development'),
+      .enum(["development", "production", "test"])
+      .default("development"),
     APP_NAME: zStringRequired(),
     APP_DESCRIPTION: zStringRequired(),
     BASE_URL: z.url().trim().min(1),
   })
   .transform((env) => ({
     ...env,
-    isDev: env.NODE_ENV === 'development',
-    isProd: env.NODE_ENV === 'production',
-    isTest: env.NODE_ENV === 'test',
+    isDev: env.NODE_ENV === "development",
+    isProd: env.NODE_ENV === "production",
+    isTest: env.NODE_ENV === "test",
   }))
 
 const parsedEnvClientSchema = envClientSchema.safeParse({

@@ -1,28 +1,28 @@
-'use server'
+"use server"
 
-import { APIError } from 'better-auth'
-import { headers } from 'next/headers'
+import { APIError } from "better-auth"
+import { headers } from "next/headers"
 
-import { PersistKeys, Routes } from '@/core/constants'
-import type { SocialProviders } from '@/core/constants/social-providers'
-import { ENV_CLIENT } from '@/core/env-client'
-import { AppError, BussinessError } from '@/core/errors/exceptions'
-import { protect } from '@/lib/arcjet'
-import { auth } from '@/lib/auth/auth'
-import * as dal from '@/lib/db/repositories/user.repository'
+import { PersistKeys, Routes } from "@/core/constants"
+import type { SocialProviders } from "@/core/constants/social-providers"
+import { ENV_CLIENT } from "@/core/env-client"
+import { AppError, BussinessError } from "@/core/errors/exceptions"
+import { protect } from "@/lib/arcjet"
+import { auth } from "@/lib/auth/auth"
+import * as dal from "@/lib/db/repositories/user.repository"
 import {
   getForgotPasswordInputSchema,
   getResetPasswordInputSchema,
   getSignInInputSchema,
   getSignUpInputSchema,
-} from '@/lib/db/validation/auth'
-import { sendEmail } from '@/lib/resend/utils'
-import { clearPersistFormData } from '@/utils/clear-persist-form-data'
-import { parseFormData } from '@/utils/parse-form-data'
-import { buildQueryString } from '@/utils/query-string'
-import { redirectWithSafeLocale } from '@/utils/redirect-with-safe-locale'
-import { safeAction, safeActionWithPayload } from '@/utils/safe-action'
-import { tryCatch } from '@/utils/try-catch'
+} from "@/lib/db/validation/auth"
+import { sendEmail } from "@/lib/resend/utils"
+import { clearPersistFormData } from "@/utils/clear-persist-form-data"
+import { parseFormData } from "@/utils/parse-form-data"
+import { buildQueryString } from "@/utils/query-string"
+import { redirectWithSafeLocale } from "@/utils/redirect-with-safe-locale"
+import { safeAction, safeActionWithPayload } from "@/utils/safe-action"
+import { tryCatch } from "@/utils/try-catch"
 
 export const signUp = safeActionWithPayload(async (_state, formData) => {
   const data = parseFormData(getSignUpInputSchema(), formData)
@@ -44,12 +44,12 @@ export const signUp = safeActionWithPayload(async (_state, formData) => {
     const isUserExistsError =
       error instanceof APIError &&
       (error.status === 422 ||
-        error.status === 'UNPROCESSABLE_ENTITY' ||
-        error.message.includes('exists'))
+        error.status === "UNPROCESSABLE_ENTITY" ||
+        error.message.includes("exists"))
 
     if (isUserExistsError) {
       await sendEmail({
-        subject: 'alreadyRegisteredEmail',
+        subject: "alreadyRegisteredEmail",
         name: data.name,
         email: data.email,
         url: `${ENV_CLIENT.BASE_URL}/${Routes.SignIn}`,
@@ -102,7 +102,7 @@ export const signInWithProvider = safeAction(
     if (result.redirect && result.url) {
       await redirectWithSafeLocale(result.url)
     } else {
-      throw new BussinessError('AUTH_PROVIDER_ERROR')
+      throw new BussinessError("AUTH_PROVIDER_ERROR")
     }
   }
 )
@@ -117,7 +117,7 @@ export const resendEmail = safeAction(async (email: string) => {
 
   if (user.emailVerified) {
     await sendEmail({
-      subject: 'alreadyRegisteredEmail',
+      subject: "alreadyRegisteredEmail",
       name: user.name,
       email: user.email,
       url: `${ENV_CLIENT.BASE_URL}/${Routes.SignIn}`,
@@ -177,7 +177,7 @@ export const resetPassword = safeActionWithPayload(
     await protect()
 
     if (!data.token) {
-      throw new AppError('TOKEN_NOT_EXIST')
+      throw new AppError("TOKEN_NOT_EXIST")
     }
 
     await auth.api.resetPassword({
@@ -190,7 +190,7 @@ export const resetPassword = safeActionWithPayload(
     await clearPersistFormData(PersistKeys.FormResetPassword)
     await redirectWithSafeLocale(
       buildQueryString(Routes.SignIn, {
-        toast: { variant: 'success', keyMessage: 'resetPasswordSuccess' },
+        toast: { variant: "success", keyMessage: "resetPasswordSuccess" },
       })
     )
   }

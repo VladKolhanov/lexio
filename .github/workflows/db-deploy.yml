@@ -2,7 +2,7 @@ name: Deploy Database Migrations
 
 on:
   push:
-    branches: ['main']
+    branches: ["main"]
 
 jobs:
   deploy-migrations:

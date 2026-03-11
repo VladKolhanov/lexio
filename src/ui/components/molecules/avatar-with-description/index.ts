@@ -1,1 +1,1 @@
-export * from './avatar-with-description'
+export * from "./avatar-with-description"

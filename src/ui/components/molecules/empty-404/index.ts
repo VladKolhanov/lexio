@@ -1,1 +1,1 @@
-export * from './empty-404'
+export * from "./empty-404"

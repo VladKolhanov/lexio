@@ -1,4 +1,4 @@
-import { z } from 'zod'
+import { z } from "zod"
 
 export function getEnvDataOrThrowError<TSchema>(
   schema: z.ZodSafeParseResult<TSchema>
@@ -11,10 +11,10 @@ export function getEnvDataOrThrowError<TSchema>(
     ).reduce((acc, [fieldName, messages]) => {
       const message = (messages as string[]).reduce((acc, message) => {
         return acc.length === 0 ? `❗ ${message}\n` : `${acc}❗ ${message}\n`
-      }, '')
+      }, "")
 
       return `${acc}➡️ ${fieldName}:\n${message}\n`
-    }, '❌ Invalid environment variables:\n')
+    }, "❌ Invalid environment variables:\n")
 
     throw new Error(formattedErrorMessages)
   } else {

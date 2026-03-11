@@ -1,30 +1,30 @@
-'use client'
+"use client"
 
-import { Routes } from '@/core/constants'
+import { Routes } from "@/core/constants"
 import {
   Sidebar as SidebarPrimitive,
   SidebarSeparator,
   useSidebar,
-} from '@/ui/components/atoms/sidebar'
-import { DashboardIcon, DictionaryIcon, GamesIcon } from '@/ui/icons'
+} from "@/ui/components/atoms/sidebar"
+import { DashboardIcon, DictionaryIcon, GamesIcon } from "@/ui/icons"
 
-import { SidebarFooter } from './sidebar-footer'
-import { SidebarHeader } from './sidebar-header'
-import { SidebarMain } from './sidebar-main'
+import { SidebarFooter } from "./sidebar-footer"
+import { SidebarHeader } from "./sidebar-header"
+import { SidebarMain } from "./sidebar-main"
 
 const navItems = [
   {
-    title: 'Dashboard',
+    title: "Dashboard",
     icon: DashboardIcon,
     href: Routes.Dashboard,
   },
   {
-    title: 'Dictionary',
+    title: "Dictionary",
     icon: DictionaryIcon,
     href: Routes.Dictionary,
   },
   {
-    title: 'Games',
+    title: "Games",
     icon: GamesIcon,
     href: Routes.Games,
   },
@@ -36,7 +36,7 @@ type Props = {
 
 export const Sidebar = ({ className }: Props) => {
   const { state, toggleSidebar } = useSidebar()
-  const isCollapsed = state === 'collapsed'
+  const isCollapsed = state === "collapsed"
 
   return (
     <SidebarPrimitive
@@ -48,11 +48,17 @@ export const Sidebar = ({ className }: Props) => {
 
       <SidebarSeparator />
 
-      <SidebarMain isCollapsed={isCollapsed} items={navItems} />
+      <SidebarMain
+        isCollapsed={isCollapsed}
+        items={navItems}
+      />
 
       <SidebarSeparator />
 
-      <SidebarFooter isCollapsed={isCollapsed} toggleSidebar={toggleSidebar} />
+      <SidebarFooter
+        isCollapsed={isCollapsed}
+        toggleSidebar={toggleSidebar}
+      />
     </SidebarPrimitive>
   )
 }

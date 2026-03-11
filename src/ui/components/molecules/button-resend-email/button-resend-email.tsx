@@ -1,13 +1,13 @@
-'use client'
+"use client"
 
-import { useEffect, useState, useTransition } from 'react'
-import { useTranslations } from 'next-intl'
-import { toast } from 'sonner'
+import { useEffect, useState, useTransition } from "react"
+import { useTranslations } from "next-intl"
+import { toast } from "sonner"
 
-import type { ActionResponse } from '@/core/types/global'
-import { Button } from '@/ui/components/atoms/button'
-import { RefreshCwIcon } from '@/ui/icons'
-import { cn } from '@/utils/cn'
+import type { ActionResponse } from "@/core/types/global"
+import { Button } from "@/ui/components/atoms/button"
+import { RefreshCwIcon } from "@/ui/icons"
+import { cn } from "@/utils/cn"
 
 const REPEAT_RESEND_TIME = 45
 
@@ -28,7 +28,7 @@ export const ButtonResendEmail = ({
   const [time, setTime] = useState(REPEAT_RESEND_TIME)
   const [isPending, startTransition] = useTransition()
 
-  const t = useTranslations('buttonResendEmail')
+  const t = useTranslations("buttonResendEmail")
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -48,10 +48,10 @@ export const ButtonResendEmail = ({
 
       if (response.data?.status) {
         setTime(REPEAT_RESEND_TIME)
-        toast.success(t('success'), { position: 'bottom-center' })
+        toast.success(t("success"), { position: "bottom-center" })
       } else {
         setTime(REPEAT_RESEND_TIME)
-        toast.error(t('error'), { position: 'bottom-center' })
+        toast.error(t("error"), { position: "bottom-center" })
       }
     })
   }
@@ -69,7 +69,7 @@ export const ButtonResendEmail = ({
       ) : (
         <RefreshCwIcon className="size-4" />
       )}
-      {t('repeatSending', { time, hasTime: String(!!time) })}
+      {t("repeatSending", { time, hasTime: String(!!time) })}
     </Button>
   )
 }

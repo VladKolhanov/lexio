@@ -1,17 +1,17 @@
-'use client'
+"use client"
 
-import { useTransition } from 'react'
+import { useTransition } from "react"
 
-import * as actions from '@/features/auth/actions'
-import { Button } from '@/ui/components/atoms/button'
-import { Spinner } from '@/ui/components/atoms/spinner'
-import { cn } from '@/utils/cn'
+import * as actions from "@/features/auth/actions"
+import { Button } from "@/ui/components/atoms/button"
+import { Spinner } from "@/ui/components/atoms/spinner"
+import { cn } from "@/utils/cn"
 
-type Props = Omit<React.ComponentProps<typeof Button>, 'onClick'>
+type Props = Omit<React.ComponentProps<typeof Button>, "onClick">
 
 export const ButtonSignout = ({
   className,
-  variant = 'destructive',
+  variant = "destructive",
   children,
   ...props
 }: Props) => {
@@ -27,7 +27,7 @@ export const ButtonSignout = ({
     <Button
       onClick={handleClick}
       disabled={isPending}
-      className={cn('flex-center gap-x-1', className)}
+      className={cn("flex-center gap-x-1", className)}
       variant={variant}
       {...props}
     >

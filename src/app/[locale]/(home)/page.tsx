@@ -1,4 +1,4 @@
-import { FormAddWord } from '@/features/dictionary/add-word/form-add-word'
+import { FormAddWord } from "@/features/dictionary/add-word/form-add-word"
 
 export default function Home() {
   return (

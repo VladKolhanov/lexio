@@ -1,12 +1,12 @@
-import type z from 'zod'
+import type z from "zod"
 
 import type {
   getForgotPasswordInputSchema,
   getResetPasswordInputSchema,
   getSignInInputSchema,
   getSignUpInputSchema,
-} from './validation/auth'
-import type { getWordInsertSchema } from './validation/words'
+} from "./validation/auth"
+import type { getWordInsertSchema } from "./validation/words"
 
 export type SignUpInputSchema = z.infer<
   Awaited<ReturnType<typeof getSignUpInputSchema>>
@@ -34,4 +34,4 @@ export type AvailableFormFields =
   | keyof ForgotPasswordInputSchema
   | keyof ResetPasswordInsertSchema
   | keyof WordInsertSchema
-  | 'root'
+  | "root"

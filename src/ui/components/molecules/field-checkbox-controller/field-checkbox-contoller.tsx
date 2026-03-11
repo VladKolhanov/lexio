@@ -3,20 +3,20 @@ import {
   type FieldValues,
   type Path,
   useFormContext,
-} from 'react-hook-form'
+} from "react-hook-form"
 
-import { Checkbox } from '@/ui/components/atoms/checkbox'
+import { Checkbox } from "@/ui/components/atoms/checkbox"
 import {
   FormControl as FormCheckboxControl,
   FormField as FormFieldControl,
   FormItem,
   FormLabel,
-} from '@/ui/components/atoms/form'
-import { cn } from '@/utils/cn'
+} from "@/ui/components/atoms/form"
+import { cn } from "@/utils/cn"
 
 type Props<TSchema extends FieldValues> = Omit<
   ControllerProps<TSchema, Path<TSchema>>,
-  'render' | 'control'
+  "render" | "control"
 > & {
   label: string
   className?: string
@@ -38,7 +38,7 @@ export const FieldCheckboxController = <TSchema extends FieldValues>({
       name={name}
       {...props}
       render={({ field }) => (
-        <FormItem className={cn('flex flex-row place-items-center', className)}>
+        <FormItem className={cn("flex flex-row place-items-center", className)}>
           <FormCheckboxControl>
             <Checkbox
               name={field.name}

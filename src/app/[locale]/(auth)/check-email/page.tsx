@@ -1,9 +1,9 @@
-import type { Metadata } from 'next'
-import { getTranslations } from 'next-intl/server'
+import type { Metadata } from "next"
+import { getTranslations } from "next-intl/server"
 
-import type { GenerateMetadataProps, PageProps } from '@/core/types/global.ts'
-import { CheckEmailCard } from '@/features/auth/forgot-password/check-email-card'
-import { redirectIfSessionExist } from '@/lib/auth/utils'
+import type { GenerateMetadataProps, PageProps } from "@/core/types/global.ts"
+import { CheckEmailCard } from "@/features/auth/forgot-password/check-email-card"
+import { redirectIfSessionExist } from "@/lib/auth/utils"
 
 export async function generateMetadata({
   params,
@@ -12,7 +12,7 @@ export async function generateMetadata({
   const t = await getTranslations({ locale })
 
   return {
-    title: t('metadata.checkEmail'),
+    title: t("metadata.checkEmail"),
   }
 }
 
@@ -22,5 +22,10 @@ export default async function CheckEmailPage({ searchParams }: Props) {
   await redirectIfSessionExist()
   const { email } = await searchParams
 
-  return <CheckEmailCard email={email} className="mt-15 md:mt-25" />
+  return (
+    <CheckEmailCard
+      email={email}
+      className="mt-15 md:mt-25"
+    />
+  )
 }

@@ -1,13 +1,13 @@
-import { createInsertSchema } from 'drizzle-zod'
+import { createInsertSchema } from "drizzle-zod"
 
-import { schemaWithIntl } from '@/utils/schema-with-intl'
+import { schemaWithIntl } from "@/utils/schema-with-intl"
 
-import { words } from '../schemas/words'
+import { words } from "../schemas/words"
 
 export const getWordInsertSchema = schemaWithIntl((t) =>
   createInsertSchema(words, {
-    word: (schema) => schema.min(1, t?.('required')),
-    translation: (schema) => schema.min(1, t?.('required')),
+    word: (schema) => schema.min(1, t?.("required")),
+    translation: (schema) => schema.min(1, t?.("required")),
   }).omit({
     updatedAt: true,
     createdAt: true,

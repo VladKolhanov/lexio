@@ -1,8 +1,8 @@
-name: 'Setup Project'
-description: 'Sets up Node.js, pnpm and installs dependencies'
+name: "Setup Project"
+description: "Sets up Node.js, pnpm and installs dependencies"
 
 runs:
-  using: 'composite'
+  using: "composite"
   steps:
     - name: Install pnpm
       uses: pnpm/action-setup@v4
@@ -11,7 +11,7 @@ runs:
       uses: actions/setup-node@v6
       with:
         node-version: 22
-        cache: 'pnpm'
+        cache: "pnpm"
 
     - name: Cache .next folder
       uses: actions/cache@v4
