@@ -21,10 +21,10 @@ import { clearPersistFormData } from "@/utils/clear-persist-form-data"
 import { parseFormData } from "@/utils/parse-form-data"
 import { buildQueryString } from "@/utils/query-string"
 import { redirectWithSafeLocale } from "@/utils/redirect-with-safe-locale"
-import { safeAction, safeActionWithPayload } from "@/utils/safe-action"
+import { safeAction, safeFormAction } from "@/utils/safe-action"
 import { tryCatch } from "@/utils/try-catch"
 
-export const signUp = safeActionWithPayload(async (_state, formData) => {
+export const signUp = safeFormAction(async (_state, formData) => {
   const data = parseFormData(getSignUpInputSchema(), formData)
   await protect(data.email)
 
@@ -71,7 +71,7 @@ export const signOut = safeAction(async () => {
   await redirectWithSafeLocale(Routes.Home)
 })
 
-export const signIn = safeActionWithPayload(async (_state, formData) => {
+export const signIn = safeFormAction(async (_state, formData) => {
   const data = parseFormData(getSignInInputSchema(), formData)
   await protect()
 
@@ -136,22 +136,20 @@ export const resendEmail = safeAction(async (email: string) => {
   return result
 })
 
-export const forgotPassword = safeActionWithPayload(
-  async (_state, formData) => {
-    const data = parseFormData(getForgotPasswordInputSchema(), formData)
-    await protect()
+export const forgotPassword = safeFormAction(async (_state, formData) => {
+  const data = parseFormData(getForgotPasswordInputSchema(), formData)
+  await protect()
 
-    await auth.api.requestPasswordReset({
-      body: {
-        email: data.email,
-        redirectTo: Routes.ResetPassword,
-      },
-    })
+  await auth.api.requestPasswordReset({
+    body: {
+      email: data.email,
+      redirectTo: Routes.ResetPassword,
+    },
+  })
 
-    await clearPersistFormData(PersistKeys.FormForgotPassword)
-    await redirectWithSafeLocale(`${Routes.CheckEmail}?email=${data.email}`)
-  }
-)
+  await clearPersistFormData(PersistKeys.FormForgotPassword)
+  await redirectWithSafeLocale(`${Routes.CheckEmail}?email=${data.email}`)
+})
 
 export const resendForgotPassword = safeAction(async (email: string) => {
   await protect()
@@ -171,27 +169,25 @@ export const resendForgotPassword = safeAction(async (email: string) => {
   return result
 })
 
-export const resetPassword = safeActionWithPayload(
-  async (_actionState, formData) => {
-    const data = parseFormData(getResetPasswordInputSchema(), formData)
-    await protect()
+export const resetPassword = safeFormAction(async (_actionState, formData) => {
+  const data = parseFormData(getResetPasswordInputSchema(), formData)
+  await protect()
 
-    if (!data.token) {
-      throw new AppError("TOKEN_NOT_EXIST")
-    }
-
-    await auth.api.resetPassword({
-      body: {
-        newPassword: data.password,
-        token: data.token,
-      },
-    })
-
-    await clearPersistFormData(PersistKeys.FormResetPassword)
-    await redirectWithSafeLocale(
-      buildQueryString(Routes.SignIn, {
-        toast: { variant: "success", keyMessage: "resetPasswordSuccess" },
-      })
-    )
+  if (!data.token) {
+    throw new AppError("TOKEN_NOT_EXIST")
   }
-)
+
+  await auth.api.resetPassword({
+    body: {
+      newPassword: data.password,
+      token: data.token,
+    },
+  })
+
+  await clearPersistFormData(PersistKeys.FormResetPassword)
+  await redirectWithSafeLocale(
+    buildQueryString(Routes.SignIn, {
+      toast: { variant: "success", keyMessage: "resetPasswordSuccess" },
+    })
+  )
+})

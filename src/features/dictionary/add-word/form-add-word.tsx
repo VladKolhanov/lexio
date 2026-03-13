@@ -27,23 +27,25 @@ export type Props = {
 }
 
 export const FormAddWord = ({ className }: Props) => {
-  const { form, actionState, formAction, isPending } = useFormWithAction({
-    action: actions.addWord,
-    getSchemaFn: getWordInsertSchema,
-    defaultValues: { word: "", translation: "" },
-    persistKey: PersistKeys.FormAddWord,
-    mode: "onChange",
-    disableIfPending: true,
-  })
+  const { form, actionSuccessState, formAction, isPending } = useFormWithAction(
+    {
+      action: actions.addWord,
+      getSchemaFn: getWordInsertSchema,
+      defaultValues: { word: "", translation: "" },
+      persistKey: PersistKeys.FormAddWord,
+      mode: "onChange",
+      disableIfPending: true,
+    }
+  )
 
   const t = useTranslations("formAddWord")
 
   useEffect(() => {
-    if (actionState.status === "success") {
+    if (actionSuccessState) {
       toast.success(t("toastSuccess"))
       form.reset()
     }
-  }, [actionState.status, form, t])
+  }, [actionSuccessState, form, t])
 
   return (
     <div className={cn("flex w-1/3 flex-col gap-12", className)}>

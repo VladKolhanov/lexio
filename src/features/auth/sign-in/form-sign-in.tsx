@@ -4,7 +4,7 @@ import { useTranslations } from "next-intl"
 
 import { PersistKeys, Routes } from "@/core/constants"
 import * as actions from "@/features/auth/actions"
-import { useFormWithAction, useHandleServerError } from "@/hooks"
+import { useFormWithAction } from "@/hooks"
 import type { SignInInputSchema } from "@/lib/db/types"
 import { getSignInInputSchema } from "@/lib/db/validation/auth"
 import { Form } from "@/ui/components/atoms/form"
@@ -20,7 +20,7 @@ type Props = {
 }
 
 export const FormSignIn = ({ className }: Props) => {
-  const { form, actionState, formAction, isPending } = useFormWithAction({
+  const { form, actionErrorState, formAction, isPending } = useFormWithAction({
     action: actions.signIn,
     getSchemaFn: getSignInInputSchema,
     defaultValues: { email: "", password: "", rememberMe: false },
@@ -30,18 +30,13 @@ export const FormSignIn = ({ className }: Props) => {
     disableIfPending: true,
   })
 
-  const { rootError, description } = useHandleServerError(
-    form,
-    actionState.error
-  )
-
   const t = useTranslations("signInForm")
 
   return (
     <Form {...form}>
       <FormRootError
-        error={rootError}
-        description={description}
+        error={actionErrorState?.error}
+        description={actionErrorState?.description}
       />
       <form
         action={formAction}

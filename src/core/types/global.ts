@@ -42,6 +42,16 @@ export type ActionResponse<TData> =
       error: ServerError
     }
 
+export type FormAction<Result> = (
+  state: ActionResponse<unknown> | null,
+  formData: FormData
+) => Promise<Result>
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export type Action<Result, Args extends any[] = any[]> = (
+  ...args: Args
+) => Promise<Result>
+
 type ParamsWithLocale<TParams> =
   TParams extends Record<string, string>
     ? { locale: Locale } & TParams

@@ -4,7 +4,7 @@ import { useTranslations } from "next-intl"
 
 import { PersistKeys } from "@/core/constants"
 import * as actions from "@/features/auth/actions"
-import { useFormWithAction, useHandleServerError } from "@/hooks"
+import { useFormWithAction } from "@/hooks"
 import type { ResetPasswordInsertSchema } from "@/lib/db/types"
 import { getResetPasswordInputSchema } from "@/lib/db/validation/auth"
 import { Form } from "@/ui/components/atoms/form"
@@ -19,7 +19,7 @@ type Props = {
 }
 
 export const FormResetPassword = ({ className, token }: Props) => {
-  const { form, actionState, formAction, isPending } = useFormWithAction({
+  const { form, actionErrorState, formAction, isPending } = useFormWithAction({
     action: actions.resetPassword,
     getSchemaFn: getResetPasswordInputSchema,
     defaultValues: { password: "", token: token ?? "" },
@@ -28,18 +28,13 @@ export const FormResetPassword = ({ className, token }: Props) => {
     disableIfPending: true,
   })
 
-  const { rootError, description } = useHandleServerError(
-    form,
-    actionState.error
-  )
-
   const t = useTranslations("formResetPassword")
 
   return (
     <Form {...form}>
       <FormRootError
-        error={rootError}
-        description={description}
+        error={actionErrorState?.error}
+        description={actionErrorState?.description}
       />
       <form
         action={formAction}
