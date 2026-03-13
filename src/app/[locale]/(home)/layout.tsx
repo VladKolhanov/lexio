@@ -1,7 +1,7 @@
-import { type LayoutProps } from "@/core/types/global"
-import { redirectIfSessionExist } from "@/lib/auth/utils"
-import { Footer } from "@/ui/components/organisms/footer"
-import { Header } from "@/ui/components/organisms/header"
+import { redirectIfSessionExist } from "@/infrastructure/auth/utils"
+import { Footer } from "@/shared/components/widgets/footer"
+import { Header } from "@/shared/components/widgets/header"
+import { type LayoutProps } from "@/shared/types/global"
 
 export default async function Layout({ children }: LayoutProps) {
   await redirectIfSessionExist()

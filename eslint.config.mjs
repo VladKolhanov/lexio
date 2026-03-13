@@ -18,8 +18,8 @@ const restrictUnnecessaryImports = defineConfig([
     ignores: [
       "**/env.ts",
       "**/env-client.ts",
-      "src/lib/i18n/**/*",
-      "src/ui/components/atoms/link",
+      "src/infrastructure/i18n/**/*",
+      "src/shared/components/ui/link",
     ],
   },
   {
@@ -31,7 +31,7 @@ const restrictUnnecessaryImports = defineConfig([
           object: "process",
           property: "env",
           message:
-            "Use `import { ENV } from '@/lib/env'` instead to ensure validated types.",
+            "Use `import { ENV } from '@/shared/env'` instead to ensure validated types.",
         },
       ],
       "no-restricted-imports": [
@@ -40,28 +40,32 @@ const restrictUnnecessaryImports = defineConfig([
           paths: [
             {
               name: "next/link",
-              message: "Please import from `@/i18n/navigation` instead.",
+              message:
+                "Please import from `@/infrastructure/i18n/navigation` instead.",
             },
             {
               name: "next/navigation",
               importNames: ["redirect", "useRouter", "usePathname"],
-              message: "Please import from `@/i18n/navigation` instead.",
+              message:
+                "Please import from `@/infrastructure/i18n/navigation` instead.",
             },
             {
               name: "next/router",
               importNames: ["useRouter"],
-              message: "Please import from `@/i18n/navigation` instead.",
+              message:
+                "Please import from `@/infrastructure/i18n/navigation` instead.",
             },
             {
               name: "next-intl",
               importNames: ["useLocale"],
-              message: "Please import from `@/i18n/navigation` instead.",
+              message:
+                "Please import from `@/infrastructure/i18n/navigation` instead.",
             },
             {
-              name: "@/lib/i18n/navigation",
+              name: "@/infrastructure/i18n/navigation",
               importNames: ["Link"],
               message:
-                "Please import from `@/ui/components/atoms/link` instead.",
+                "Please import from `@/shared/components/ui/link` instead.",
             },
           ],
         },

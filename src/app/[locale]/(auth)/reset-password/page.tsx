@@ -2,9 +2,9 @@ import type { ComponentProps } from "react"
 import type { Metadata } from "next"
 import { getTranslations } from "next-intl/server"
 
-import type { GenerateMetadataProps, PageProps } from "@/core/types/global"
-import { ResetPasswordCard } from "@/features/auth/forgot-password/reset-password-card"
-import { redirectIfSessionExist } from "@/lib/auth/utils"
+import { CardResetPassword } from "@/domain/auth/components/card-reset-password"
+import { redirectIfSessionExist } from "@/infrastructure/auth/utils"
+import type { GenerateMetadataProps, PageProps } from "@/shared/types/global"
 
 export async function generateMetadata({
   params,
@@ -20,7 +20,7 @@ export async function generateMetadata({
 type Props = PageProps<
   undefined,
   {
-    token?: ComponentProps<typeof ResetPasswordCard>["token"]
+    token?: ComponentProps<typeof CardResetPassword>["token"]
   }
 >
 
@@ -29,7 +29,7 @@ export default async function ResetPasswordPage({ searchParams }: Props) {
   const { token } = await searchParams
 
   return (
-    <ResetPasswordCard
+    <CardResetPassword
       token={token}
       className="mt-15 md:mt-25"
     />

@@ -1,5 +1,5 @@
-import { Empty404 } from "@/ui/components/molecules/empty-404"
-import { TopBarWithActions } from "@/ui/components/molecules/top-bar-actions"
+import { Empty404 } from "@/shared/components/ui/empty-404"
+import { TopBarWithActions } from "@/shared/components/ui/top-bar-actions"
 
 export default function NotFound() {
   return (

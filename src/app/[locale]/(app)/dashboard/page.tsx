@@ -1,9 +1,9 @@
 import type { Metadata } from "next"
 import { getTranslations } from "next-intl/server"
 
-import type { GenerateMetadataProps } from "@/core/types/global"
-import { ButtonSignout } from "@/features/auth/sign-out/button-signout"
-import { getSessionOrRedirect } from "@/lib/auth/utils"
+import { ButtonSignout } from "@/domain/auth/components/button-signout"
+import { getSessionOrRedirect } from "@/infrastructure/auth/utils"
+import type { GenerateMetadataProps } from "@/shared/types/global"
 
 export async function generateMetadata({
   params,

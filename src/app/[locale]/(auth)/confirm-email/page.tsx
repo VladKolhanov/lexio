@@ -1,10 +1,9 @@
 import { type Metadata } from "next"
 import { getTranslations } from "next-intl/server"
 
-import type { GenerateMetadataProps } from "@/core/types/global"
-import type { PageProps } from "@/core/types/global.ts"
-import ConfirmEmailCard from "@/features/auth/confirm-email/confirm-email-card"
-import { redirectIfSessionExist } from "@/lib/auth/utils"
+import { CardConfirmEmail } from "@/domain/auth/components/card-confirm-email"
+import { redirectIfSessionExist } from "@/infrastructure/auth/utils"
+import type { GenerateMetadataProps, PageProps } from "@/shared/types/global"
 
 export async function generateMetadata({
   params,
@@ -24,7 +23,7 @@ export default async function ConfirmEmailPage({ searchParams }: Props) {
   const { email } = await searchParams
 
   return (
-    <ConfirmEmailCard
+    <CardConfirmEmail
       email={email}
       className="mt-15 md:mt-25"
     />

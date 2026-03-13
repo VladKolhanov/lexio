@@ -1,5 +1,5 @@
-import type { LayoutProps } from "@/core/types/global"
-import { TopBarWithActions } from "@/ui/components/molecules/top-bar-actions"
+import { TopBarWithActions } from "@/shared/components/ui/top-bar-actions"
+import type { LayoutProps } from "@/shared/types/global"
 
 export default function AuthLayout({ children }: LayoutProps) {
   return (

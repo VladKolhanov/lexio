@@ -1,9 +1,9 @@
 import { type Metadata } from "next"
 import { getTranslations } from "next-intl/server"
 
-import type { GenerateMetadataProps } from "@/core/types/global"
-import { SignUpCard } from "@/features/auth/sign-up/sign-up-card"
-import { redirectIfSessionExist } from "@/lib/auth/utils"
+import { CardSignUp } from "@/domain/auth/components/card-sign-up"
+import { redirectIfSessionExist } from "@/infrastructure/auth/utils"
+import type { GenerateMetadataProps } from "@/shared/types/global"
 
 export async function generateMetadata({
   params,
@@ -19,5 +19,5 @@ export async function generateMetadata({
 export default async function SignUpPage() {
   await redirectIfSessionExist()
 
-  return <SignUpCard className="mt-15 md:mt-25" />
+  return <CardSignUp className="mt-15 md:mt-25" />
 }

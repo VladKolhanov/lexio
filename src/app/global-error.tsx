@@ -3,11 +3,11 @@
 import { type ReactNode, useEffect } from "react"
 import { NextIntlClientProvider } from "next-intl"
 
-import { ThemeProvider } from "@/core/providers/theme-provider"
-import { TopBar } from "@/ui/components/atoms/top-bar"
-import { EmptyError } from "@/ui/components/molecules/empty-error"
-import { LanguageToggle } from "@/ui/components/molecules/language-toggle"
-import { ThemeToggle } from "@/ui/components/molecules/theme-toggle"
+import { EmptyError } from "@/shared/components/ui/empty-error"
+import { TopBar } from "@/shared/components/ui/top-bar"
+import { LanguageToggle } from "@/shared/components/widgets/language-toggle"
+import { ThemeToggle } from "@/shared/components/widgets/theme-toggle"
+import { ThemeProvider } from "@/shared/providers/theme-provider"
 
 import { useGlobalErrorIntl } from "./use-global-error-Intl"
 

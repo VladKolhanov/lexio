@@ -1,10 +1,10 @@
 import { type Metadata } from "next"
 import { getTranslations } from "next-intl/server"
 
-import type { GenerateMetadataProps } from "@/core/types/global"
-import { SignInCard } from "@/features/auth/sign-in/sign-in-card"
-import { redirectIfSessionExist } from "@/lib/auth/utils"
-import { ToastListener } from "@/ui/components/molecules/toast-listener"
+import { CardSignIn } from "@/domain/auth/components/card-sign-in"
+import { redirectIfSessionExist } from "@/infrastructure/auth/utils"
+import { ToastListener } from "@/shared/components/helpers/toast-listener"
+import type { GenerateMetadataProps } from "@/shared/types/global"
 
 export async function generateMetadata({
   params,
@@ -23,7 +23,7 @@ export default async function SignInPage() {
   return (
     <>
       <ToastListener />
-      <SignInCard className="mt-15 md:mt-25" />
+      <CardSignIn className="mt-15 md:mt-25" />
     </>
   )
 }

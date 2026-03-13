@@ -5,8 +5,8 @@ const nodeEnv = process.env.NODE_ENV || "development"
 dotenv.config({ path: `./.env.${nodeEnv}.local` })
 
 export default defineConfig({
-  out: "./src/lib/db/migrations",
-  schema: "./src/lib/db/schemas",
+  out: "./src/infrastructure/db/migrations",
+  schema: "./src/infrastructure/db/schemas",
   dialect: "postgresql",
   dbCredentials: {
     url: process.env.DATABASE_URL!,

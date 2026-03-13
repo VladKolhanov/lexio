@@ -1,9 +1,9 @@
 import type { Metadata } from "next"
 import { getTranslations } from "next-intl/server"
 
-import type { GenerateMetadataProps } from "@/core/types/global"
-import { ConfirmSuccessCard } from "@/features/auth/confirm-email/confirm-success-card"
-import { getSessionOrRedirect } from "@/lib/auth/utils"
+import { CardConfirmSuccess } from "@/domain/auth/components/card-confirm-success"
+import { getSessionOrRedirect } from "@/infrastructure/auth/utils"
+import type { GenerateMetadataProps } from "@/shared/types/global"
 
 export async function generateMetadata({
   params,
@@ -19,5 +19,5 @@ export async function generateMetadata({
 export default async function EmailVerifiedPage() {
   await getSessionOrRedirect()
 
-  return <ConfirmSuccessCard className="mt-15 md:mt-25" />
+  return <CardConfirmSuccess className="mt-15 md:mt-25" />
 }

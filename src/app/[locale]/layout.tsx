@@ -2,14 +2,14 @@ import { type Metadata } from "next"
 import { notFound } from "next/navigation"
 import { hasLocale, NextIntlClientProvider } from "next-intl"
 
-import { ENV_CLIENT } from "@/core/env-client"
-import { ThemeProvider } from "@/core/providers/theme-provider"
-import type { LayoutProps } from "@/core/types/global"
-import { routing } from "@/lib/i18n/routing"
-import { Toaster } from "@/ui/components/atoms/sooner"
-import { domine, geistMono, geistSans } from "@/ui/fonts"
+import { routing } from "@/infrastructure/i18n/routing"
+import { Toaster } from "@/shared/components/ui/sooner"
+import { ENV_CLIENT } from "@/shared/env-client"
+import { domine, geistMono, geistSans } from "@/shared/fonts"
+import { ThemeProvider } from "@/shared/providers/theme-provider"
+import type { LayoutProps } from "@/shared/types/global"
 
-import "@/ui/styles/globals.css"
+import "@/shared/styles/globals.css"
 
 export const metadata: Metadata = {
   title: {

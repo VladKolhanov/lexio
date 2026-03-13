@@ -4,13 +4,14 @@ import { useEffect, useState } from "react"
 import { notFound, useParams } from "next/navigation"
 import { hasLocale } from "next-intl"
 
-import type commonMessages from "@/lib/i18n/messages/en/components.json"
-import { routing } from "@/lib/i18n/routing"
+import type commonMessages from "@/infrastructure/i18n/messages/en/components.json"
+import { routing } from "@/infrastructure/i18n/routing"
 
 const getMessages = async (locale: (typeof routing.locales)[number]) => {
   try {
-    return (await import(`@/lib/i18n/messages/${locale}/components.json`))
-      .default as typeof commonMessages
+    return (
+      await import(`@/infrastructure/i18n/messages/${locale}/components.json`)
+    ).default as typeof commonMessages
   } catch (error) {
     console.error("Failed to load messages for locale:", locale, error)
 

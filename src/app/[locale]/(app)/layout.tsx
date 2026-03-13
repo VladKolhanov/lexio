@@ -1,7 +1,7 @@
-import type { LayoutProps } from "@/core/types/global"
-import { getSessionOrRedirect } from "@/lib/auth/utils"
-import { SidebarProvider } from "@/ui/components/atoms/sidebar"
-import { Sidebar } from "@/ui/components/organisms/sidebar"
+import { getSessionOrRedirect } from "@/infrastructure/auth/utils"
+import { SidebarProvider } from "@/shared/components/ui/sidebar"
+import { Sidebar } from "@/shared/components/widgets/sidebar"
+import type { LayoutProps } from "@/shared/types/global"
 
 type Props = LayoutProps
 

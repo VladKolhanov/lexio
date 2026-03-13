@@ -9,7 +9,7 @@ const config = {
   singleQuote: false,
   singleAttributePerLine: true,
   plugins: ["prettier-plugin-tailwindcss"],
-  tailwindStylesheet: "./src/ui/styles/globals.css",
+  tailwindStylesheet: "./src/shared/styles/globals.css",
 }
 
 export default config
