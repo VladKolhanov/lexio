@@ -22,8 +22,8 @@ type Props = {
 
 export const EmailAlreadyRegistered = async ({ name, url, locale }: Props) => {
   const t = createTranslator({
-    messages: await import(`../../i18n/messages/${locale}/email.json`),
-    namespace: "emailAlreadyRegistered",
+    messages: await import(`../../i18n/messages/shared/common/${locale}.json`),
+    namespace: "email.emailAlreadyRegistered.letter",
     locale,
   })
 

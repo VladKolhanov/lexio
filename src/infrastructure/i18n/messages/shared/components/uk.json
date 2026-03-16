@@ -1,0 +1,36 @@
+{
+  "formAddWord": {
+    "toastSuccess": "Слово додано до вашого словника"
+  },
+  "themeToggle": {
+    "srLabel": "Перемкнути тему",
+    "appearance": "Тема",
+    "system": "системна",
+    "light": "світла",
+    "dark": "темна"
+  },
+  "languageToggle": {
+    "srLabel": "Перемкнути мову",
+    "language": "Мова"
+  },
+  "logo": {
+    "altText": "Логотип Ai Smart Dictionary"
+  },
+  "header": {
+    "signIn": "Увійти",
+    "signUp": "Зареєструватися"
+  },
+  "footer": {
+    "rights": "Всі права захищені."
+  },
+  "empty404": {
+    "title": "404 - Не знайдено",
+    "description": "Сторінку, яку ви шукаєте, не існує. Будь ласка, перевірте URL або поверніться назад.",
+    "backButton": "Назад"
+  },
+  "emptyError": {
+    "title": "Упс, щось пішло не так.",
+    "description": "Виникла технічна проблема на нашому боці. Будь ласка, спробуйте пізніше.",
+    "tryAgain": "Перезавантажити"
+  }
+}

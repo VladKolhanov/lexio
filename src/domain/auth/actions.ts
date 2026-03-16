@@ -50,7 +50,7 @@ export const signUp = safeFormAction(async (_state, formData) => {
 
     if (isUserExistsError) {
       await sendEmail({
-        subject: "alreadyRegisteredEmail",
+        subject: "emailAlreadyRegistered",
         name: data.name,
         email: data.email,
         url: `${ENV_CLIENT.BASE_URL}/${Routes.SignIn}`,
@@ -118,7 +118,7 @@ export const resendEmail = safeAction(async (email: string) => {
 
   if (user.emailVerified) {
     await sendEmail({
-      subject: "alreadyRegisteredEmail",
+      subject: "emailAlreadyRegistered",
       name: user.name,
       email: user.email,
       url: `${ENV_CLIENT.BASE_URL}/${Routes.SignIn}`,

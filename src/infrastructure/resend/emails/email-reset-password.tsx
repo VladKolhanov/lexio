@@ -22,8 +22,8 @@ interface Props {
 
 export const EmailResetPassword = async ({ name, url, locale }: Props) => {
   const t = createTranslator({
-    messages: await import(`../../i18n/messages/${locale}/email.json`),
-    namespace: "emailResetPassword",
+    messages: await import(`../../i18n/messages/shared/common/${locale}.json`),
+    namespace: "email.emailResetPassword.letter",
     locale,
   })
 

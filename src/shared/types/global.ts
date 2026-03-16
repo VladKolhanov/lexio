@@ -1,23 +1,9 @@
 import type { FC, SVGProps } from "react"
 import type { APIError } from "better-auth"
 import type { LucideIcon } from "lucide-react"
-import type { Locale, useTranslations } from "next-intl"
+import type { Locale } from "next-intl"
 
-import type commonMessages from "@/infrastructure/i18n/messages/en/common.json"
-import type componentsMessages from "@/infrastructure/i18n/messages/en/components.json"
-import type errorsMessages from "@/infrastructure/i18n/messages/en/errors.json"
-import type metadataMessages from "@/infrastructure/i18n/messages/en/metadata.json"
-import type validationMessages from "@/infrastructure/i18n/messages/en/validation.json"
 import { type BussinessErrorCodes } from "@/shared/errors/definitions"
-
-export type TranslationKeys<
-  TKey extends
-    | keyof typeof componentsMessages
-    | keyof typeof validationMessages
-    | keyof typeof metadataMessages
-    | keyof typeof errorsMessages
-    | keyof typeof commonMessages,
-> = ReturnType<typeof useTranslations<TKey>>
 
 export type ZodFlattenError = {
   formErrors: string[]

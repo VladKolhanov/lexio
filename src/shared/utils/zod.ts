@@ -1,6 +1,6 @@
 import { z } from "zod"
 
-import type { TranslationKeys } from "@/shared/types/global"
+import type { TranslationKeys } from "@/infrastructure/i18n/types"
 
 export const zStringRequired = () =>
   z.string().trim().min(1, { error: "string is required" })

@@ -1,4 +1,4 @@
-import type { TranslationKeys } from "@/shared/types/global"
+import type { TranslationKeys } from "@/infrastructure/i18n/types"
 
 export const schemaWithIntl = <TResult>(
   fn: (t?: TranslationKeys<"validation">) => TResult

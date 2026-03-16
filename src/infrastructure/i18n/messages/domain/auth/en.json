@@ -1,38 +1,4 @@
 {
-  "themeToggle": {
-    "srLabel": "Toggle Theme",
-    "appearance": "Appearance",
-    "system": "system",
-    "light": "light",
-    "dark": "dark"
-  },
-  "languageToggle": {
-    "srLabel": "Toggle language",
-    "language": "Language"
-  },
-  "logo": {
-    "altText": "Ai Smart Dictionary Logo"
-  },
-  "header": {
-    "signIn": "Sign In",
-    "signUp": "Sign Up"
-  },
-  "footer": {
-    "rights": "All rights reserved."
-  },
-  "empty404": {
-    "title": "404 - Not Found",
-    "description": "The page you are looking for does not exist. Please check the URL or return back.",
-    "backButton": "Back"
-  },
-  "emptyError": {
-    "title": "Oops, something went wrong.",
-    "description": "There was a technical issue on our end. Please try again later.",
-    "tryAgain": "Try again"
-  },
-  "formAddWord": {
-    "toastSuccess": "The word has been added to your dictionary"
-  },
   "signUpCard": {
     "title": "Create an account",
     "subtitle": "Sign up to start using Ai Smart Dictionary",

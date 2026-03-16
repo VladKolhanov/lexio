@@ -12,10 +12,10 @@ import { EmailVerification } from "./emails/email-verification"
 const resend = new Resend(ENV.RESEND_API_KEY)
 
 const TEMPLATES = {
-  verificationEmail: EmailVerification,
-  alreadyRegisteredEmail: EmailAlreadyRegistered,
-  resetPasswordEmail: EmailResetPassword,
-}
+  emailVerification: EmailVerification,
+  emailAlreadyRegistered: EmailAlreadyRegistered,
+  emailResetPassword: EmailResetPassword,
+} satisfies Record<keyof Messages["email"], unknown>
 
 export async function sendEmail({
   email,
@@ -24,19 +24,19 @@ export async function sendEmail({
   url,
 }: {
   name: string
-  subject: keyof Messages["subject"]
+  subject: keyof Messages["email"]
   email: string
   url: string
 }) {
   const locale = await getLocale()
-  const t = await getTranslations("subject")
+  const t = await getTranslations(`email.${subject}`)
 
   const EmailComponent = TEMPLATES[subject]
 
   await resend.emails.send({
     from: `${ENV_CLIENT.APP_NAME} ${ENV.RESEND_DOMAIN}`,
     to: [email],
-    subject: t(subject),
+    subject: t("subject"),
     react: EmailComponent({ name, url, locale }),
   })
 }

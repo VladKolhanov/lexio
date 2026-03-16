@@ -19,12 +19,12 @@
     "db:generate": "drizzle-kit generate",
     "db:migrate": "drizzle-kit migrate",
     "db:studio": "drizzle-kit studio --port 5433 --verbose",
-    "docker:up": "docker compose --env-file ./.env.development.local up -d && sleep 5 && drizzle-kit migrate && tsx --env-file=./.env.development.local ./src/lib/db/seed",
+    "docker:up": "docker compose --env-file ./.env.development.local up -d && sleep 5 && drizzle-kit migrate && tsx --env-file=./.env.development.local ./src/infrastructure/db/seed",
     "docker:down": "docker compose down",
     "prepare": "husky",
-    "email:build": "email build --dir src/lib/resend/emails --packageManager pnpm",
-    "email:dev": "email dev --dir src/lib/resend/emails --port 3100",
-    "email:export": "email export --dir src/lib/resend/emails --outDir src/lib/resend/out"
+    "email:build": "email build --dir src/infrastructure/resend/emails --packageManager pnpm",
+    "email:dev": "email dev --dir src/infrastructure/resend/emails --port 3100",
+    "email:export": "email export --dir src/infrastructure/resend/emails --outDir src/infrastructure/resend/out"
   },
   "dependencies": {
     "@arcjet/inspect": "^1.1.0",

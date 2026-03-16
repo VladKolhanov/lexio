@@ -1,0 +1,73 @@
+{
+  "errors": {
+    "emailExist": "User already exists. Use another email.",
+    "invalidCredentials": "Invalid email or password.",
+    "zodParseSchema": "Some fields have been filled out incorrectly. Please correct them.",
+    "tooManyRequests": "Too many requests. Please try again later.",
+    "emailFormatInvalid": "Email address format is invalid. Check if there's a typo.",
+    "disposableEmail": "We do not allow disposable email addresses.",
+    "emailDomainNotValid": "Email domain is not valid.",
+    "invalidEmail": "Invalid email. Please try another one.",
+    "authProviderError": "Failed to connect to the login provider. Please try again.",
+    "emailNotVerified": "Email not verified. Check your mailbox.",
+    "failed": "The action failed."
+  },
+  "validation": {
+    "required": "This field is required",
+    "requiredUppercase": "This field must contain upper characters",
+    "requiredNumber": "This field must contain number characters",
+    "minChar": "This field must contain more than {min} characters",
+    "email": "Invalid E-mail format",
+    "confirmPassword": "Passwords do not match"
+  },
+  "metadata": {
+    "notFound": "404 - Not Found",
+    "dashboard": "Dashboard",
+    "sign-in": "Sign In",
+    "sign-up": "Sign Up",
+    "confirmEmail": "Confirm email",
+    "checkEmail": "Check email",
+    "emailVerified": "Confirm success",
+    "forgotPassword": "Forgot Password?",
+    "resetPassword": "Reset Password"
+  },
+  "email": {
+    "emailVerification": {
+      "subject": "Verify your email address.",
+      "letter": {
+        "preview": "Confirm your email address",
+        "heading": "Hi, {name}!",
+        "paragraphMain": "Thank you for registering! We are happy to welcome you to our community. Please click the button below to confirm your email and complete your registration.",
+        "button": "Confirm email",
+        "paragraphDescription": "This link is valid for 3 hours. If you haven't created an account, simply ignore this email.",
+        "footer": "If the button doesn't work, copy this link into your browser:",
+        "footer-copyright": "All rights reserved."
+      }
+    },
+    "emailAlreadyRegistered": {
+      "subject": "You already have an account on Ai Smart Dictionary.",
+      "letter": {
+        "preview": "Sign in to your AI Smart Dictionary account",
+        "heading": "Welcome back, {name}!",
+        "headingDefault": "You are already registered",
+        "paragraphMain": "We received a request to sign up with this email address. However, you already have an account with us. You don't need to register again.",
+        "button": "Sign In",
+        "paragraphDescription": "If you want to access your account, simply click the button above. If you didn't try to sign up, you can safely ignore this email.",
+        "footer": "If the button above doesn't work, copy and paste this link into your browser:",
+        "footer-copyright": "All rights reserved."
+      }
+    },
+    "emailResetPassword": {
+      "subject": "Confirm your email address to recover your password.",
+      "letter": {
+        "preview": "Recovering your password",
+        "heading": "Hello, {name}!",
+        "paragraphMain": "We have received a request to reset the password for your account.",
+        "button": "Reset password",
+        "paragraphDescription": "If you did not send this request, simply ignore this email.",
+        "footer": "If the button doesn't work, copy and paste the following link into your browser:",
+        "footer-copyright": "All rights reserved."
+      }
+    }
+  }
+}

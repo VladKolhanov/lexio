@@ -1,7 +1,0 @@
-{
-  "subject": {
-    "verificationEmail": "Підтвердьте свою адресу електронної пошти",
-    "alreadyRegisteredEmail": "У вас вже є акаунт в Ai Smart Dictionary",
-    "resetPasswordEmail": "Підтвердіть свою адресу електронної пошти для відновлення вашого пароля"
-  }
-}
