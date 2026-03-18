@@ -1,32 +1,47 @@
 {
-  "signUpCard": {
+  "splitLayout": {
+    "subLogo": "Вивчай мови ефективно з персоналізованим підходом"
+  },
+  "providers": {
+    "google": "Google"
+  },
+  "cardSignUp": {
     "title": "Створіть обліковий запис",
-    "subtitle": "Зареєструйтеся, щоб почати користуватися Ai Smart Dictionary",
+    "subtitle": "Почніть свою мовну подорож вже сьогодні",
     "separator": "Або продовжити через",
     "haveAccount": "Вже маєте обліковий запис?",
     "signinLink": "Увійти"
   },
-  "signUpForm": {
+  "formSignUp": {
     "name": "Ім'я",
     "email": "Електронна пошта",
     "password": "Пароль",
     "confirmPassword": "Підтвердьте пароль",
+    "placeholders": {
+      "name": "Ваше ім'я",
+      "email": "your@gmail.com",
+      "password": "Мінімум 8 символів",
+      "confirmPassword": "Повторіть пароль"
+    },
     "sendForm": "Створити обліковий запис"
   },
-  "signInCard": {
-    "title": "Ласкаво просимо до Ai Smart Dictionary",
-    "subtitle": "Введіть вашу електронну пошту та пароль, щоб увійти до акаунту",
-    "separator": "Або продовжити через"
+  "cardSignIn": {
+    "title": "Вхід до акаунту",
+    "subtitle": "Раді бачити вас знову!",
+    "separator": "Або продовжити з",
+    "haveAccount": "Немає акаунту?",
+    "signupLink": "Зареєструватися"
   },
-  "signInForm": {
+  "formSignIn": {
     "email": "Електронна пошта",
     "password": "Пароль",
     "sendForm": "Увійти",
     "rememberMe": "Запам'ятати мене",
-    "forgotPassword": "Забули пароль?"
-  },
-  "providers": {
-    "google": "Продовжити з Google"
+    "forgotPassword": "Забули пароль?",
+    "placeholders": {
+      "email": "your@gmail.com",
+      "password": "********"
+    }
   },
   "formSubmitButton": {
     "sending": "Відправка"

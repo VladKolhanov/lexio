@@ -33,7 +33,7 @@ export const ButtonOauth = ({
 
   return (
     <Button
-      size="lg"
+      size="xxl"
       className={cn(className)}
       variant={variant}
       disabled={isPending}

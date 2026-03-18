@@ -23,22 +23,20 @@ function Separator({
 }
 
 function SeparatorWithLabel({
-  label,
+  children,
+  className,
   ...props
-}: SeparatorPrimitive.Props & { label?: string }) {
+}: SeparatorPrimitive.Props) {
   return (
-    <div className="relative">
-      <div className="absolute inset-0 flex items-center">
-        <Separator
-          className="w-full"
-          {...props}
-        />
-      </div>
-      <div className="relative flex justify-center text-xs uppercase">
-        <span className="bg-transparent px-2 text-muted-foreground">
-          {label}
-        </span>
-      </div>
+    <div
+      className={cn("flex items-center gap-3", className)}
+      {...props}
+    >
+      <Separator className="flex-1" />
+      <span className="text-xs tracking-wide text-muted-foreground uppercase">
+        {children}
+      </span>
+      <Separator className="flex-1" />
     </div>
   )
 }

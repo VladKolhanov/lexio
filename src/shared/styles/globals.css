@@ -1,6 +1,7 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
+@import "./animations.css";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -122,11 +123,18 @@
 @layer base {
   * {
     @apply border-border font-geist-sans outline-ring/50;
-    @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground;
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground antialiased;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-display);
   }
 }
 
@@ -146,6 +154,18 @@
 }
 
 @layer utilities {
+  .t-h1 {
+    @apply text-2xl font-bold text-foreground;
+  }
+  .t-p-sm {
+    @apply text-sm text-muted-foreground;
+  }
+  .t-p-base {
+    @apply text-base text-muted-foreground;
+  }
+  .t-a {
+    @apply font-semibold text-primary;
+  }
   .flex-start {
     @apply flex items-center justify-start;
   }

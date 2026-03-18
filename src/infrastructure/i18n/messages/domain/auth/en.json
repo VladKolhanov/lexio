@@ -1,32 +1,47 @@
 {
-  "signUpCard": {
+  "splitLayout": {
+    "subLogo": "Learn languages effectively with a personalized approach"
+  },
+  "providers": {
+    "google": "Google"
+  },
+  "cardSignUp": {
     "title": "Create an account",
-    "subtitle": "Sign up to start using Ai Smart Dictionary",
+    "subtitle": "Start your language journey today",
     "separator": "Or continue with",
     "haveAccount": "Already have an account?",
-    "signinLink": "Sign in"
+    "signinLink": "Sign In"
   },
-  "signUpForm": {
+  "formSignUp": {
     "name": "Name",
     "email": "Email",
     "password": "Password",
     "confirmPassword": "Confirm Password",
-    "sendForm": "Create account"
+    "sendForm": "Create account",
+    "placeholders": {
+      "name": "Your name",
+      "email": "your@gmail.com",
+      "password": "Minimum 8 characters",
+      "confirmPassword": "Repeat your password"
+    }
   },
-  "signInCard": {
-    "title": "Welcome to Ai Smart Dictionary",
-    "subtitle": "Enter your email and password to sign in to your account",
-    "separator": "Or continue with"
+  "cardSignIn": {
+    "title": "Sign in to your account",
+    "subtitle": "Welcome back!",
+    "separator": "Or continue with",
+    "haveAccount": "Don't have an account?",
+    "signupLink": "Sign Up"
   },
-  "signInForm": {
+  "formSignIn": {
     "email": "Email",
     "password": "Password",
     "sendForm": "Sign In",
     "rememberMe": "Remember me",
-    "forgotPassword": "Forgot your password?"
-  },
-  "providers": {
-    "google": "Continue with Google"
+    "forgotPassword": "Forgot password?",
+    "placeholders": {
+      "email": "your@gmail.com",
+      "password": "********"
+    }
   },
   "formSubmitButton": {
     "sending": "Sending"

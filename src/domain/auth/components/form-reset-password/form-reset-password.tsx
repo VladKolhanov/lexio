@@ -5,8 +5,8 @@ import { useTranslations } from "next-intl"
 import type { ResetPasswordInsertSchema } from "@/infrastructure/db/types"
 import { getResetPasswordInputSchema } from "@/infrastructure/db/validation/auth"
 import { Form } from "@/shared/components/ui/form"
+import { ErrorAlert } from "@/shared/components/widgets/error-alert"
 import { FieldInputController } from "@/shared/components/widgets/field-input-controller"
-import { FormRootError } from "@/shared/components/widgets/form-root-error"
 import { FormSubmitButton } from "@/shared/components/widgets/form-submit-button"
 import { PersistKeys } from "@/shared/constants"
 import { useFormWithAction } from "@/shared/hooks"
@@ -33,7 +33,7 @@ export const FormResetPassword = ({ className, token }: Props) => {
 
   return (
     <Form {...form}>
-      <FormRootError
+      <ErrorAlert
         error={actionErrorState?.error}
         description={actionErrorState?.description}
       />

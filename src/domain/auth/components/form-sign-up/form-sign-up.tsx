@@ -5,8 +5,8 @@ import { useTranslations } from "next-intl"
 import type { SignUpInputSchema } from "@/infrastructure/db/types"
 import { getSignUpInputSchema } from "@/infrastructure/db/validation/auth"
 import { Form } from "@/shared/components/ui/form"
+import { ErrorAlert } from "@/shared/components/widgets/error-alert"
 import { FieldInputController } from "@/shared/components/widgets/field-input-controller"
-import { FormRootError } from "@/shared/components/widgets/form-root-error"
 import { FormSubmitButton } from "@/shared/components/widgets/form-submit-button"
 import { PersistKeys } from "@/shared/constants"
 import { useFormWithAction } from "@/shared/hooks"
@@ -29,11 +29,11 @@ export const FormSignUp = ({ className }: Props) => {
     disableIfPending: true,
   })
 
-  const t = useTranslations("signUpForm")
+  const t = useTranslations("formSignUp")
 
   return (
     <Form {...form}>
-      <FormRootError
+      <ErrorAlert
         error={actionErrorState?.error}
         description={actionErrorState?.description}
       />
@@ -46,7 +46,7 @@ export const FormSignUp = ({ className }: Props) => {
           label={t("name")}
           inputProps={{
             autoComplete: "name",
-            placeholder: "John Doe",
+            placeholder: t("placeholders.name"),
             type: "text",
           }}
         />
@@ -56,7 +56,7 @@ export const FormSignUp = ({ className }: Props) => {
           label={t("email")}
           inputProps={{
             autoComplete: "email",
-            placeholder: "example@example.com",
+            placeholder: t("placeholders.email"),
             type: "email",
           }}
         />
@@ -66,6 +66,7 @@ export const FormSignUp = ({ className }: Props) => {
           label={t("password")}
           inputProps={{
             autoComplete: "new-password",
+            placeholder: t("placeholders.password"),
             type: "password",
           }}
         />
@@ -75,6 +76,7 @@ export const FormSignUp = ({ className }: Props) => {
           label={t("confirmPassword")}
           inputProps={{
             autoComplete: "new-password",
+            placeholder: t("placeholders.confirmPassword"),
             type: "password",
           }}
         />

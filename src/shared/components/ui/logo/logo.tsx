@@ -1,9 +1,13 @@
 "use client"
 
 import Image from "next/image"
-import { useTranslations } from "next-intl"
-import { useTheme } from "next-themes"
 
+import {
+  logoDark,
+  logoDarkSmall,
+  logoLight,
+  logoLightSmall,
+} from "@/shared/images"
 import { cn } from "@/shared/utils/cn"
 
 type Props = {
@@ -12,26 +16,20 @@ type Props = {
 }
 
 export const Logo = ({ asSmall, className }: Props) => {
-  const { resolvedTheme } = useTheme()
-  const t = useTranslations("logo")
-
   return (
-    <Image
-      key={resolvedTheme}
-      src={
-        resolvedTheme === "light"
-          ? asSmall
-            ? "/images/logo-light-small.webp"
-            : "/images/logo-light.webp"
-          : asSmall
-            ? "/images/logo-dark-small.webp"
-            : "/images/logo-dark.webp"
-      }
-      alt={t("altText")}
-      width={asSmall ? 32 : 120}
-      height={30}
-      className={cn(className)}
-      priority
-    />
+    <>
+      <Image
+        src={asSmall ? logoLightSmall : logoLight}
+        placeholder="blur"
+        alt=""
+        className={cn("block h-7.5 w-30 dark:hidden", className)}
+      />
+      <Image
+        src={asSmall ? logoDarkSmall : logoDark}
+        placeholder="blur"
+        alt=""
+        className={cn("hidden h-7.5 w-30 dark:block", className)}
+      />
+    </>
   )
 }

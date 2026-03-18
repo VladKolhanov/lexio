@@ -6,9 +6,9 @@ import type { SignInInputSchema } from "@/infrastructure/db/types"
 import { getSignInInputSchema } from "@/infrastructure/db/validation/auth"
 import { Form } from "@/shared/components/ui/form"
 import { Link } from "@/shared/components/ui/link"
+import { ErrorAlert } from "@/shared/components/widgets/error-alert"
 import { FieldCheckboxController } from "@/shared/components/widgets/field-checkbox-controller"
 import { FieldInputController } from "@/shared/components/widgets/field-input-controller"
-import { FormRootError } from "@/shared/components/widgets/form-root-error"
 import { FormSubmitButton } from "@/shared/components/widgets/form-submit-button"
 import { PersistKeys, Routes } from "@/shared/constants"
 import { useFormWithAction } from "@/shared/hooks"
@@ -31,11 +31,11 @@ export const FormSignIn = ({ className }: Props) => {
     disableIfPending: true,
   })
 
-  const t = useTranslations("signInForm")
+  const t = useTranslations("formSignIn")
 
   return (
     <Form {...form}>
-      <FormRootError
+      <ErrorAlert
         error={actionErrorState?.error}
         description={actionErrorState?.description}
       />
@@ -48,7 +48,7 @@ export const FormSignIn = ({ className }: Props) => {
           label={t("email")}
           inputProps={{
             autoComplete: "email",
-            placeholder: "example@example.com",
+            placeholder: t("placeholders.email"),
             type: "email",
           }}
         />
@@ -58,6 +58,7 @@ export const FormSignIn = ({ className }: Props) => {
           label={t("password")}
           inputProps={{
             autoComplete: "currentPassword",
+            placeholder: t("placeholders.password"),
             type: "password",
           }}
         />

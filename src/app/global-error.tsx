@@ -1,12 +1,10 @@
 "use client"
 
-import { type ReactNode, useEffect } from "react"
+import { type ReactNode } from "react"
 import { NextIntlClientProvider } from "next-intl"
 
 import { EmptyError } from "@/shared/components/ui/empty-error"
-import { TopBar } from "@/shared/components/ui/top-bar"
-import { LanguageToggle } from "@/shared/components/widgets/language-toggle"
-import { ThemeToggle } from "@/shared/components/widgets/theme-toggle"
+import { TopBarControls } from "@/shared/components/ui/top-bar-actions"
 import { ThemeProvider } from "@/shared/providers/theme-provider"
 
 import { useGlobalErrorIntl } from "./use-global-error-Intl"
@@ -40,12 +38,8 @@ type Props = {
   error: Error & { digest?: string }
 }
 
-export default function GlobalError({ error }: Props) {
+export default function GlobalError(_props: Props) {
   const { isLoading, locale, messages } = useGlobalErrorIntl()
-
-  useEffect(() => {
-    // Sentry.captureException(error)
-  }, [error])
 
   if (!messages && isLoading) {
     // TODO: Add skeleton
@@ -65,7 +59,7 @@ export default function GlobalError({ error }: Props) {
         locale={locale}
         messages={messages}
       >
-        <p>Failed to load messages</p>
+        <p>Unknown Error</p>
       </GlobalErrorLayout>
     )
   }
@@ -75,12 +69,7 @@ export default function GlobalError({ error }: Props) {
       locale={locale}
       messages={messages}
     >
-      <TopBar>
-        <TopBar.Right>
-          <ThemeToggle />
-          <LanguageToggle />
-        </TopBar.Right>
-      </TopBar>
+      <TopBarControls />
 
       <EmptyError />
     </GlobalErrorLayout>

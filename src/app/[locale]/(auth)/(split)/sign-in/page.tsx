@@ -23,7 +23,7 @@ export default async function SignInPage() {
   return (
     <>
       <ToastListener />
-      <CardSignIn className="mt-15 md:mt-25" />
+      <CardSignIn />
     </>
   )
 }

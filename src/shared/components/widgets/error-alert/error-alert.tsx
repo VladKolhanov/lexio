@@ -5,7 +5,7 @@ import {
   AlertDescription,
   AlertTitle,
 } from "@/shared/components/ui/alert"
-import { ShieldXIcon } from "@/shared/icons"
+import { AlertCircleIcon } from "@/shared/icons"
 import { cn } from "@/shared/utils/cn"
 
 type Props = {
@@ -14,7 +14,7 @@ type Props = {
   className?: string
 }
 
-export const FormRootError = ({ error, description, className }: Props) => {
+export const ErrorAlert = ({ error, description, className }: Props) => {
   if (!error) return null
 
   return (
@@ -27,7 +27,7 @@ export const FormRootError = ({ error, description, className }: Props) => {
         className
       )}
     >
-      <ShieldXIcon className="size-5 shrink-0 text-destructive" />
+      <AlertCircleIcon className="size-5 shrink-0 text-destructive" />
 
       <AlertTitle className="leading-snug font-semibold">
         {error.message}

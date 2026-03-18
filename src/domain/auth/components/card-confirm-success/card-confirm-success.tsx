@@ -38,7 +38,7 @@ export const CardConfirmSuccess = async ({ className }: Props) => {
         </CardDescription>
       </CardHeader>
 
-      <SeparatorWithLabel label={t("separator")} />
+      <SeparatorWithLabel>{t("separator")}</SeparatorWithLabel>
 
       <CardContent className="space-y-4 text-center">
         <Link

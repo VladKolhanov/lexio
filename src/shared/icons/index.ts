@@ -5,6 +5,7 @@ export { default as GoogleIcon } from "@/public/icons/google.svg?react"
 export { default as UkraineFlagIcon } from "@/public/icons/ukraine-flag-icon.svg?react"
 export { default as UnitedKingdomFlagIcon } from "@/public/icons/united-kingdom-flag-icon.svg?react"
 export {
+  AlertCircleIcon,
   ArrowLeftIcon,
   CheckCircle2Icon,
   CheckCircleIcon,
@@ -29,7 +30,6 @@ export {
   MoonIcon,
   OctagonXIcon,
   RefreshCwIcon,
-  ShieldXIcon,
   SunIcon,
   SunMoonIcon,
   TriangleAlertIcon,

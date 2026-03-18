@@ -1,0 +1,5 @@
+export { default as authIllustration } from "@/public/images/auth-illustration.webp"
+export { default as logoDark } from "@/public/images/logo-dark.webp"
+export { default as logoDarkSmall } from "@/public/images/logo-dark-small.webp"
+export { default as logoLight } from "@/public/images/logo-light.webp"
+export { default as logoLightSmall } from "@/public/images/logo-light-small.webp"

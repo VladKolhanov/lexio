@@ -19,5 +19,5 @@ export async function generateMetadata({
 export default async function SignUpPage() {
   await redirectIfSessionExist()
 
-  return <CardSignUp className="mt-15 md:mt-25" />
+  return <CardSignUp />
 }
