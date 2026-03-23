@@ -1,3 +1,5 @@
+import type { ValueOf } from "../types/utils"
+
 export const Routes = {
   Home: "/",
   SignIn: "/sign-in",
@@ -21,4 +23,4 @@ export const PersistKeys = {
   FormResetPassword: "form-reset-password",
 } as const
 
-export type PersistKeys = (typeof PersistKeys)[keyof typeof PersistKeys]
+export type PersistKeys = ValueOf<typeof PersistKeys>

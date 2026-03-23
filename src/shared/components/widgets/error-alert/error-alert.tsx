@@ -6,11 +6,12 @@ import {
   AlertTitle,
 } from "@/shared/components/ui/alert"
 import { AlertCircleIcon } from "@/shared/icons"
+import type { PlainObject } from "@/shared/types/global"
 import { cn } from "@/shared/utils/cn"
 
 type Props = {
   error: UseFormReturn["formState"]["errors"]["root"] | null
-  description?: Record<string, string | string[]>
+  description?: PlainObject<string | string[]>
   className?: string
 }
 

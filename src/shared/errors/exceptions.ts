@@ -1,3 +1,5 @@
+import type { PlainObject } from "@/shared/types/global"
+
 import {
   type AppErrorCodes,
   AppErrorMessages,
@@ -5,7 +7,7 @@ import {
 } from "./definitions"
 
 type Options = {
-  details?: Record<string, unknown>
+  details?: PlainObject
 }
 
 export class BussinessError extends Error {

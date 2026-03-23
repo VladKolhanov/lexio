@@ -24,8 +24,7 @@ export const safeFormAction = <TResult>(
   }
 }
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const safeAction = <TResult, Args extends any[] = any[]>(
+export const safeAction = <TResult, Args extends unknown[] = unknown[]>(
   fn: Action<TResult, Args>
 ): Action<ActionResponse<TResult | null>, Args> => {
   return async (...args) => {

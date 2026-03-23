@@ -29,7 +29,7 @@ type PersistEnabled<TValues> = {
 }
 
 type Options<
-  TAction extends FormAction<ActionResponse<any>>,
+  TAction extends FormAction<ActionResponse<unknown>>,
   TValues extends FieldValues,
 > = {
   action: TAction
@@ -41,7 +41,7 @@ type Options<
   Omit<UseFormProps<TValues>, "resolver" | "disabled" | "defaultValues">
 
 export const useFormWithAction = <
-  TAction extends FormAction<ActionResponse<any>>,
+  TAction extends FormAction<ActionResponse<unknown>>,
   TGetSchema extends (t: any) => z.ZodObject,
   TValues extends FieldValues = z.infer<ReturnType<TGetSchema>>,
 >({

@@ -3,6 +3,7 @@ import type { FieldValues, Path, UseFormReturn } from "react-hook-form"
 import Cookie from "js-cookie"
 
 import type { PersistKeys } from "@/shared/constants"
+import type { PlainObject } from "@/shared/types/global"
 import { debounce } from "@/shared/utils/debounce"
 import * as localStorage from "@/shared/utils/local-storage"
 
@@ -51,13 +52,13 @@ export function useFormPersistence<TValues extends FieldValues>({
   useEffect(() => {
     if (!persistKey) return
 
-    const saveToLocalStorage = debounce((values: Record<string, unknown>) => {
+    const saveToLocalStorage = debounce((values) => {
       Cookie.set(persistKey, "true")
       localStorage.setItem(persistKey, values)
     }, persistDebounceMs)
 
     const subscription = form.watch((values) => {
-      const formData = Object.entries(values).reduce<Record<string, unknown>>(
+      const formData = Object.entries(values).reduce<PlainObject>(
         (acc, [key, value]) => {
           if (!persistFields || persistFields.includes(key as keyof TValues)) {
             acc[key] = value

@@ -1,11 +1,10 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-export const debounce = <T extends (...args: any[]) => void>(
-  func: T,
+export const debounce = <Args extends unknown[]>(
+  func: (...args: Args) => void,
   wait: number
-): T & { cancel: () => void } => {
+): ((...args: Args) => void) & { cancel: () => void } => {
   let timeout: ReturnType<typeof setTimeout> | null = null
 
-  const debounced = (...args: Parameters<T>) => {
+  const debounced = (...args: Args) => {
     if (timeout) clearTimeout(timeout)
 
     timeout = setTimeout(() => {
@@ -20,5 +19,5 @@ export const debounce = <T extends (...args: any[]) => void>(
     }
   }
 
-  return debounced as T & { cancel: () => void }
+  return debounced as ((...args: Args) => void) & { cancel: () => void }
 }

@@ -21,7 +21,7 @@ export const getSessionOrRedirect = async (to?: string) => {
   })
 
   if (!session?.session) {
-    await redirectWithSafeLocale(to || Routes.SignIn)
+    return await redirectWithSafeLocale(to || Routes.SignIn)
   }
 
   return session

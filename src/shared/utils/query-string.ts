@@ -3,13 +3,14 @@ import type { Messages } from "next-intl"
 
 import { ENV_CLIENT } from "@/shared/env-client"
 
+import type { ValueOf } from "../types/utils"
+
 export const QueryStringToastKeys = {
   variant: "tvariant",
   translationKey: "tkey",
 } as const
 
-export type QueryStringToastKeys =
-  (typeof QueryStringToastKeys)[keyof typeof QueryStringToastKeys]
+export type QueryStringToastKeys = ValueOf<typeof QueryStringToastKeys>
 
 export type QueryStringToastVariants =
   | "success"

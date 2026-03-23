@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import type { FieldValues, Path, UseFormReturn } from "react-hook-form"
 
-import type { ServerError } from "@/shared/types/global"
+import type { PlainObject, ServerError } from "@/shared/types/global"
 
 export const useHandleFormError = <TFieldValues extends FieldValues>(
   form: UseFormReturn<TFieldValues>,
@@ -10,7 +10,7 @@ export const useHandleFormError = <TFieldValues extends FieldValues>(
   const [error, setError] =
     useState<UseFormReturn["formState"]["errors"]["root"]>()
   const [description, setDescription] =
-    useState<Record<string, string | string[]>>()
+    useState<PlainObject<string | string[]>>()
 
   useEffect(() => {
     if (!serverError || !serverError.details) return
