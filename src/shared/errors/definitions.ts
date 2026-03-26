@@ -1,3 +1,5 @@
+import type { ValueOfSet } from "@/shared/types/utils"
+
 export const BussinessErrorCodes = new Set([
   "ZOD_PARSE_SCHEMA",
   "ACTION_FAILED",
@@ -10,13 +12,11 @@ export const BussinessErrorCodes = new Set([
   "AUTH_PROVIDER_ERROR",
 ] as const)
 
-export type BussinessErrorCodes =
-  typeof BussinessErrorCodes extends Set<infer T> ? T : never
+export type BussinessErrorCodes = ValueOfSet<typeof BussinessErrorCodes>
 
 export const AppErrorCodes = new Set(["DETECT_BOT", "TOKEN_NOT_EXIST"] as const)
 
-export type AppErrorCodes =
-  typeof AppErrorCodes extends Set<infer T> ? T : never
+export type AppErrorCodes = ValueOfSet<typeof AppErrorCodes>
 
 export const AppErrorMessages: Record<AppErrorCodes, string> = {
   DETECT_BOT: "[Arcjet] Block: Bot detected.",

@@ -20,14 +20,19 @@
   "footer": {
     "rights": "All rights reserved."
   },
-  "empty404": {
-    "title": "404 - Not Found",
-    "description": "The page you are looking for does not exist. Please check the URL or return back.",
-    "backButton": "Back"
+  "notFound": {
+    "title": "404",
+    "description": "Page not found",
+    "contentPageIsNotExist": "The page at <code>{pathname}</code> does not exist or has been moved.",
+    "contentCheckPage": "Please check if the address is correct or use one of the actions below.",
+    "return": "Go back",
+    "sign-in": "Sign in"
   },
-  "emptyError": {
-    "title": "Oops, something went wrong.",
-    "description": "There was a technical issue on our end. Please try again later.",
-    "tryAgain": "Try again"
+  "errorRoot": {
+    "title": "Oops! Something went wrong",
+    "description": "An unexpected error occurred",
+    "content": "We're already working on fixing it. Please try refreshing the page or come back later.",
+    "summary": "Error details",
+    "retry": "Reload"
   }
 }

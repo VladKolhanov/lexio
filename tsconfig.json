@@ -25,13 +25,11 @@
     }
   },
   "include": [
-    "svgr.d.ts",
-    "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
     "**/*.config.*",
-    ".next/types/**/*.ts",
     ".lintstagedrc.mjs",
+    ".next/types/**/*.ts",
     ".next/dev/types/**/*.ts"
   ],
   "exclude": ["node_modules", "dist", "build", ".next", "coverage"]

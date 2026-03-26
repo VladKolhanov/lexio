@@ -116,11 +116,21 @@ export default defineConfig([
       "no-useless-catch": "error",
       "no-var": "error",
       "prefer-template": "error",
+      "no-restricted-syntax": [
+        "error",
+        {
+          selector:
+            "TSAsExpression:not([typeAnnotation.type='TSTypeReference'][typeAnnotation.typeName.name='const'])",
+          message:
+            "Usage of 'as' assertions is forbidden. Use Type Guards or Assertion Functions (asserts) instead. Only 'as const' is allowed.",
+        },
+      ],
       "@typescript-eslint/no-unused-vars": [
         "error",
         { argsIgnorePattern: "^_", varsIgnorePattern: "^_" },
       ],
       "@typescript-eslint/array-type": "error",
+      "@typescript-eslint/no-non-null-assertion": "error",
       "@typescript-eslint/consistent-type-definitions": "off",
       "@typescript-eslint/consistent-indexed-object-style": "error",
       "@typescript-eslint/no-unnecessary-boolean-literal-compare": "error",

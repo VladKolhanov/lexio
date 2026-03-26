@@ -1,6 +1,6 @@
 import { z } from "zod"
 
-import type { TranslationKeys } from "@/infrastructure/i18n/types"
+import type { TFunction } from "@/shared/types/i18n"
 
 export const zStringRequired = () =>
   z.string().trim().min(1, { error: "string is required" })
@@ -14,9 +14,7 @@ export const zCheckbox = () =>
     )
     .default(false)
 
-export const ztPasswordRequired = (
-  t: TranslationKeys<"validation"> | undefined
-) =>
+export const ztPasswordRequired = (t: TFunction<"validation"> | undefined) =>
   z
     .string()
     .min(6, t?.("minChar", { min: 6 }))
