@@ -1,6 +1,7 @@
 import type { ComponentProps, ReactNode } from "react"
 import type { LucideIcon } from "lucide-react"
 
+import { ButtonResendEmail } from "@/domain/auth/components/button-resend-email"
 import {
   Card,
   CardContent,
@@ -10,7 +11,6 @@ import {
   CardTitle,
 } from "@/shared/components/ui/card"
 import { Link } from "@/shared/components/ui/link"
-import { ButtonResendEmail } from "@/shared/components/widgets/button-resend-email"
 import { ButtonReturnBack } from "@/shared/components/widgets/button-return-back"
 import { ArrowLeftIcon, ExternalLinkIcon, MailOpenIcon } from "@/shared/icons"
 import { cn } from "@/shared/utils/cn"

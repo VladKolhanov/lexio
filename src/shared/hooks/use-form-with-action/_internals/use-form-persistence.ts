@@ -6,6 +6,7 @@ import type { PersistKeys } from "@/shared/constants"
 import type { PlainObject } from "@/shared/types/global"
 import { debounce } from "@/shared/utils/debounce"
 import * as localStorage from "@/shared/utils/local-storage"
+import { objectKeys } from "@/shared/utils/object"
 
 type UseFormPersistenceProps<TValues extends FieldValues> = {
   form: UseFormReturn<TValues>
@@ -36,7 +37,7 @@ export function useFormPersistence<TValues extends FieldValues>({
       const fieldsToApply =
         persistFields && persistFields.length > 0
           ? persistFields
-          : (Object.keys(persistData) as (keyof TValues)[])
+          : objectKeys(persistData)
 
       fieldsToApply.forEach((key) => {
         const value = persistData[key]
@@ -60,7 +61,7 @@ export function useFormPersistence<TValues extends FieldValues>({
     const subscription = form.watch((values) => {
       const formData = Object.entries(values).reduce<PlainObject>(
         (acc, [key, value]) => {
-          if (!persistFields || persistFields.includes(key as keyof TValues)) {
+          if (!persistFields || persistFields.includes(key)) {
             acc[key] = value
           }
           return acc

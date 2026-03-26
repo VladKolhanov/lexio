@@ -1,15 +1,16 @@
 "use client"
 
-import { useEffect, useState, useTransition } from "react"
+import { useTransition } from "react"
 import { useTranslations } from "next-intl"
 import { toast } from "sonner"
 
 import { Button } from "@/shared/components/ui/button"
+import { useTimer } from "@/shared/hooks"
 import { RefreshCwIcon } from "@/shared/icons"
 import type { ActionResponse } from "@/shared/types/global"
 import { cn } from "@/shared/utils/cn"
 
-const REPEAT_RESEND_TIME = 45
+import { REPEAT_RESEND_TIME } from "../../constants"
 
 type Props = {
   email: string
@@ -25,32 +26,20 @@ export const ButtonResendEmail = ({
   sendEmailAction,
   ...props
 }: Props) => {
-  const [time, setTime] = useState(REPEAT_RESEND_TIME)
+  const { timer, setTimer } = useTimer(REPEAT_RESEND_TIME)
   const [isPending, startTransition] = useTransition()
 
   const t = useTranslations("buttonResendEmail")
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      if (time <= 0) {
-        clearInterval(interval)
-      } else {
-        setTime((prev) => prev - 1)
-      }
-    }, 1000)
-
-    return () => clearInterval(interval)
-  }, [time])
 
   const handleResendEmail = () => {
     startTransition(async () => {
       const response = await sendEmailAction(email)
 
       if (response.data?.status) {
-        setTime(REPEAT_RESEND_TIME)
+        setTimer(REPEAT_RESEND_TIME)
         toast.success(t("success"), { position: "bottom-center" })
       } else {
-        setTime(REPEAT_RESEND_TIME)
+        setTimer(REPEAT_RESEND_TIME)
         toast.error(t("error"), { position: "bottom-center" })
       }
     })
@@ -60,7 +49,7 @@ export const ButtonResendEmail = ({
     <Button
       variant="outline"
       className={cn(className)}
-      disabled={!!time}
+      disabled={!!timer}
       {...props}
       onClick={handleResendEmail}
     >
@@ -69,7 +58,7 @@ export const ButtonResendEmail = ({
       ) : (
         <RefreshCwIcon className="size-4" />
       )}
-      {t("repeatSending", { time, hasTime: String(!!time) })}
+      {t("repeatSending", { timer, hasTime: String(!!timer) })}
     </Button>
   )
 }

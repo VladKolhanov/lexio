@@ -5,6 +5,8 @@ import { GoogleIcon } from "@/shared/icons"
 
 export type SocialProviders = Extract<SocialProvider, "google">
 
+export const REPEAT_RESEND_TIME = 45
+
 export const SocialProvidersOptions = {
   google: {
     icon: GoogleIcon,

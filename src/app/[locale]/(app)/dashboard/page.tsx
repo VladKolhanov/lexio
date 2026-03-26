@@ -22,7 +22,7 @@ export default async function DashboardPage() {
   return (
     <div className="grid place-items-center">
       <hgroup>
-        <h1>Hello {session?.user.name}</h1>
+        <h1>Hello {session.user.name}</h1>
         <p>This is dashboard page</p>
         <ButtonSignout>Sign Out</ButtonSignout>
       </hgroup>

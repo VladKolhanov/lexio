@@ -12,6 +12,7 @@ import type z from "zod"
 
 import { type PersistKeys } from "@/shared/constants"
 import type { ActionResponse, FormAction } from "@/shared/types/global"
+import { type TFunction } from "@/shared/types/i18n"
 
 import { useFormPersistence } from "./_internals/use-form-persistence"
 import { useHandleFormError } from "./_internals/use-handle-form-error"
@@ -29,11 +30,11 @@ type PersistEnabled<TValues> = {
 }
 
 type Options<
-  TAction extends FormAction<ActionResponse<unknown>>,
   TValues extends FieldValues,
+  TAction extends FormAction<ActionResponse<unknown>>,
 > = {
   action: TAction
-  getSchemaFn: (t: any) => z.ZodType<TValues, any>
+  getSchemaFn: (t: TFunction<"validation">) => z.ZodType<TValues, any, any>
   defaultValues: DefaultValues<TValues>
   disableIfPending?: UseFormProps<TValues>["disabled"]
   initActionStateData?: Awaited<ReturnType<TAction>>["data"]
@@ -41,9 +42,9 @@ type Options<
   Omit<UseFormProps<TValues>, "resolver" | "disabled" | "defaultValues">
 
 export const useFormWithAction = <
+  TValues extends FieldValues,
   TAction extends FormAction<ActionResponse<unknown>>,
-  TGetSchema extends (t: any) => z.ZodObject,
-  TValues extends FieldValues = z.infer<ReturnType<TGetSchema>>,
+  TActionData = Awaited<ReturnType<TAction>>["data"],
 >({
   action,
   getSchemaFn,
@@ -54,7 +55,7 @@ export const useFormWithAction = <
   persistFields,
   persistDebounceMs = 300,
   ...formHookProps
-}: Options<TAction, TValues>) => {
+}: Options<TValues, TAction>) => {
   const [actionState, formAction, isPending] = useActionState(action, {
     status: "init",
     error: null,
@@ -85,12 +86,10 @@ export const useFormWithAction = <
     actionErrorState: actionState.status === "error" ? error : null,
     actionSuccessState:
       actionState.status === "success"
-        ? (actionState.data as Awaited<ReturnType<TAction>>["data"])
+        ? (actionState.data as TActionData)
         : null,
     actionInitState:
-      actionState.status === "init"
-        ? (actionState.data as Awaited<ReturnType<TAction>>["data"])
-        : null,
+      actionState.status === "init" ? (actionState.data as TActionData) : null,
     formAction,
     isPending,
   }

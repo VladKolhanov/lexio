@@ -74,7 +74,7 @@ EmailVerification.PreviewProps = {
   name: "John Doe",
   url: "http://sdadwqe123wddsjhakh4h324hdnas",
   locale: "en",
-} as Props
+} satisfies Props
 
 export default EmailVerification
 

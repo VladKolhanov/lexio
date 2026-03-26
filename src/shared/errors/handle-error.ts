@@ -3,9 +3,10 @@ import { isRedirectError } from "next/dist/client/components/redirect-error"
 import { getTranslations } from "next-intl/server"
 
 import type { AvailableFormFields } from "@/infrastructure/db/types"
-import type { ServerError, ZodFlattenError } from "@/shared/types/global"
+import type { ServerError } from "@/shared/types/global"
 
 import { AppError, BussinessError } from "./exceptions"
+import { isZodFlattenErrorDetails } from "../types/guards"
 
 export const handleError = async (
   error: unknown
@@ -25,14 +26,13 @@ export const handleError = async (
 
     if (
       error.code === "ZOD_PARSE_SCHEMA" &&
-      error.details &&
-      "fieldErrors" in error.details
+      isZodFlattenErrorDetails(error.details)
     ) {
       return {
         ...actionResponse,
         message: t("zodParseSchema"),
         details: {
-          fieldErrors: error.details as ZodFlattenError["fieldErrors"],
+          fieldErrors: error.details,
         },
       }
     }
